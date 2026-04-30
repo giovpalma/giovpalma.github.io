@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Progetto di Giovanni Palma sull'intelligenza artificiale generativa: introduzione, applicazioni, rischi, opportunità e governance." />
+  <meta name="description" content="Portfolio progetti di Giovanni Palma: progetti universitari, personali e di ricerca in ambito intelligenza artificiale, sicurezza, studi L-36 e innovazione." />
   <title>Progetti | Giovanni Palma</title>
 
   <style>
@@ -220,7 +220,8 @@
     }
 
     .panel-title,
-    .feature-label {
+    .feature-label,
+    .card-label {
       color: var(--blue-pale);
       font-size: 0.78rem;
       font-weight: 760;
@@ -297,6 +298,59 @@
       background: linear-gradient(160deg, rgba(13, 25, 48, 0.86), rgba(7, 17, 33, 0.84));
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .project-card {
+      min-height: 310px;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, rgba(18, 32, 58, 0.91), rgba(9, 20, 38, 0.9));
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.22);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(147, 197, 253, 0.46);
+      background: linear-gradient(160deg, rgba(37, 99, 235, 0.16), rgba(9, 20, 38, 0.94));
+    }
+
+    .project-card.featured {
+      grid-column: span 2;
+      border-color: var(--line-blue);
+    }
+
+    .project-card.placeholder {
+      opacity: 0.72;
+    }
+
+    .project-card h3 {
+      color: var(--text);
+      font-size: 1.34rem;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .project-link {
+      margin-top: 24px;
+      color: var(--blue-soft);
+      font-weight: 760;
     }
 
     .two-grid {
@@ -427,8 +481,13 @@
       .hero,
       .two-grid,
       .three-grid,
-      .detail-layout {
+      .detail-layout,
+      .project-grid {
         grid-template-columns: 1fr;
+      }
+
+      .project-card.featured {
+        grid-column: auto;
       }
 
       .hero {
@@ -481,8 +540,8 @@
 
       <div class="menu">
         <a href="../">Home</a>
+        <a href="#portfolio">Portfolio</a>
         <a href="#generative-ai">Progetto IA</a>
-        <a href="#struttura">Struttura</a>
         <a href="#sviluppi">Sviluppi</a>
         <a class="nav-cta" href="mailto:giovannip2504@gmail.com">Contatti</a>
       </div>
@@ -490,53 +549,90 @@
   </header>
 
   <main class="page">
-    <section class="hero" aria-label="Presentazione progetto IA">
+    <section class="hero" aria-label="Presentazione progetti">
       <div class="hero-text">
-        <div class="eyebrow">Progetto</div>
-        <h1>Introduction and Application of <span>Generative AI.</span></h1>
+        <div class="eyebrow">Portfolio progetti</div>
+        <h1>Progetti di studio, <span>ricerca e applicazione.</span></h1>
 
         <p class="lead">
-          Una prima scheda progetto dedicata allo studio dell’intelligenza artificiale generativa, delle sue applicazioni e del suo impatto nei contesti professionali, formativi e organizzativi.
+          Questa sezione raccoglie i progetti sviluppati nel mio percorso universitario e personale, con una struttura pensata per crescere nel tempo.
         </p>
 
         <p>
-          L’obiettivo è presentare la Generative AI in modo chiaro e strutturato: non come semplice tendenza tecnologica, ma come strumento da comprendere, valutare e applicare con consapevolezza.
+          Al momento è presente il progetto dedicato all’intelligenza artificiale generativa. In futuro potranno essere aggiunte nuove schede, mantenendo lo stesso ordine visivo e la stessa impostazione professionale.
         </p>
 
         <div class="actions">
-          <a class="btn btn-primary" href="#generative-ai">Apri la scheda</a>
+          <a class="btn btn-primary" href="#portfolio">Vedi il portfolio</a>
           <a class="btn btn-secondary" href="../">Torna alla home</a>
         </div>
       </div>
 
       <aside class="hero-panel">
-        <p class="panel-title">Focus del progetto</p>
-        <h2>Capire la tecnologia, le applicazioni e le implicazioni.</h2>
+        <p class="panel-title">Impostazione</p>
+        <h2>Una pagina costruita per ospitare più progetti.</h2>
         <p>
-          La scheda sarà sviluppata come una presentazione progressiva: introduzione, casi d’uso, opportunità, limiti, rischi e possibili applicazioni in ambito organizzativo.
+          Ogni progetto avrà una scheda sintetica nel portfolio e, quando necessario, una sezione di approfondimento dedicata. In questo modo la pagina resta ordinata anche con nuovi contenuti.
         </p>
 
         <div class="values-list">
           <div class="value-row">
-            <strong>Introduzione</strong>
-            <span>concetti base, definizione e funzionamento generale</span>
+            <strong>Progetti attivi</strong>
+            <span>schede già sviluppate e consultabili</span>
           </div>
           <div class="value-row">
-            <strong>Applicazioni</strong>
-            <span>formazione, produttività, comunicazione e servizi digitali</span>
+            <strong>Progetti futuri</strong>
+            <span>nuove aree da aggiungere senza rifare la pagina</span>
           </div>
           <div class="value-row">
-            <strong>Consapevolezza</strong>
-            <span>rischi, limiti, governance e uso responsabile</span>
+            <strong>Coerenza visiva</strong>
+            <span>stesso stile per IA, L-36 e futuri lavori</span>
           </div>
         </div>
       </aside>
     </section>
 
+    <section id="portfolio">
+      <div class="section-heading">
+        <h2>Portfolio</h2>
+        <p>Per ora è presente un solo progetto. La griglia è già predisposta per aggiungerne altri, ad esempio un progetto di filosofia politica in ambito L-36.</p>
+      </div>
+
+      <div class="project-grid">
+        <a class="project-card featured" href="#generative-ai">
+          <div>
+            <p class="card-label">Progetto attivo</p>
+            <h3>Introduction and Application of Generative AI</h3>
+            <p>Studio introduttivo sull’intelligenza artificiale generativa, sulle sue applicazioni pratiche e sul suo impatto nei contesti professionali, formativi e organizzativi.</p>
+            <div class="tag-list">
+              <span class="tag">Generative AI</span>
+              <span class="tag">Applicazioni</span>
+              <span class="tag">Governance</span>
+            </div>
+          </div>
+          <span class="project-link">Apri scheda →</span>
+        </a>
+
+        <article class="project-card placeholder">
+          <div>
+            <p class="card-label">Prossimo inserimento</p>
+            <h3>Filosofia politica e percorso L-36</h3>
+            <p>Spazio predisposto per un futuro progetto legato agli studi diplomatici, internazionali e alla riflessione politico-istituzionale.</p>
+            <div class="tag-list">
+              <span class="tag">L-36</span>
+              <span class="tag">Filosofia politica</span>
+              <span class="tag">In preparazione</span>
+            </div>
+          </div>
+          <span class="project-link">Da aggiornare</span>
+        </article>
+      </div>
+    </section>
+
     <section id="generative-ai">
       <div class="section-heading">
-        <h2>Scheda progetto</h2>
-        <p>Una base ordinata per sviluppare una presentazione completa sull’intelligenza artificiale generativa.</p>
+        <h2>Introduction and Application of Generative AI</h2>
+        <p>Prima scheda progetto dedicata all’intelligenza artificiale generativa e alle sue applicazioni nei contesti professionali.</p>
       </div>
 
       <div class="detail-layout">
@@ -603,12 +699,12 @@
     <section id="sviluppi">
       <div class="section-heading">
         <h2>Sviluppi</h2>
-        <p>La pagina verrà aggiornata con materiali, contenuti e approfondimenti che mi indicherai progressivamente.</p>
+        <p>La pagina verrà aggiornata con nuovi materiali e, quando vorrai, con nuovi progetti.</p>
       </div>
 
       <div class="two-grid">
         <article class="card">
-          <h3>Materiali da integrare</h3>
+          <h3>Materiali da integrare per il progetto IA</h3>
           <ul>
             <li>presentazione completa del progetto</li>
             <li>fonti e riferimenti</li>
@@ -618,9 +714,9 @@
         </article>
 
         <article class="card">
-          <h3>Prossimo aggiornamento</h3>
+          <h3>Nuovi progetti</h3>
           <p>
-            Questa sezione resterà dedicata esclusivamente al progetto IA finché non deciderai di aggiungere nuovi progetti al portfolio.
+            La struttura è già pronta per aggiungere nuove schede, come il futuro progetto di filosofia politica in ambito L-36, senza modificare l’identità visiva della pagina.
           </p>
         </article>
       </div>
@@ -628,7 +724,7 @@
 
     <footer>
       <span>© 2026 Giovanni Palma</span>
-      <span>Progetto · Generative AI · Applicazioni · Governance</span>
+      <span>Progetti · Generative AI · L-36 · Ricerca applicata</span>
     </footer>
   </main>
 </body>
