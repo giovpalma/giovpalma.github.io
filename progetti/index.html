@@ -3,183 +3,633 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Progetti universitari | Giovanni Palma</title>
+  <meta name="description" content="Progetto di Giovanni Palma sull'intelligenza artificiale generativa: introduzione, applicazioni, rischi, opportunità e governance." />
+  <title>Progetti | Giovanni Palma</title>
+
   <style>
-    body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: radial-gradient(circle at top left, rgba(59,130,246,.32), transparent 35%), #050b18;
-      color: #f8fbff;
-      line-height: 1.7;
+    :root {
+      --bg: #050914;
+      --bg-2: #071122;
+      --text: #f8fafc;
+      --muted: #b8c3d6;
+      --subtle: #8794aa;
+      --blue: #3b82f6;
+      --blue-soft: #60a5fa;
+      --blue-pale: #bfdbfe;
+      --line: rgba(148, 163, 184, 0.18);
+      --line-blue: rgba(96, 165, 250, 0.28);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --max: 1180px;
     }
 
-    a { color: inherit; text-decoration: none; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(59, 130, 246, 0.18), transparent 32%),
+        radial-gradient(circle at 84% 14%, rgba(96, 165, 250, 0.08), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg-2) 58%, #050b18);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.02) 1px, transparent 1px);
+      background-size: 82px 82px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.70), transparent 72%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5, 9, 20, 0.84);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
 
     .nav {
-      max-width: 1100px;
+      width: min(var(--max), calc(100% - 44px));
+      min-height: 78px;
       margin: 0 auto;
-      padding: 26px 22px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 30px;
     }
 
     .brand {
-      font-weight: 900;
-      font-size: 1.2rem;
+      display: inline-grid;
+      gap: 8px;
+      line-height: 1;
     }
 
-    .back {
-      color: #93c5fd;
-      font-weight: 800;
+    .brand-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.62rem;
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      color: #ffffff;
     }
 
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 50px 22px 80px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      border: 1px solid rgba(96,165,250,.35);
+    .brand-rule {
+      width: 88px;
+      height: 1px;
       border-radius: 999px;
-      color: #bfdbfe;
-      background: rgba(59,130,246,.15);
-      font-weight: 900;
+      background: linear-gradient(90deg, rgba(226, 232, 240, 0.88), rgba(96, 165, 250, 0.65), transparent);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 650;
+    }
+
+    .menu a {
+      position: relative;
+      padding: 8px 0;
+      transition: color 0.18s ease;
+    }
+
+    .menu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      width: 0;
+      height: 1px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      transition: width 0.18s ease;
+    }
+
+    .menu a:hover {
+      color: #ffffff;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .menu .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+    }
+
+    .menu .nav-cta::after {
+      display: none;
+    }
+
+    .menu .nav-cta:hover {
+      background: rgba(59, 130, 246, 0.20);
+    }
+
+    .page {
+      position: relative;
+      width: min(var(--max), calc(100% - 44px));
+      margin: 0 auto;
+      padding: 70px 0 58px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 48px;
+      align-items: center;
+      min-height: calc(100vh - 165px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.095);
+      color: #dbeafe;
+      border: 1px solid rgba(96, 165, 250, 0.20);
+      font-size: 0.88rem;
+      font-weight: 640;
       margin-bottom: 24px;
     }
 
     h1 {
-      font-size: clamp(3rem, 7vw, 5.4rem);
-      line-height: .95;
-      letter-spacing: -.07em;
-      margin: 0 0 24px;
+      max-width: 920px;
+      font-size: clamp(3.35rem, 6.7vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.078em;
+      margin-bottom: 30px;
     }
 
-    h1 span { color: #60a5fa; }
+    h1 span {
+      display: inline-block;
+      color: var(--blue-soft);
+      text-shadow: 0 0 32px rgba(96, 165, 250, 0.14);
+    }
 
-    .intro {
+    .lead {
+      font-size: 1.17rem;
+      color: #dbeafe;
       max-width: 780px;
-      color: #b8c6dc;
-      font-size: 1.1rem;
-      margin-bottom: 42px;
+      margin-bottom: 20px;
     }
 
-    .project {
-      padding: 32px;
-      border-radius: 30px;
-      background: linear-gradient(160deg, rgba(18,32,58,.95), rgba(9,20,38,.92));
-      border: 1px solid rgba(147,197,253,.18);
-      box-shadow: 0 24px 70px rgba(0,0,0,.28);
+    .hero-text p:not(.lead) {
+      color: var(--muted);
+      font-size: 1.04rem;
+      max-width: 780px;
+      margin-bottom: 17px;
+    }
+
+    .hero-panel,
+    .feature-card {
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.92), rgba(7, 17, 33, 0.88));
+      border: 1px solid var(--line-blue);
+      box-shadow: var(--shadow);
+    }
+
+    .panel-title,
+    .feature-label {
+      color: var(--blue-pale);
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-panel h2,
+    .feature-card h3 {
+      font-size: 1.6rem;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+
+    .hero-panel p,
+    .feature-card p {
+      color: var(--muted);
+    }
+
+    .values-list {
       display: grid;
-      grid-template-columns: 1fr 280px;
-      gap: 28px;
-      align-items: center;
+      gap: 12px;
+      margin-top: 22px;
     }
 
-    .project h2 {
-      font-size: 2rem;
-      line-height: 1.1;
-      margin: 0 0 16px;
+    .value-row {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.046);
+      border: 1px solid var(--line);
     }
 
-    .project p {
-      color: #b8c6dc;
-      margin: 0 0 18px;
+    .value-row strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.04rem;
+      margin-bottom: 3px;
     }
 
-    .meta {
+    .value-row span {
+      color: var(--subtle);
+      font-size: 0.9rem;
+    }
+
+    section {
+      scroll-margin-top: 95px;
+      margin-top: 78px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      font-size: 2.15rem;
+      letter-spacing: -0.055em;
+      line-height: 1.08;
+    }
+
+    .section-heading p {
+      max-width: 660px;
+      color: var(--muted);
+    }
+
+    .panel {
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.86), rgba(7, 17, 33, 0.84));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .two-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .three-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .detail-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .card {
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.044);
+      border: 1px solid var(--line);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--blue-soft);
+      font-size: 1.14rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .card ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue-soft);
+    }
+
+    .tag-list {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 20px;
+      margin-top: 18px;
     }
 
     .tag {
-      padding: 10px 13px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(147,197,253,.18);
-      color: #dbeafe;
-      font-weight: 800;
-      font-size: .92rem;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.048);
+      border: 1px solid var(--line);
+      color: var(--blue-pale);
+      font-size: 0.84rem;
+      font-weight: 650;
     }
 
-    .status {
-      padding: 24px;
-      border-radius: 24px;
-      background: rgba(59,130,246,.13);
-      border: 1px solid rgba(96,165,250,.35);
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
     }
 
-    .status strong {
-      display: block;
-      color: #60a5fa;
-      margin-bottom: 8px;
-      font-size: 1.1rem;
-    }
-
-    .button {
-      display: inline-flex;
-      margin-top: 22px;
-      padding: 13px 18px;
+    .btn {
+      min-height: 54px;
+      padding: 13px 22px;
       border-radius: 16px;
-      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-      color: white;
-      font-weight: 950;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line-blue);
+      font-weight: 760;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
     }
 
-    @media (max-width: 850px) {
-      .project { grid-template-columns: 1fr; }
-      .nav { align-items: flex-start; flex-direction: column; gap: 10px; }
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      box-shadow: 0 22px 48px rgba(59, 130, 246, 0.24);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    footer {
+      margin-top: 72px;
+      padding: 28px 0 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .two-grid,
+      .three-grid,
+      .detail-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        min-height: auto;
+        padding: 16px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-size: 1.52rem;
+      }
+
+      .menu {
+        gap: 14px;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+      }
+
+      .page {
+        width: min(100% - 28px, var(--max));
+        padding-top: 38px;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
+
 <body>
-  <nav class="nav">
-    <a class="brand" href="../">Giovanni Palma</a>
-    <a class="back" href="../">← Torna alla home</a>
-  </nav>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="../" aria-label="Torna alla home">
+        <span class="brand-name">Giovanni Palma</span>
+        <span class="brand-rule" aria-hidden="true"></span>
+      </a>
 
-  <main>
-    <div class="badge">Progetti universitari</div>
-    <h1>Studio, ricerca e <span>innovazione applicata.</span></h1>
+      <div class="menu">
+        <a href="../">Home</a>
+        <a href="#generative-ai">Progetto IA</a>
+        <a href="#struttura">Struttura</a>
+        <a href="#sviluppi">Sviluppi</a>
+        <a class="nav-cta" href="mailto:giovannip2504@gmail.com">Contatti</a>
+      </div>
+    </nav>
+  </header>
 
-    <p class="intro">
-      In questa sezione raccolgo progetti, elaborati e ricerche sviluppati durante il percorso universitario, con particolare attenzione ai temi dell’intelligenza artificiale, della sicurezza e della trasformazione digitale.
-    </p>
+  <main class="page">
+    <section class="hero" aria-label="Presentazione progetto IA">
+      <div class="hero-text">
+        <div class="eyebrow">Progetto</div>
+        <h1>Introduction and Application of <span>Generative AI.</span></h1>
 
-    <section class="project">
-      <div>
-        <h2>Introduction and Application of Generative AI</h2>
-        <p>
-          Primo progetto dedicato allo studio dell’intelligenza artificiale generativa, delle sue applicazioni pratiche e del suo impatto su organizzazioni, sicurezza, processi decisionali e innovazione digitale.
+        <p class="lead">
+          Una prima scheda progetto dedicata allo studio dell’intelligenza artificiale generativa, delle sue applicazioni e del suo impatto nei contesti professionali, formativi e organizzativi.
         </p>
 
         <p>
-          Il progetto sarà sviluppato come spazio di analisi, sintesi e presentazione, con l’obiettivo di collegare la tecnologia generativa ai temi della cybersecurity, della governance e della trasformazione digitale.
+          L’obiettivo è presentare la Generative AI in modo chiaro e strutturato: non come semplice tendenza tecnologica, ma come strumento da comprendere, valutare e applicare con consapevolezza.
         </p>
 
-        <div class="meta">
-          <span class="tag">Generative AI</span>
-          <span class="tag">Cybersecurity</span>
-          <span class="tag">Digital transformation</span>
-          <span class="tag">Governance</span>
-          <span class="tag">University project</span>
+        <div class="actions">
+          <a class="btn btn-primary" href="#generative-ai">Apri la scheda</a>
+          <a class="btn btn-secondary" href="../">Torna alla home</a>
         </div>
-
-        <a class="button" href="#">Scheda progetto in sviluppo</a>
       </div>
 
-      <aside class="status">
-        <strong>Stato progetto</strong>
+      <aside class="hero-panel">
+        <p class="panel-title">Focus del progetto</p>
+        <h2>Capire la tecnologia, le applicazioni e le implicazioni.</h2>
         <p>
-          Interfaccia iniziale creata. La prossima fase sarà inserire obiettivi, indice, fonti, casi applicativi e materiali di presentazione.
+          La scheda sarà sviluppata come una presentazione progressiva: introduzione, casi d’uso, opportunità, limiti, rischi e possibili applicazioni in ambito organizzativo.
         </p>
+
+        <div class="values-list">
+          <div class="value-row">
+            <strong>Introduzione</strong>
+            <span>concetti base, definizione e funzionamento generale</span>
+          </div>
+          <div class="value-row">
+            <strong>Applicazioni</strong>
+            <span>formazione, produttività, comunicazione e servizi digitali</span>
+          </div>
+          <div class="value-row">
+            <strong>Consapevolezza</strong>
+            <span>rischi, limiti, governance e uso responsabile</span>
+          </div>
+        </div>
       </aside>
     </section>
+
+    <section id="generative-ai">
+      <div class="section-heading">
+        <h2>Scheda progetto</h2>
+        <p>Una base ordinata per sviluppare una presentazione completa sull’intelligenza artificiale generativa.</p>
+      </div>
+
+      <div class="detail-layout">
+        <article class="feature-card">
+          <p class="feature-label">Obiettivo</p>
+          <h3>Comprendere le potenzialità della Generative AI e collegarle a processi, competenze e innovazione.</h3>
+          <p>
+            Il progetto introduce i concetti principali dell’intelligenza artificiale generativa, analizzando come questa tecnologia possa supportare creazione di contenuti, automazione, analisi, formazione e sviluppo di nuovi servizi.
+          </p>
+          <p>
+            Il focus è costruire una visione equilibrata: opportunità applicative, limiti tecnici, rischi informativi, impatto sulle competenze e necessità di governance.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Generative AI</span>
+            <span class="tag">Innovazione</span>
+            <span class="tag">Formazione</span>
+            <span class="tag">Governance</span>
+          </div>
+        </article>
+
+        <aside class="panel">
+          <div class="values-list">
+            <div class="value-row">
+              <strong>Che cos’è</strong>
+              <span>introduzione ai modelli generativi e ai principali casi d’uso.</span>
+            </div>
+            <div class="value-row">
+              <strong>Dove si applica</strong>
+              <span>formazione, produttività, comunicazione, ricerca e servizi digitali.</span>
+            </div>
+            <div class="value-row">
+              <strong>Perché è rilevante</strong>
+              <span>impatto su imprese, processi, competenze e gestione del rischio.</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="struttura">
+      <div class="section-heading">
+        <h2>Struttura</h2>
+        <p>Il progetto sarà sviluppato come una presentazione chiara, utilizzabile anche in contesto universitario.</p>
+      </div>
+
+      <div class="three-grid">
+        <article class="card">
+          <h3>Introduzione</h3>
+          <p>Definizione di Generative AI, logica di funzionamento generale, esempi di strumenti e principali scenari applicativi.</p>
+        </article>
+
+        <article class="card">
+          <h3>Applicazioni</h3>
+          <p>Analisi di casi d’uso in ambito formazione, impresa, comunicazione, produttività e supporto ai processi decisionali.</p>
+        </article>
+
+        <article class="card">
+          <h3>Rischi e governance</h3>
+          <p>Riflessione su affidabilità, privacy, uso responsabile, sicurezza informativa e necessità di competenze critiche.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="sviluppi">
+      <div class="section-heading">
+        <h2>Sviluppi</h2>
+        <p>La pagina verrà aggiornata con materiali, contenuti e approfondimenti che mi indicherai progressivamente.</p>
+      </div>
+
+      <div class="two-grid">
+        <article class="card">
+          <h3>Materiali da integrare</h3>
+          <ul>
+            <li>presentazione completa del progetto</li>
+            <li>fonti e riferimenti</li>
+            <li>casi applicativi</li>
+            <li>riflessione su rischi, limiti e governance</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Prossimo aggiornamento</h3>
+          <p>
+            Questa sezione resterà dedicata esclusivamente al progetto IA finché non deciderai di aggiungere nuovi progetti al portfolio.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Giovanni Palma</span>
+      <span>Progetto · Generative AI · Applicazioni · Governance</span>
+    </footer>
   </main>
 </body>
 </html>
