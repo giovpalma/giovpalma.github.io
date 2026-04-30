@@ -6,14 +6,18 @@
   <title>Giovanni Palma | Sicurezza, Cybersecurity e Innovazione</title>
   <style>
     :root {
-      --bg: #0b1120;
-      --card: #111827;
-      --card-soft: #162033;
+      --bg: #0a1020;
+      --bg-soft: #111a2e;
+      --panel: #151f35;
+      --panel-light: #1a2740;
       --text: #f8fafc;
-      --muted: #cbd5e1;
-      --accent: #38bdf8;
-      --accent-2: #22c55e;
+      --muted: #aab7cc;
+      --blue: #2f80ed;
+      --blue-light: #60a5fa;
+      --blue-dark: #1d4ed8;
+      --cyan: #38bdf8;
       --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
     }
 
     * {
@@ -22,11 +26,18 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at top left, #1e3a8a 0, transparent 32%), var(--bg);
+      font-family: Inter, Arial, Helvetica, sans-serif;
       color: var(--text);
-      line-height: 1.6;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(47, 128, 237, 0.28), transparent 34%),
+        radial-gradient(circle at 90% 10%, rgba(56, 189, 248, 0.12), transparent 30%),
+        var(--bg);
+      line-height: 1.65;
     }
 
     a {
@@ -34,115 +45,228 @@
       text-decoration: none;
     }
 
-    .page {
-      max-width: 1120px;
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(14px);
+      background: rgba(10, 16, 32, 0.84);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1180px;
       margin: 0 auto;
-      padding: 32px 20px 56px;
-    }
-
-    header {
+      min-height: 72px;
+      padding: 0 22px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      gap: 20px;
-      margin-bottom: 48px;
+      justify-content: space-between;
+      gap: 22px;
     }
 
-    .logo {
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      color: var(--text);
-    }
-
-    nav {
+    .brand {
       display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-      font-size: 0.95rem;
-      color: var(--muted);
+      align-items: center;
+      gap: 12px;
+      font-size: 1.35rem;
+      font-weight: 850;
+      letter-spacing: -0.03em;
     }
 
-    nav a:hover {
-      color: var(--accent);
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--cyan));
+      box-shadow: 0 12px 32px rgba(47, 128, 237, 0.34);
+      font-weight: 900;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.96rem;
+      font-weight: 700;
+    }
+
+    .menu a:hover {
+      color: var(--blue-light);
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 70px 22px 60px;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 32px;
+      grid-template-columns: 390px 1fr;
+      gap: 54px;
       align-items: center;
-      margin-bottom: 40px;
+      min-height: calc(100vh - 150px);
     }
 
-    .hero-card,
-    .photo-card,
-    .section-card,
-    .folder-card {
-      background: linear-gradient(145deg, rgba(17, 24, 39, 0.94), rgba(22, 32, 51, 0.86));
+    .identity-card {
+      text-align: center;
+      padding: 34px 28px;
+      border-radius: 30px;
+      background: linear-gradient(160deg, rgba(21, 31, 53, 0.94), rgba(17, 26, 46, 0.9));
       border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+      box-shadow: var(--shadow);
     }
 
-    .hero-card {
-      padding: 36px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
+    .portrait {
+      width: 210px;
+      height: 210px;
+      margin: 0 auto 24px;
       border-radius: 999px;
-      background: rgba(56, 189, 248, 0.12);
-      color: #bae6fd;
-      font-size: 0.9rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 6vw, 4.2rem);
-      line-height: 1.05;
-      margin-bottom: 18px;
-    }
-
-    .subtitle {
+      overflow: hidden;
+      border: 4px solid rgba(96, 165, 250, 0.42);
+      background: linear-gradient(135deg, rgba(47, 128, 237, 0.28), rgba(56, 189, 248, 0.1));
+      display: grid;
+      place-items: center;
       color: var(--muted);
-      font-size: 1.12rem;
-      max-width: 720px;
+      font-weight: 700;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 34%;
+      display: block;
+    }
+
+    .identity-card h1 {
+      font-size: 2.25rem;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    .role {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .location {
+      color: var(--blue-light);
+      font-weight: 800;
       margin-bottom: 24px;
     }
 
-    .highlight {
-      color: var(--accent);
+    .quick-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .icon-link {
+      min-width: 46px;
+      height: 46px;
+      padding: 0 14px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--blue-light);
+      font-weight: 900;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .icon-link:hover {
+      transform: translateY(-3px);
+      background: rgba(47, 128, 237, 0.14);
+      border-color: rgba(96, 165, 250, 0.42);
+    }
+
+    .intro {
+      max-width: 780px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(47, 128, 237, 0.13);
+      color: #bfdbfe;
+      border: 1px solid rgba(96, 165, 250, 0.22);
+      font-size: 0.9rem;
+      font-weight: 850;
+      margin-bottom: 18px;
+    }
+
+    .intro h2 {
+      font-size: clamp(3rem, 7vw, 5.2rem);
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+      color: rgba(248, 250, 252, 0.94);
+      margin-bottom: 28px;
+    }
+
+    .intro h2 span {
+      color: var(--blue-light);
+    }
+
+    .lead {
+      font-size: 1.22rem;
+      color: var(--text);
+      max-width: 760px;
+      margin-bottom: 22px;
+    }
+
+    .lead strong {
+      color: var(--blue-light);
+    }
+
+    .intro p {
+      color: var(--muted);
+      font-size: 1.06rem;
+      margin-bottom: 18px;
     }
 
     .actions {
       display: flex;
-      gap: 14px;
       flex-wrap: wrap;
-      margin-top: 28px;
+      gap: 14px;
+      margin-top: 30px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-height: 48px;
       padding: 12px 18px;
-      border-radius: 14px;
-      font-weight: 800;
+      border-radius: 16px;
+      font-weight: 850;
       border: 1px solid var(--border);
-      transition: transform 0.2s ease, background 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #2563eb);
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
       color: white;
+      box-shadow: 0 16px 34px rgba(47, 128, 237, 0.32);
     }
 
     .btn-secondary {
@@ -150,243 +274,403 @@
       color: var(--text);
     }
 
-    .photo-card {
-      padding: 18px;
-      text-align: center;
-    }
-
-    .photo-box {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 22px;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(34, 197, 94, 0.12));
-      border: 1px dashed rgba(255, 255, 255, 0.26);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      padding: 24px;
-    }
-
-    .photo-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .photo-note {
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-top: 12px;
-    }
-
     section {
-      margin-top: 34px;
+      scroll-margin-top: 90px;
+      margin-top: 58px;
     }
 
-    .section-title {
-      font-size: 1.7rem;
-      margin-bottom: 14px;
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 20px;
     }
 
-    .section-card {
-      padding: 26px;
+    .section-heading h2 {
+      font-size: 2rem;
+      letter-spacing: -0.04em;
+    }
+
+    .section-heading p {
+      max-width: 600px;
       color: var(--muted);
     }
 
-    .section-card strong {
-      color: var(--text);
+    .panel {
+      border-radius: 28px;
+      background: linear-gradient(160deg, rgba(21, 31, 53, 0.94), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .vision-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+    }
+
+    .vision-block {
+      padding: 24px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid var(--border);
+    }
+
+    .vision-block h3 {
+      margin-bottom: 10px;
+      color: var(--blue-light);
+      font-size: 1.14rem;
+    }
+
+    .vision-block p {
+      color: var(--muted);
     }
 
     .folders {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
-      margin-top: 18px;
     }
 
     .folder-card {
+      min-height: 245px;
       padding: 24px;
-      min-height: 210px;
+      border-radius: 26px;
+      background: linear-gradient(160deg, rgba(26, 39, 64, 0.95), rgba(17, 26, 46, 0.94));
+      border: 1px solid var(--border);
+      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
     }
 
     .folder-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(56, 189, 248, 0.55);
+      transform: translateY(-6px);
+      border-color: rgba(96, 165, 250, 0.55);
+      background: linear-gradient(160deg, rgba(30, 64, 175, 0.25), rgba(17, 26, 46, 0.94));
+    }
+
+    .folder-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
     }
 
     .folder-icon {
-      font-size: 2.1rem;
-      margin-bottom: 12px;
+      width: 50px;
+      height: 50px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(47, 128, 237, 0.16);
+      color: var(--blue-light);
+      font-size: 1.55rem;
     }
 
     .folder-card h3 {
-      margin-bottom: 10px;
-      font-size: 1.2rem;
+      font-size: 1.18rem;
+      line-height: 1.2;
     }
 
     .folder-card p {
       color: var(--muted);
-      font-size: 0.96rem;
+      font-size: 0.98rem;
+      margin-top: 10px;
     }
 
     .folder-link {
-      margin-top: 18px;
-      color: var(--accent);
-      font-weight: 800;
+      margin-top: 24px;
+      color: var(--blue-light);
+      font-weight: 900;
     }
 
-    .skills-grid {
+    .skills {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
-      margin-top: 18px;
     }
 
     .skill {
-      padding: 12px 14px;
-      border-radius: 14px;
-      background: rgba(255, 255, 255, 0.06);
+      padding: 15px 13px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.055);
       border: 1px solid var(--border);
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 800;
       text-align: center;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 18px;
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid var(--border);
+    }
+
+    .year {
+      color: var(--blue-light);
+      font-weight: 900;
+    }
+
+    .timeline-item h3 {
+      margin-bottom: 4px;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
     }
 
     footer {
-      margin-top: 44px;
-      padding-top: 22px;
+      margin-top: 62px;
+      padding: 26px 0 10px;
       border-top: 1px solid var(--border);
       color: var(--muted);
-      font-size: 0.92rem;
-      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.94rem;
     }
 
-    @media (max-width: 860px) {
-      header,
-      .hero {
+    @media (max-width: 960px) {
+      .hero,
+      .vision-grid {
         grid-template-columns: 1fr;
       }
 
-      header {
-        align-items: flex-start;
-        flex-direction: column;
+      .identity-card {
+        max-width: 460px;
+        margin: 0 auto;
       }
 
       .folders,
-      .skills-grid {
+      .skills {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding-top: 16px;
+        padding-bottom: 16px;
+      }
+
+      .menu {
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .page {
+        padding-top: 42px;
+      }
+
+      .hero {
+        gap: 28px;
+        min-height: auto;
+      }
+
+      .intro h2 {
+        font-size: 3rem;
+      }
+
+      .folders,
+      .skills,
+      .timeline-item {
         grid-template-columns: 1fr;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <header>
-      <div class="logo">Giovanni Palma</div>
-      <nav>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="#home" aria-label="Torna alla home">
+        <span class="brand-mark">GP</span>
+        <span>Giovanni Palma</span>
+      </a>
+      <div class="menu">
         <a href="#profilo">Profilo</a>
-        <a href="#aree">Aree</a>
+        <a href="#aree">Progetti</a>
+        <a href="#percorso">Percorso</a>
         <a href="#competenze">Competenze</a>
         <a href="mailto:giovannip2504@gmail.com">Contatti</a>
-      </nav>
-    </header>
+      </div>
+    </nav>
+  </header>
 
-    <main>
-      <section class="hero" id="profilo">
-        <div class="hero-card">
-          <div class="tag">Sicurezza fisica · Cybersecurity · Innovazione</div>
-          <h1>Costruire sicurezza a 360° nel mondo digitale.</h1>
-          <p class="subtitle">
-            Sono Giovanni Palma, studente universitario e giovane professionista interessato all’evoluzione della sicurezza: dalla vigilanza fisica alla cybersecurity, dalla gestione del rischio alla transizione digitale delle imprese e del territorio meridionale.
-          </p>
-          <p class="subtitle">
-            Il mio obiettivo è sviluppare un percorso imprenditoriale capace di integrare <strong class="highlight">sicurezza, tecnologia e governance</strong>, trasformando l’esperienza nel settore della vigilanza in una visione più ampia: protezione fisica, protezione digitale, prevenzione, innovazione e cultura del rischio.
-          </p>
-          <div class="actions">
-            <a class="btn btn-primary" href="#aree">Esplora il mio percorso</a>
-            <a class="btn btn-secondary" href="mailto:giovannip2504@gmail.com">Contattami</a>
-          </div>
+  <main class="page" id="home">
+    <section class="hero" aria-label="Presentazione personale">
+      <aside class="identity-card">
+        <div class="portrait">
+          <img src="foto.jpg" alt="Foto di Giovanni Palma">
         </div>
+        <h1>Giovanni Palma</h1>
+        <p class="role">Studente universitario · Sicurezza e cybersecurity</p>
+        <p class="location">Pomigliano d’Arco · Italia</p>
 
-        <div class="photo-card">
-          <div class="photo-box">
-            <!-- Carica una tua foto nel repository e chiamala foto.jpg, poi sostituisci il testo sotto con questa riga: <img src="foto.jpg" alt="Foto di Giovanni Palma"> -->
-            <span>Inserisci qui la tua foto personale</span>
-          </div>
-          <p class="photo-note">Suggerimento: carica una foto chiamata <strong>foto.jpg</strong> nella stessa cartella di questo file.</p>
+        <div class="quick-links" aria-label="Link rapidi">
+          <a class="icon-link" href="mailto:giovannip2504@gmail.com" title="Email">Email</a>
+          <a class="icon-link" href="progetti-universitari/" title="Progetti">Progetti</a>
+          <a class="icon-link" href="competenze/" title="Competenze">Skill</a>
         </div>
-      </section>
+      </aside>
 
-      <section>
-        <h2 class="section-title">Visione personale</h2>
-        <div class="section-card">
+      <div class="intro" id="profilo">
+        <div class="eyebrow">Sicurezza fisica · Cybersecurity · Innovazione digitale</div>
+        <h2>In a nutshell, <span>sicurezza a 360°.</span></h2>
+        <p class="lead">
+          Sono uno studente universitario interessato alla convergenza tra <strong>vigilanza fisica, cybersecurity, gestione del rischio e innovazione tecnologica</strong>.
+        </p>
+        <p>
+          Il mio percorso nasce nel mondo della sicurezza privata e si sta evolvendo verso una visione più ampia: proteggere persone, dati, infrastrutture e processi in un contesto in cui il rischio è sempre più ibrido, digitale e strategico.
+        </p>
+        <p>
+          Voglio costruire un profilo imprenditoriale capace di unire esperienza operativa, cultura della sicurezza, transizione digitale e sviluppo del Mezzogiorno, con particolare attenzione alla cybersecurity, alla governance e alla sicurezza integrata.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="#aree">Apri le sezioni</a>
+          <a class="btn btn-secondary" href="#competenze">Vedi competenze</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="visione">
+      <div class="section-heading">
+        <h2>Visione</h2>
+        <p>Un profilo orientato non solo allo studio, ma alla costruzione di un progetto professionale e imprenditoriale nel settore della sicurezza.</p>
+      </div>
+      <div class="panel vision-grid">
+        <article class="vision-block">
+          <h3>Sicurezza integrata</h3>
           <p>
-            La mia formazione nasce da un interesse per la sicurezza globale e si sta orientando verso un profilo sempre più operativo e imprenditoriale. Mi interessa capire come le organizzazioni possano proteggere persone, dati, infrastrutture e processi in un contesto in cui il rischio non è più soltanto fisico, ma anche digitale, reputazionale e strategico.
+            La sicurezza non è più divisa in compartimenti separati. Vigilanza, procedure operative, protezione dei dati, cybersecurity e risk management devono dialogare in un unico modello di protezione.
           </p>
-          <br />
+        </article>
+        <article class="vision-block">
+          <h3>Cyber e territorio</h3>
           <p>
-            Credo che il Mezzogiorno abbia bisogno di una transizione digitale concreta, capace di creare competenze, imprese e servizi avanzati nel campo cyber. Per questo voglio costruire un percorso che unisca <strong>sicurezza privata, cybersecurity, GRC, innovazione tecnologica e sviluppo territoriale</strong>.
+            Il Meridione può diventare un laboratorio di transizione digitale: imprese più sicure, servizi più evoluti, competenze cyber diffuse e una nuova cultura della prevenzione.
           </p>
-        </div>
-      </section>
+        </article>
+      </div>
+    </section>
 
-      <section id="aree">
-        <h2 class="section-title">Aree del sito</h2>
-        <div class="folders">
-          <a class="folder-card" href="progetti-universitari/">
-            <div>
-              <div class="folder-icon">📁</div>
+    <section id="aree">
+      <div class="section-heading">
+        <h2>Aree del sito</h2>
+        <p>Tre sezioni semplici e ordinate per presentare progetti, percorso universitario e competenze.</p>
+      </div>
+      <div class="folders">
+        <a class="folder-card" href="progetti-universitari/">
+          <div>
+            <div class="folder-top">
+              <span class="folder-icon">📁</span>
               <h3>Progetti universitari</h3>
-              <p>Raccolta dei progetti, degli elaborati e degli studi realizzati durante il percorso accademico.</p>
             </div>
-            <div class="folder-link">Apri cartella →</div>
-          </a>
+            <p>Elaborati, ricerche, presentazioni e lavori sviluppati durante il percorso accademico, con spazio per futuri progetti su intelligenza artificiale e sicurezza.</p>
+          </div>
+          <span class="folder-link">Apri sezione →</span>
+        </a>
 
-          <a class="folder-card" href="carriera-universitaria/">
-            <div>
-              <div class="folder-icon">🎓</div>
+        <a class="folder-card" href="carriera-universitaria/">
+          <div>
+            <div class="folder-top">
+              <span class="folder-icon">🎓</span>
               <h3>Carriera universitaria</h3>
-              <p>Informazioni sul mio percorso di studi, sugli obiettivi formativi e sulle aree di approfondimento.</p>
             </div>
-            <div class="folder-link">Apri cartella →</div>
-          </a>
+            <p>Percorso di studi, formazione, obiettivi accademici e aree di approfondimento collegate alla sicurezza globale e alla trasformazione digitale.</p>
+          </div>
+          <span class="folder-link">Apri sezione →</span>
+        </a>
 
-          <a class="folder-card" href="competenze/">
-            <div>
-              <div class="folder-icon">🛡️</div>
+        <a class="folder-card" href="competenze/">
+          <div>
+            <div class="folder-top">
+              <span class="folder-icon">🛡️</span>
               <h3>Competenze</h3>
-              <p>Competenze organizzative, digitali, comunicative e interessi in ambito sicurezza, cyber e innovazione.</p>
             </div>
-            <div class="folder-link">Apri cartella →</div>
-          </a>
-        </div>
-      </section>
+            <p>Competenze organizzative, digitali, comunicative e interessi tecnici in cybersecurity, vigilanza, GRC, innovazione e gestione del rischio.</p>
+          </div>
+          <span class="folder-link">Apri sezione →</span>
+        </a>
+      </div>
+    </section>
 
-      <section id="competenze">
-        <h2 class="section-title">Focus professionale</h2>
-        <div class="skills-grid">
-          <div class="skill">Cybersecurity</div>
-          <div class="skill">Sicurezza fisica</div>
-          <div class="skill">Risk management</div>
-          <div class="skill">GRC</div>
-          <div class="skill">Vigilanza</div>
-          <div class="skill">Transizione digitale</div>
-          <div class="skill">Innovazione</div>
-          <div class="skill">Organizzazione</div>
-        </div>
-      </section>
-    </main>
+    <section id="percorso">
+      <div class="section-heading">
+        <h2>Percorso</h2>
+        <p>Una sintesi essenziale del mio percorso formativo e professionale.</p>
+      </div>
+      <div class="panel timeline">
+        <article class="timeline-item">
+          <div class="year">2025 · Attuale</div>
+          <div>
+            <h3>Università degli Studi di Salerno</h3>
+            <p>Laurea triennale L-36 in Studi diplomatici, internazionali e sulla sicurezza globale.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="year">2024 · 2025</div>
+          <div>
+            <h3>Esperienza in azienda di sicurezza</h3>
+            <p>Supporto amministrativo e gestionale, gestione documentale e primo coinvolgimento nelle procedure operative del settore sicurezza.</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div class="year">2019 · 2024</div>
+          <div>
+            <h3>Diploma scientifico</h3>
+            <p>Liceo Scientifico “Imbriani”, voto finale 100/100 e lode.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="competenze">
+      <div class="section-heading">
+        <h2>Competenze e interessi</h2>
+        <p>Le aree su cui sto costruendo il mio posizionamento personale e professionale.</p>
+      </div>
+      <div class="skills">
+        <div class="skill">Cybersecurity</div>
+        <div class="skill">Sicurezza fisica</div>
+        <div class="skill">Vigilanza</div>
+        <div class="skill">Risk management</div>
+        <div class="skill">GRC</div>
+        <div class="skill">Transizione digitale</div>
+        <div class="skill">Innovazione tecnologica</div>
+        <div class="skill">Gestione documentale</div>
+        <div class="skill">Comunicazione</div>
+        <div class="skill">Organizzazione</div>
+        <div class="skill">AI e sicurezza</div>
+        <div class="skill">Inglese B2</div>
+      </div>
+    </section>
 
     <footer>
-      © 2026 Giovanni Palma · Sicurezza, cybersecurity e innovazione tecnologica
+      <span>© 2026 Giovanni Palma</span>
+      <span>Sicurezza · Cybersecurity · Innovazione · Mezzogiorno digitale</span>
     </footer>
-  </div>
+  </main>
 </body>
 </html>
