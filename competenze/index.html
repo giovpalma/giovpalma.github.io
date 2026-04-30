@@ -3,164 +3,798 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Competenze di Giovanni Palma: sicurezza fisica, cyber awareness, organizzazione, comunicazione, formazione, gestione documentale, innovazione e sviluppo imprenditoriale." />
   <title>Competenze | Giovanni Palma</title>
+
   <style>
-    body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: radial-gradient(circle at top left, rgba(59,130,246,.32), transparent 35%), #050b18;
-      color: #f8fbff;
-      line-height: 1.7;
+    :root {
+      --bg: #050914;
+      --bg-2: #071122;
+      --text: #f8fafc;
+      --muted: #b8c3d6;
+      --subtle: #8794aa;
+      --blue: #3b82f6;
+      --blue-soft: #60a5fa;
+      --blue-pale: #bfdbfe;
+      --line: rgba(148, 163, 184, 0.18);
+      --line-blue: rgba(96, 165, 250, 0.28);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --max: 1180px;
     }
 
-    a { color: inherit; text-decoration: none; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(59, 130, 246, 0.18), transparent 32%),
+        radial-gradient(circle at 84% 14%, rgba(96, 165, 250, 0.08), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg-2) 58%, #050b18);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.02) 1px, transparent 1px);
+      background-size: 82px 82px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.70), transparent 72%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5, 9, 20, 0.84);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
 
     .nav {
-      max-width: 1100px;
+      width: min(var(--max), calc(100% - 44px));
+      min-height: 78px;
       margin: 0 auto;
-      padding: 26px 22px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 30px;
     }
 
     .brand {
-      font-weight: 900;
-      font-size: 1.2rem;
+      display: inline-grid;
+      gap: 8px;
+      line-height: 1;
     }
 
-    .back {
-      color: #93c5fd;
-      font-weight: 800;
+    .brand-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.62rem;
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      color: #ffffff;
     }
 
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 50px 22px 80px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      border: 1px solid rgba(96,165,250,.35);
+    .brand-rule {
+      width: 88px;
+      height: 1px;
       border-radius: 999px;
-      color: #bfdbfe;
-      background: rgba(59,130,246,.15);
-      font-weight: 900;
+      background: linear-gradient(90deg, rgba(226, 232, 240, 0.88), rgba(96, 165, 250, 0.65), transparent);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 650;
+    }
+
+    .menu a {
+      position: relative;
+      padding: 8px 0;
+      transition: color 0.18s ease;
+    }
+
+    .menu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      width: 0;
+      height: 1px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      transition: width 0.18s ease;
+    }
+
+    .menu a:hover {
+      color: #ffffff;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .menu .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+    }
+
+    .menu .nav-cta::after {
+      display: none;
+    }
+
+    .menu .nav-cta:hover {
+      background: rgba(59, 130, 246, 0.20);
+    }
+
+    .page {
+      position: relative;
+      width: min(var(--max), calc(100% - 44px));
+      margin: 0 auto;
+      padding: 70px 0 58px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 48px;
+      align-items: center;
+      min-height: calc(100vh - 165px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.095);
+      color: #dbeafe;
+      border: 1px solid rgba(96, 165, 250, 0.20);
+      font-size: 0.88rem;
+      font-weight: 640;
       margin-bottom: 24px;
     }
 
     h1 {
-      font-size: clamp(3rem, 7vw, 5.4rem);
-      line-height: .95;
-      letter-spacing: -.07em;
-      margin: 0 0 24px;
+      max-width: 920px;
+      font-size: clamp(3.35rem, 6.7vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.078em;
+      margin-bottom: 30px;
     }
 
-    h1 span { color: #60a5fa; }
+    h1 span {
+      display: inline-block;
+      color: var(--blue-soft);
+      text-shadow: 0 0 32px rgba(96, 165, 250, 0.14);
+    }
 
-    .intro {
+    .lead {
+      font-size: 1.17rem;
+      color: #dbeafe;
       max-width: 780px;
-      color: #b8c6dc;
-      font-size: 1.1rem;
-      margin-bottom: 42px;
+      margin-bottom: 20px;
     }
 
-    .grid {
+    .hero-text p:not(.lead) {
+      color: var(--muted);
+      font-size: 1.04rem;
+      max-width: 780px;
+      margin-bottom: 17px;
+    }
+
+    .hero-panel,
+    .feature-card {
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.92), rgba(7, 17, 33, 0.88));
+      border: 1px solid var(--line-blue);
+      box-shadow: var(--shadow);
+    }
+
+    .panel-title,
+    .feature-label,
+    .card-label {
+      color: var(--blue-pale);
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-panel h2,
+    .feature-card h3 {
+      font-size: 1.6rem;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+
+    .hero-panel p,
+    .feature-card p {
+      color: var(--muted);
+    }
+
+    .values-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .value-row {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.046);
+      border: 1px solid var(--line);
+    }
+
+    .value-row strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.04rem;
+      margin-bottom: 3px;
+    }
+
+    .value-row span {
+      color: var(--subtle);
+      font-size: 0.9rem;
+    }
+
+    section {
+      scroll-margin-top: 95px;
+      margin-top: 78px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      font-size: 2.15rem;
+      letter-spacing: -0.055em;
+      line-height: 1.08;
+    }
+
+    .section-heading p {
+      max-width: 660px;
+      color: var(--muted);
+    }
+
+    .competence-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
+    .competence-card {
+      min-height: 290px;
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, rgba(18, 32, 58, 0.91), rgba(9, 20, 38, 0.9));
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.22);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .competence-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(147, 197, 253, 0.46);
+      background: linear-gradient(160deg, rgba(37, 99, 235, 0.16), rgba(9, 20, 38, 0.94));
+    }
+
+    .competence-card.featured {
+      border-color: var(--line-blue);
+    }
+
+    .competence-card h3 {
+      color: var(--text);
+      font-size: 1.26rem;
+      letter-spacing: -0.035em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .competence-card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .level {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      color: var(--subtle);
+      font-size: 0.86rem;
+      font-weight: 650;
+    }
+
+    .level span:last-child {
+      color: var(--blue-pale);
+      text-align: right;
+    }
+
+    .two-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .three-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .panel,
     .card {
       padding: 28px;
-      border-radius: 28px;
-      background: linear-gradient(160deg, rgba(18,32,58,.95), rgba(9,20,38,.92));
-      border: 1px solid rgba(147,197,253,.18);
-      box-shadow: 0 24px 70px rgba(0,0,0,.28);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.86), rgba(7, 17, 33, 0.84));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
     }
 
-    .card h2 {
-      margin-top: 0;
-      color: #60a5fa;
-      font-size: 1.25rem;
+    .card {
+      border-radius: var(--radius-lg);
+      box-shadow: none;
+      background: rgba(255, 255, 255, 0.044);
     }
 
-    .card p {
-      color: #b8c6dc;
-      margin-bottom: 0;
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--blue-soft);
+      font-size: 1.14rem;
     }
 
-    .tags {
-      margin-top: 40px;
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .card ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue-soft);
+    }
+
+    .tag-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 10px;
+      margin-top: 18px;
     }
 
     .tag {
-      padding: 12px 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(147,197,253,.18);
-      color: #dbeafe;
-      font-weight: 800;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.048);
+      border: 1px solid var(--line);
+      color: var(--blue-pale);
+      font-size: 0.84rem;
+      font-weight: 650;
     }
 
-    @media (max-width: 850px) {
-      .grid { grid-template-columns: 1fr; }
-      .nav { align-items: flex-start; flex-direction: column; gap: 10px; }
+    .roadmap {
+      display: grid;
+      gap: 14px;
+    }
+
+    .roadmap-item {
+      padding: 18px 20px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.044);
+      border: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 18px;
+    }
+
+    .roadmap-item strong {
+      color: var(--blue-pale);
+    }
+
+    .roadmap-item span {
+      color: var(--muted);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      min-height: 54px;
+      padding: 13px 22px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line-blue);
+      font-weight: 760;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      box-shadow: 0 22px 48px rgba(59, 130, 246, 0.24);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    footer {
+      margin-top: 72px;
+      padding: 28px 0 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 1100px) {
+      .competence-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .two-grid,
+      .three-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        min-height: auto;
+        padding: 16px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-size: 1.52rem;
+      }
+
+      .menu {
+        gap: 14px;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+      }
+
+      .page {
+        width: min(100% - 28px, var(--max));
+        padding-top: 38px;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .competence-grid,
+      .roadmap-item {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
-  <nav class="nav">
-    <a class="brand" href="../">Giovanni Palma</a>
-    <a class="back" href="../">← Torna alla home</a>
-  </nav>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="../" aria-label="Torna alla home">
+        <span class="brand-name">Giovanni Palma</span>
+        <span class="brand-rule" aria-hidden="true"></span>
+      </a>
 
-  <main>
-    <div class="badge">Competenze personali e professionali</div>
-    <h1>Competenze per la <span>sicurezza integrata.</span></h1>
+      <div class="menu">
+        <a href="../">Home</a>
+        <a href="#mappa">Mappa</a>
+        <a href="#operative">Operative</a>
+        <a href="#crescita">Crescita</a>
+        <a class="nav-cta" href="mailto:giovannip2504@gmail.com">Contatti</a>
+      </div>
+    </nav>
+  </header>
 
-    <p class="intro">
-      Le mie competenze nascono dall’incontro tra organizzazione, comunicazione, strumenti digitali e interesse per il settore della sicurezza. Sto costruendo un profilo orientato alla gestione del rischio, alla cybersecurity e all’innovazione dei processi.
-    </p>
+  <main class="page">
+    <section class="hero" aria-label="Presentazione competenze">
+      <div class="hero-text">
+        <div class="eyebrow">Competenze</div>
+        <h1>Metodo, sicurezza <span>e crescita professionale.</span></h1>
 
-    <section class="grid">
-      <article class="card">
-        <h2>Competenze organizzative e gestionali</h2>
-        <p>
-          Capacità di gestione documentale e supporto amministrativo. Interesse e prime competenze nel settore della sicurezza, della vigilanza e della gestione del rischio.
+        <p class="lead">
+          Questa sezione raccoglie le competenze che sto consolidando tra sicurezza fisica, cyber awareness, organizzazione, comunicazione, formazione e sviluppo imprenditoriale.
         </p>
-      </article>
 
-      <article class="card">
-        <h2>Competenze digitali</h2>
         <p>
-          Familiarità iniziale con concetti di sicurezza, processi organizzativi e strumenti informatici di base. Uso autonomo di Pacchetto Office, email, PEC e strumenti digitali per la gestione operativa.
+          L’obiettivo non è presentare un elenco generico di abilità, ma mostrare una direzione coerente: costruire un profilo operativo capace di comprendere processi, persone, rischio, strumenti digitali e progettualità d’impresa.
         </p>
-      </article>
 
-      <article class="card">
-        <h2>Competenze comunicative</h2>
+        <div class="actions">
+          <a class="btn btn-primary" href="#mappa">Esplora le competenze</a>
+          <a class="btn btn-secondary" href="../">Torna alla home</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <p class="panel-title">Profilo operativo</p>
+        <h2>Competenze in costruzione, ma con una direzione precisa.</h2>
         <p>
-          Attitudine al lavoro in contesti organizzativi, buona capacità di comunicazione scritta e orale e interesse per la comunicazione professionale in ambito aziendale e istituzionale.
+          La base è organizzativa e gestionale; la direzione è l’integrazione tra sicurezza fisica, consapevolezza cyber, formazione, innovazione e sviluppo di progetti sul territorio.
         </p>
-      </article>
+
+        <div class="values-list">
+          <div class="value-row">
+            <strong>Metodo</strong>
+            <span>ordine, gestione documentale, supporto amministrativo</span>
+          </div>
+          <div class="value-row">
+            <strong>Consapevolezza</strong>
+            <span>rischio, sicurezza, processi e cultura digitale</span>
+          </div>
+          <div class="value-row">
+            <strong>Progettualità</strong>
+            <span>formazione, impresa, innovazione e sviluppo territoriale</span>
+          </div>
+        </div>
+      </aside>
     </section>
 
-    <div class="tags">
-      <span class="tag">Cybersecurity</span>
-      <span class="tag">Sicurezza fisica</span>
-      <span class="tag">Vigilanza</span>
-      <span class="tag">Risk management</span>
-      <span class="tag">GRC</span>
-      <span class="tag">Gestione documentale</span>
-      <span class="tag">Comunicazione</span>
-      <span class="tag">Innovazione tecnologica</span>
-    </div>
+    <section id="mappa">
+      <div class="section-heading">
+        <h2>Mappa delle competenze</h2>
+        <p>Una lettura ordinata delle aree su cui sto costruendo il mio posizionamento personale e professionale.</p>
+      </div>
+
+      <div class="competence-grid">
+        <article class="competence-card featured">
+          <div>
+            <p class="card-label">Area sicurezza</p>
+            <h3>Sicurezza fisica e operativa</h3>
+            <p>Interesse per vigilanza, procedure operative, protezione organizzativa, controllo dei processi e qualità del servizio nel settore della sicurezza privata.</p>
+          </div>
+          <div class="level"><span>Stato</span><span>in consolidamento</span></div>
+        </article>
+
+        <article class="competence-card featured">
+          <div>
+            <p class="card-label">Area digitale</p>
+            <h3>Cyber awareness e rischio digitale</h3>
+            <p>Approccio orientato alla consapevolezza del rischio, alla protezione dei comportamenti digitali, alla cultura della prevenzione e alla sicurezza dei processi.</p>
+          </div>
+          <div class="level"><span>Stato</span><span>in sviluppo</span></div>
+        </article>
+
+        <article class="competence-card">
+          <div>
+            <p class="card-label">Area organizzativa</p>
+            <h3>Gestione documentale e supporto amministrativo</h3>
+            <p>Capacità di organizzare documenti, informazioni, comunicazioni e attività operative con attenzione a ordine, precisione e continuità gestionale.</p>
+          </div>
+          <div class="level"><span>Stato</span><span>base solida</span></div>
+        </article>
+
+        <article class="competence-card">
+          <div>
+            <p class="card-label">Area comunicazione</p>
+            <h3>Comunicazione scritta e orale</h3>
+            <p>Buona capacità di esporre idee, scrivere in modo ordinato, presentare contenuti e lavorare in contesti organizzativi con chiarezza e serietà.</p>
+          </div>
+          <div class="level"><span>Stato</span><span>trasversale</span></div>
+        </article>
+
+        <article class="competence-card">
+          <div>
+            <p class="card-label">Area formazione</p>
+            <h3>Formazione e trasferimento di competenze</h3>
+            <p>Interesse per academy, percorsi formativi, workshop, cyber awareness e iniziative pensate per aumentare competenze e consapevolezza nelle organizzazioni.</p>
+          </div>
+          <div class="level"><span>Stato</span><span>direzione futura</span></div>
+        </article>
+
+        <article class="competence-card">
+          <div>
+            <p class="card-label">Area impresa</p>
+            <h3>Progettualità imprenditoriale</h3>
+            <p>Orientamento allo sviluppo di progetti, servizi, ecosistemi territoriali e iniziative che uniscono spazi, formazione, innovazione e supporto alle imprese.</p>
+          </div>
+          <div class="level"><span>Stato</span><span>in costruzione</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="operative">
+      <div class="section-heading">
+        <h2>Competenze operative</h2>
+        <p>Le competenze pratiche che supportano il lavoro quotidiano, l’organizzazione e la gestione di attività e progetti.</p>
+      </div>
+
+      <div class="two-grid">
+        <article class="card">
+          <h3>Organizzazione e gestione</h3>
+          <ul>
+            <li>gestione documentale e archiviazione ordinata</li>
+            <li>supporto amministrativo e operativo</li>
+            <li>attenzione a procedure, scadenze e tracciabilità</li>
+            <li>approccio metodico alla gestione delle informazioni</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Digitale e strumenti</h3>
+          <ul>
+            <li>uso autonomo degli strumenti informatici di base</li>
+            <li>Pacchetto Office, email e PEC</li>
+            <li>organizzazione di materiali, presentazioni e file di lavoro</li>
+            <li>familiarità iniziale con sicurezza, processi e cultura digitale</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="trasversali">
+      <div class="section-heading">
+        <h2>Competenze trasversali</h2>
+        <p>Le capacità che collegano studio, lavoro, progetti e relazione con persone e organizzazioni.</p>
+      </div>
+
+      <div class="three-grid">
+        <article class="card">
+          <h3>Comunicazione</h3>
+          <p>Buona capacità di comunicazione scritta e orale, utile per presentare idee, sintetizzare contenuti e mantenere ordine nei rapporti professionali.</p>
+        </article>
+
+        <article class="card">
+          <h3>Contesti organizzativi</h3>
+          <p>Attitudine a lavorare in ambienti strutturati, comprendendo ruoli, procedure, responsabilità e necessità di coordinamento.</p>
+        </article>
+
+        <article class="card">
+          <h3>Apprendimento e adattamento</h3>
+          <p>Disponibilità a studiare, aggiornarsi e integrare nuove competenze, soprattutto nei campi della sicurezza, dell’innovazione e della formazione.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="strumenti">
+      <div class="section-heading">
+        <h2>Strumenti e parole chiave</h2>
+        <p>Una sintesi delle aree operative e concettuali più ricorrenti nel mio percorso.</p>
+      </div>
+
+      <div class="panel">
+        <div class="tag-list">
+          <span class="tag">Sicurezza fisica</span>
+          <span class="tag">Vigilanza</span>
+          <span class="tag">Cyber awareness</span>
+          <span class="tag">Risk management</span>
+          <span class="tag">GRC</span>
+          <span class="tag">Gestione documentale</span>
+          <span class="tag">Supporto amministrativo</span>
+          <span class="tag">Comunicazione</span>
+          <span class="tag">Formazione</span>
+          <span class="tag">Office</span>
+          <span class="tag">Email</span>
+          <span class="tag">PEC</span>
+          <span class="tag">Inglese B2</span>
+          <span class="tag">Innovazione</span>
+          <span class="tag">Startup</span>
+          <span class="tag">Finanza agevolata</span>
+          <span class="tag">Sviluppo territoriale</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="crescita">
+      <div class="section-heading">
+        <h2>Direzione di crescita</h2>
+        <p>Le competenze che voglio rafforzare progressivamente per rendere il profilo sempre più solido e spendibile.</p>
+      </div>
+
+      <div class="panel roadmap">
+        <div class="roadmap-item">
+          <strong>Sicurezza integrata</strong>
+          <span>Approfondire il collegamento tra sicurezza fisica, processi organizzativi, rischio digitale e protezione aziendale.</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Cyber awareness</strong>
+          <span>Costruire competenze utili a sviluppare cultura del rischio, formazione degli utenti e consapevolezza digitale.</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Formazione</strong>
+          <span>Imparare a progettare percorsi, materiali e iniziative formative per imprese, professionisti e contesti organizzativi.</span>
+        </div>
+        <div class="roadmap-item">
+          <strong>Impresa e innovazione</strong>
+          <span>Rafforzare competenze su progettazione di servizi, finanza agevolata, startup, ecosistemi territoriali e sviluppo B2B.</span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Giovanni Palma</span>
+      <span>Competenze · Sicurezza · Cyber awareness · Formazione · Impresa</span>
+    </footer>
   </main>
 </body>
 </html>
