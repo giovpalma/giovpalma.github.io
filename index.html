@@ -88,54 +88,137 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      font-size: 1.18rem;
-      font-weight: 900;
-      letter-spacing: -0.03em;
+      gap: 14px;
+      min-width: 270px;
     }
 
-    .brand-mark {
-      width: 42px;
-      height: 42px;
+    .brand:hover .brand-emblem {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 22px 54px rgba(59, 130, 246, 0.45);
+    }
+
+    .brand-emblem {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      flex: 0 0 58px;
       display: grid;
       place-items: center;
-      border-radius: 15px;
-      background: linear-gradient(135deg, var(--blue), var(--cyan));
-      box-shadow: 0 18px 42px rgba(59, 130, 246, 0.42);
+      border-radius: 22px;
+      background:
+        linear-gradient(145deg, rgba(147, 197, 253, 0.95), rgba(37, 99, 235, 0.95) 48%, rgba(8, 47, 73, 0.98));
+      box-shadow:
+        0 18px 44px rgba(59, 130, 246, 0.34),
+        inset 0 1px 0 rgba(255, 255, 255, 0.34);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .brand-emblem::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: 23px;
+      border: 1px solid rgba(219, 234, 254, 0.55);
+      pointer-events: none;
+    }
+
+    .brand-emblem::after {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: 18px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 40%),
+        rgba(5, 11, 24, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      pointer-events: none;
+    }
+
+    .emblem-shield {
+      position: relative;
+      z-index: 1;
+      width: 34px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      clip-path: polygon(50% 0%, 92% 16%, 84% 72%, 50% 100%, 16% 72%, 8% 16%);
+      background: linear-gradient(180deg, #f8fbff, #bfdbfe);
+      color: #0b1b35;
+      box-shadow: inset 0 -7px 14px rgba(30, 64, 175, 0.20);
+    }
+
+    .emblem-monogram {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      font-size: 0.76rem;
+      line-height: 1;
+      font-weight: 950;
+      letter-spacing: -0.12em;
+      transform: translateX(-1px);
+    }
+
+    .brand-copy {
+      display: grid;
+      gap: 1px;
+      line-height: 1.05;
+    }
+
+    .brand-name {
+      font-size: 1.18rem;
+      font-weight: 950;
+      letter-spacing: -0.045em;
+      color: var(--text);
+    }
+
+    .brand-subtitle {
+      color: var(--blue-3);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
     .menu {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 8px;
+      padding: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(147, 197, 253, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
       color: var(--muted);
-      font-size: 0.95rem;
-      font-weight: 800;
+      font-size: 0.92rem;
+      font-weight: 850;
     }
 
     .menu a {
       position: relative;
-      transition: color 0.2s ease;
+      padding: 10px 13px;
+      border-radius: 999px;
+      transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
     }
 
     .menu a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -7px;
-      width: 0;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--blue-2);
-      transition: width 0.2s ease;
+      display: none;
     }
 
     .menu a:hover {
       color: var(--text);
+      background: rgba(96, 165, 250, 0.13);
+      transform: translateY(-1px);
     }
 
-    .menu a:hover::after {
-      width: 100%;
+    .menu .nav-cta {
+      color: white;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.95), rgba(29, 78, 216, 0.95));
+      border: 1px solid rgba(147, 197, 253, 0.34);
+      box-shadow: 0 12px 28px rgba(37, 99, 235, 0.24);
+    }
+
+    .menu .nav-cta:hover {
+      background: linear-gradient(135deg, rgba(96, 165, 250, 1), rgba(37, 99, 235, 1));
     }
 
     .page {
@@ -218,49 +301,79 @@
       margin-bottom: 10px;
     }
 
-    .role {
-      max-width: 310px;
+    .profile-kicker {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       margin: 0 auto 12px;
-      color: var(--muted);
-      font-size: 1.02rem;
-      line-height: 1.6;
+      padding: 8px 13px;
+      border-radius: 999px;
+      color: #dbeafe;
+      background: rgba(59, 130, 246, 0.14);
+      border: 1px solid rgba(147, 197, 253, 0.24);
+      font-size: 0.78rem;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .location {
-      color: var(--blue-2);
-      font-weight: 900;
-      margin-bottom: 22px;
+    .role {
+      max-width: 330px;
+      margin: 0 auto 22px;
+      color: var(--muted);
+      font-size: 1.02rem;
+      line-height: 1.65;
+    }
+
+    .role strong {
+      color: var(--blue-3);
+      font-weight: 950;
     }
 
     .proof-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      grid-template-columns: 1fr;
+      gap: 12px;
       margin: 24px 0 22px;
     }
 
     .proof {
-      min-height: 82px;
-      padding: 12px 10px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.055);
-      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      min-height: 78px;
+      padding: 16px 18px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035));
+      border: 1px solid rgba(147, 197, 253, 0.22);
+      text-align: left;
+    }
+
+    .proof::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14px;
+      bottom: 14px;
+      width: 4px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--blue-2), var(--cyan));
     }
 
     .proof strong {
       display: block;
       color: var(--text);
-      font-size: 1.1rem;
+      font-size: 1.02rem;
       line-height: 1.15;
       margin-bottom: 5px;
+      letter-spacing: -0.02em;
     }
 
     .proof span {
       display: block;
       color: var(--soft);
-      font-size: 0.78rem;
-      line-height: 1.35;
-      font-weight: 700;
+      font-size: 0.86rem;
+      line-height: 1.4;
+      font-weight: 750;
     }
 
     .quick-links {
@@ -604,6 +717,17 @@
         flex-direction: column;
       }
 
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-emblem {
+        width: 52px;
+        height: 52px;
+        flex-basis: 52px;
+        border-radius: 20px;
+      }
+
       .menu {
         gap: 14px;
         flex-wrap: wrap;
@@ -653,8 +777,15 @@
   <header class="topbar">
     <nav class="nav">
       <a class="brand" href="#home" aria-label="Torna alla home">
-        <span class="brand-mark">GP</span>
-        <span>Giovanni Palma</span>
+        <span class="brand-emblem" aria-hidden="true">
+          <span class="emblem-shield">
+            <span class="emblem-monogram"><span>G</span><span>P</span></span>
+          </span>
+        </span>
+        <span class="brand-copy">
+          <span class="brand-name">Giovanni Palma</span>
+          <span class="brand-subtitle">Security Innovation</span>
+        </span>
       </a>
 
       <div class="menu">
@@ -662,7 +793,7 @@
         <a href="#aree">Progetti</a>
         <a href="carriera-universitaria/">Formazione</a>
         <a href="#competenze">Competenze</a>
-        <a href="#contatti">Contatti</a>
+        <a class="nav-cta" href="#contatti">Contatti</a>
       </div>
     </nav>
   </header>
@@ -677,28 +808,30 @@
         </div>
 
         <h1>Giovanni Palma</h1>
-        <p class="role">Studente universitario orientato a sicurezza integrata, cybersecurity e innovazione</p>
-        <p class="location">Pomigliano d’Arco · Italia</p>
+        <div class="profile-kicker">Security Innovation Profile</div>
+        <p class="role">
+          Percorso orientato a <strong>sicurezza integrata</strong>, cybersecurity, governance del rischio e innovazione tecnologica.
+        </p>
 
         <div class="proof-grid" aria-label="Punti di forza">
           <div class="proof">
-            <strong>100/100</strong>
-            <span>Diploma scientifico con lode</span>
+            <strong>Formazione scientifica</strong>
+            <span>Diploma con valutazione 100/100 e lode</span>
           </div>
           <div class="proof">
-            <strong>L-36</strong>
-            <span>Sicurezza globale e governance</span>
+            <strong>Sicurezza globale</strong>
+            <span>Percorso universitario L-36 e focus su governance</span>
           </div>
           <div class="proof">
-            <strong>B2</strong>
-            <span>Competenza linguistica inglese</span>
+            <strong>Cyber & risk mindset</strong>
+            <span>Interesse per cybersecurity, vigilanza e gestione del rischio</span>
           </div>
         </div>
 
         <div class="quick-links" aria-label="Link rapidi">
-          <a class="icon-link" href="mailto:giovannip2504@gmail.com" title="Email">Email</a>
-          <a class="icon-link" href="progetti-universitari/" title="Progetti">Progetti</a>
-          <a class="icon-link" href="competenze/" title="Competenze">Skill</a>
+          <a class="icon-link" href="mailto:giovannip2504@gmail.com" title="Email">Contatto</a>
+          <a class="icon-link" href="progetti-universitari/" title="Progetti">Portfolio</a>
+          <a class="icon-link" href="competenze/" title="Competenze">Competenze</a>
         </div>
       </aside>
 
