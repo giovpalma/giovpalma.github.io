@@ -3,21 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio personale di Giovanni Palma: sicurezza fisica, cybersecurity, innovazione digitale e transizione tecnologica del Mezzogiorno." />
   <title>Giovanni Palma | Sicurezza, Cybersecurity e Innovazione</title>
+
   <style>
     :root {
-      --bg: #0a1020;
-      --bg-soft: #111a2e;
-      --panel: #151f35;
-      --panel-light: #1a2740;
-      --text: #f8fafc;
-      --muted: #aab7cc;
-      --blue: #2f80ed;
-      --blue-light: #60a5fa;
-      --blue-dark: #1d4ed8;
-      --cyan: #38bdf8;
-      --border: rgba(255, 255, 255, 0.12);
-      --shadow: 0 24px 70px rgba(0, 0, 0, 0.34);
+      --bg: #050b18;
+      --bg-2: #071327;
+      --card: rgba(12, 22, 43, 0.78);
+      --card-2: rgba(18, 32, 58, 0.82);
+      --text: #f8fbff;
+      --muted: #b8c6dc;
+      --soft: #7f92ad;
+      --blue: #3b82f6;
+      --blue-2: #60a5fa;
+      --blue-3: #93c5fd;
+      --cyan: #22d3ee;
+      --line: rgba(147, 197, 253, 0.18);
+      --line-strong: rgba(96, 165, 250, 0.42);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+      --max: 1180px;
     }
 
     * {
@@ -31,13 +38,27 @@
     }
 
     body {
-      font-family: Inter, Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 15% 0%, rgba(47, 128, 237, 0.28), transparent 34%),
-        radial-gradient(circle at 90% 10%, rgba(56, 189, 248, 0.12), transparent 30%),
-        var(--bg);
-      line-height: 1.65;
+        radial-gradient(circle at 16% 12%, rgba(59, 130, 246, 0.32), transparent 28%),
+        radial-gradient(circle at 82% 18%, rgba(34, 211, 238, 0.14), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg-2) 58%, #06101f);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(147, 197, 253, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(147, 197, 253, 0.045) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent 72%);
     }
 
     a {
@@ -48,17 +69,16 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
-      background: rgba(10, 16, 32, 0.84);
-      border-bottom: 1px solid var(--border);
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5, 11, 24, 0.76);
+      backdrop-filter: blur(18px);
     }
 
     .nav {
-      max-width: 1180px;
+      width: min(var(--max), calc(100% - 44px));
+      min-height: 76px;
       margin: 0 auto;
-      min-height: 72px;
-      padding: 0 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -66,23 +86,22 @@
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 12px;
-      font-size: 1.35rem;
-      font-weight: 850;
+      font-size: 1.18rem;
+      font-weight: 900;
       letter-spacing: -0.03em;
     }
 
     .brand-mark {
-      width: 36px;
-      height: 36px;
+      width: 42px;
+      height: 42px;
       display: grid;
       place-items: center;
-      border-radius: 12px;
+      border-radius: 15px;
       background: linear-gradient(135deg, var(--blue), var(--cyan));
-      box-shadow: 0 12px 32px rgba(47, 128, 237, 0.34);
-      font-weight: 900;
+      box-shadow: 0 18px 42px rgba(59, 130, 246, 0.42);
     }
 
     .menu {
@@ -90,78 +109,158 @@
       align-items: center;
       gap: 24px;
       color: var(--muted);
-      font-size: 0.96rem;
-      font-weight: 700;
+      font-size: 0.95rem;
+      font-weight: 800;
+    }
+
+    .menu a {
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .menu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--blue-2);
+      transition: width 0.2s ease;
     }
 
     .menu a:hover {
-      color: var(--blue-light);
+      color: var(--text);
+    }
+
+    .menu a:hover::after {
+      width: 100%;
     }
 
     .page {
-      max-width: 1180px;
+      width: min(var(--max), calc(100% - 44px));
       margin: 0 auto;
-      padding: 70px 22px 60px;
+      padding: 64px 0 58px;
+      position: relative;
     }
 
     .hero {
+      min-height: calc(100vh - 154px);
       display: grid;
-      grid-template-columns: 390px 1fr;
-      gap: 54px;
+      grid-template-columns: 410px 1fr;
+      gap: 58px;
       align-items: center;
-      min-height: calc(100vh - 150px);
     }
 
     .identity-card {
-      text-align: center;
-      padding: 34px 28px;
-      border-radius: 30px;
-      background: linear-gradient(160deg, rgba(21, 31, 53, 0.94), rgba(17, 26, 46, 0.9));
-      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      padding: 34px 30px 32px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(15, 27, 52, 0.92), rgba(8, 18, 35, 0.86));
+      border: 1px solid var(--line-strong);
       box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .identity-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(96, 165, 250, 0.22), transparent 42%),
+        linear-gradient(135deg, rgba(96, 165, 250, 0.20), transparent 34%, rgba(34, 211, 238, 0.12));
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .identity-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .portrait-wrap {
+      width: 238px;
+      height: 238px;
+      margin: 8px auto 28px;
+      padding: 7px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-2), var(--cyan));
+      box-shadow:
+        0 0 0 10px rgba(59, 130, 246, 0.08),
+        0 24px 60px rgba(59, 130, 246, 0.22);
     }
 
     .portrait {
-      width: 210px;
-      height: 210px;
-      margin: 0 auto 24px;
-      border-radius: 999px;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
       overflow: hidden;
-      border: 4px solid rgba(96, 165, 250, 0.42);
-      background: linear-gradient(135deg, rgba(47, 128, 237, 0.28), rgba(56, 189, 248, 0.1));
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      font-weight: 700;
-      text-align: center;
-      padding: 20px;
+      background: #0b162b;
+      border: 3px solid rgba(5, 11, 24, 0.9);
     }
 
     .portrait img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center 34%;
       display: block;
+      object-fit: cover;
+      object-position: 45% 30%;
+      transform: scale(1.22);
+      transform-origin: 45% 30%;
     }
 
     .identity-card h1 {
-      font-size: 2.25rem;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      margin-bottom: 8px;
+      font-size: 2.35rem;
+      line-height: 1.05;
+      letter-spacing: -0.055em;
+      margin-bottom: 10px;
     }
 
     .role {
+      max-width: 310px;
+      margin: 0 auto 12px;
       color: var(--muted);
-      font-size: 1.05rem;
-      margin-bottom: 8px;
+      font-size: 1.02rem;
+      line-height: 1.6;
     }
 
     .location {
-      color: var(--blue-light);
-      font-weight: 800;
-      margin-bottom: 24px;
+      color: var(--blue-2);
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 24px 0 22px;
+    }
+
+    .proof {
+      min-height: 82px;
+      padding: 12px 10px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid var(--line);
+    }
+
+    .proof strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.1rem;
+      line-height: 1.15;
+      margin-bottom: 5px;
+    }
+
+    .proof span {
+      display: block;
+      color: var(--soft);
+      font-size: 0.78rem;
+      line-height: 1.35;
+      font-weight: 700;
     }
 
     .quick-links {
@@ -173,89 +272,119 @@
     }
 
     .icon-link {
-      min-width: 46px;
-      height: 46px;
-      padding: 0 14px;
-      border-radius: 14px;
+      min-height: 48px;
+      padding: 0 17px;
+      border-radius: 16px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid var(--border);
-      color: var(--blue-light);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--line-strong);
+      color: var(--blue-3);
       font-weight: 900;
       transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
     }
 
     .icon-link:hover {
       transform: translateY(-3px);
-      background: rgba(47, 128, 237, 0.14);
-      border-color: rgba(96, 165, 250, 0.42);
+      background: rgba(59, 130, 246, 0.18);
+      border-color: rgba(147, 197, 253, 0.72);
     }
 
     .intro {
-      max-width: 780px;
+      max-width: 760px;
     }
 
     .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      padding: 8px 13px;
+      padding: 9px 16px;
       border-radius: 999px;
-      background: rgba(47, 128, 237, 0.13);
-      color: #bfdbfe;
-      border: 1px solid rgba(96, 165, 250, 0.22);
-      font-size: 0.9rem;
-      font-weight: 850;
-      margin-bottom: 18px;
+      background: rgba(59, 130, 246, 0.16);
+      color: #dbeafe;
+      border: 1px solid rgba(96, 165, 250, 0.34);
+      box-shadow: 0 14px 42px rgba(59, 130, 246, 0.14);
+      font-size: 0.92rem;
+      font-weight: 900;
+      margin-bottom: 24px;
     }
 
     .intro h2 {
-      font-size: clamp(3rem, 7vw, 5.2rem);
-      line-height: 0.98;
-      letter-spacing: -0.07em;
-      color: rgba(248, 250, 252, 0.94);
-      margin-bottom: 28px;
+      max-width: 830px;
+      font-size: clamp(3.7rem, 7.4vw, 6.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.075em;
+      margin-bottom: 30px;
     }
 
     .intro h2 span {
-      color: var(--blue-light);
+      display: inline-block;
+      color: var(--blue-2);
+      text-shadow: 0 0 34px rgba(96, 165, 250, 0.22);
     }
 
     .lead {
-      font-size: 1.22rem;
-      color: var(--text);
+      font-size: 1.17rem;
+      color: #dbeafe;
       max-width: 760px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .lead strong {
-      color: var(--blue-light);
+      color: var(--blue-2);
     }
 
-    .intro p {
+    .intro p:not(.lead) {
       color: var(--muted);
-      font-size: 1.06rem;
-      margin-bottom: 18px;
+      font-size: 1.04rem;
+      max-width: 770px;
+      margin-bottom: 17px;
+    }
+
+    .value-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 28px 0 8px;
+    }
+
+    .value-item {
+      padding: 15px 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid var(--line);
+    }
+
+    .value-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 0.96rem;
+      margin-bottom: 3px;
+    }
+
+    .value-item span {
+      color: var(--soft);
+      font-size: 0.86rem;
+      font-weight: 700;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-top: 30px;
+      margin-top: 32px;
     }
 
     .btn {
+      min-height: 54px;
+      padding: 13px 22px;
+      border-radius: 18px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 12px 18px;
-      border-radius: 16px;
-      font-weight: 850;
-      border: 1px solid var(--border);
+      border: 1px solid var(--line-strong);
+      font-weight: 950;
       transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
@@ -264,64 +393,65 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
       color: white;
-      box-shadow: 0 16px 34px rgba(47, 128, 237, 0.32);
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      box-shadow: 0 22px 48px rgba(59, 130, 246, 0.34);
     }
 
     .btn-secondary {
-      background: rgba(255, 255, 255, 0.06);
       color: var(--text);
+      background: rgba(255, 255, 255, 0.07);
     }
 
     section {
-      scroll-margin-top: 90px;
-      margin-top: 58px;
+      scroll-margin-top: 95px;
+      margin-top: 70px;
     }
 
     .section-heading {
       display: flex;
       justify-content: space-between;
       align-items: end;
-      gap: 20px;
-      margin-bottom: 20px;
+      gap: 24px;
+      margin-bottom: 22px;
     }
 
     .section-heading h2 {
-      font-size: 2rem;
-      letter-spacing: -0.04em;
+      font-size: 2.15rem;
+      letter-spacing: -0.055em;
+      line-height: 1.08;
     }
 
     .section-heading p {
-      max-width: 600px;
+      max-width: 610px;
       color: var(--muted);
     }
 
     .panel {
-      border-radius: 28px;
-      background: linear-gradient(160deg, rgba(21, 31, 53, 0.94), rgba(15, 23, 42, 0.9));
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
       padding: 28px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.9), rgba(7, 17, 33, 0.86));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
     }
 
     .vision-grid {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 18px;
     }
 
     .vision-block {
-      padding: 24px;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.045);
-      border: 1px solid var(--border);
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
     }
 
     .vision-block h3 {
       margin-bottom: 10px;
-      color: var(--blue-light);
-      font-size: 1.14rem;
+      color: var(--blue-2);
+      font-size: 1.16rem;
     }
 
     .vision-block p {
@@ -335,12 +465,12 @@
     }
 
     .folder-card {
-      min-height: 245px;
-      padding: 24px;
-      border-radius: 26px;
-      background: linear-gradient(160deg, rgba(26, 39, 64, 0.95), rgba(17, 26, 46, 0.94));
-      border: 1px solid var(--border);
-      box-shadow: 0 18px 46px rgba(0, 0, 0, 0.24);
+      min-height: 260px;
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(160deg, rgba(18, 32, 58, 0.95), rgba(9, 20, 38, 0.92));
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.26);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -348,9 +478,9 @@
     }
 
     .folder-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(96, 165, 250, 0.55);
-      background: linear-gradient(160deg, rgba(30, 64, 175, 0.25), rgba(17, 26, 46, 0.94));
+      transform: translateY(-7px);
+      border-color: rgba(147, 197, 253, 0.62);
+      background: linear-gradient(160deg, rgba(37, 99, 235, 0.27), rgba(9, 20, 38, 0.94));
     }
 
     .folder-top {
@@ -361,13 +491,13 @@
     }
 
     .folder-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 18px;
+      width: 54px;
+      height: 54px;
+      border-radius: 19px;
       display: grid;
       place-items: center;
-      background: rgba(47, 128, 237, 0.16);
-      color: var(--blue-light);
+      background: rgba(59, 130, 246, 0.16);
+      color: var(--blue-2);
       font-size: 1.55rem;
     }
 
@@ -384,8 +514,8 @@
 
     .folder-link {
       margin-top: 24px;
-      color: var(--blue-light);
-      font-weight: 900;
+      color: var(--blue-2);
+      font-weight: 950;
     }
 
     .skills {
@@ -398,9 +528,9 @@
       padding: 15px 13px;
       border-radius: 18px;
       background: rgba(255, 255, 255, 0.055);
-      border: 1px solid var(--border);
+      border: 1px solid var(--line);
       color: var(--muted);
-      font-weight: 800;
+      font-weight: 850;
       text-align: center;
     }
 
@@ -411,17 +541,17 @@
 
     .timeline-item {
       display: grid;
-      grid-template-columns: 150px 1fr;
+      grid-template-columns: 155px 1fr;
       gap: 18px;
-      padding: 18px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.045);
-      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--line);
     }
 
     .year {
-      color: var(--blue-light);
-      font-weight: 900;
+      color: var(--blue-2);
+      font-weight: 950;
     }
 
     .timeline-item h3 {
@@ -433,9 +563,9 @@
     }
 
     footer {
-      margin-top: 62px;
-      padding: 26px 0 10px;
-      border-top: 1px solid var(--border);
+      margin-top: 70px;
+      padding: 28px 0 10px;
+      border-top: 1px solid var(--line);
       color: var(--muted);
       display: flex;
       justify-content: space-between;
@@ -444,62 +574,81 @@
       font-size: 0.94rem;
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 980px) {
       .hero,
       .vision-grid {
         grid-template-columns: 1fr;
       }
 
       .identity-card {
-        max-width: 460px;
+        max-width: 480px;
         margin: 0 auto;
       }
 
+      .intro {
+        max-width: 100%;
+      }
+
       .folders,
-      .skills {
-        grid-template-columns: 1fr 1fr;
+      .skills,
+      .value-strip {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
     @media (max-width: 680px) {
       .nav {
+        min-height: auto;
+        padding: 16px 0;
         align-items: flex-start;
         flex-direction: column;
-        padding-top: 16px;
-        padding-bottom: 16px;
       }
 
       .menu {
         gap: 14px;
         flex-wrap: wrap;
+        font-size: 0.9rem;
       }
 
       .page {
-        padding-top: 42px;
+        width: min(100% - 28px, var(--max));
+        padding-top: 36px;
       }
 
       .hero {
-        gap: 28px;
         min-height: auto;
+        gap: 34px;
+      }
+
+      .identity-card {
+        padding: 28px 20px;
+      }
+
+      .portrait-wrap {
+        width: 216px;
+        height: 216px;
       }
 
       .intro h2 {
-        font-size: 3rem;
-      }
-
-      .folders,
-      .skills,
-      .timeline-item {
-        grid-template-columns: 1fr;
+        font-size: 3.2rem;
       }
 
       .section-heading {
         align-items: flex-start;
         flex-direction: column;
       }
+
+      .folders,
+      .skills,
+      .value-strip,
+      .proof-grid,
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
+
 <body>
   <header class="topbar">
     <nav class="nav">
@@ -507,6 +656,7 @@
         <span class="brand-mark">GP</span>
         <span>Giovanni Palma</span>
       </a>
+
       <div class="menu">
         <a href="#profilo">Profilo</a>
         <a href="#aree">Progetti</a>
@@ -520,12 +670,30 @@
   <main class="page" id="home">
     <section class="hero" aria-label="Presentazione personale">
       <aside class="identity-card">
-        <div class="portrait">
-          <img src="foto cv.jpg" alt="Foto di Giovanni Palma">
+        <div class="portrait-wrap">
+          <div class="portrait">
+            <img src="foto%20cv.jpg" alt="Foto di Giovanni Palma" />
+          </div>
         </div>
+
         <h1>Giovanni Palma</h1>
-        <p class="role">Studente universitario · Sicurezza integrata e cybersecurity</p>
+        <p class="role">Studente universitario orientato a sicurezza integrata, cybersecurity e innovazione</p>
         <p class="location">Pomigliano d’Arco · Italia</p>
+
+        <div class="proof-grid" aria-label="Punti di forza">
+          <div class="proof">
+            <strong>100/100</strong>
+            <span>Diploma scientifico con lode</span>
+          </div>
+          <div class="proof">
+            <strong>L-36</strong>
+            <span>Sicurezza globale e governance</span>
+          </div>
+          <div class="proof">
+            <strong>B2</strong>
+            <span>Competenza linguistica inglese</span>
+          </div>
+        </div>
 
         <div class="quick-links" aria-label="Link rapidi">
           <a class="icon-link" href="mailto:giovannip2504@gmail.com" title="Email">Email</a>
@@ -535,20 +703,38 @@
       </aside>
 
       <div class="intro" id="profilo">
-        <div class="eyebrow">Sicurezza fisica · Cybersecurity · Innovazione digitale</div>
+        <div class="eyebrow">Security Innovation Portfolio</div>
         <h2>In a nutshell, <span>sicurezza a 360°.</span></h2>
+
         <p class="lead">
-          Sono uno studente universitario con un forte interesse per l’integrazione tra <strong>sicurezza fisica, cybersecurity, gestione del rischio e innovazione tecnologica</strong>.
-        </p>
-        <p>
-          Il mio percorso nasce dal settore della sicurezza privata e si sta evolvendo verso una visione più ampia: proteggere persone, dati, infrastrutture e processi in un contesto in cui il rischio è sempre più ibrido, digitale e strategico.
-        </p>
-        <p>
-          Il mio obiettivo è costruire un profilo imprenditoriale capace di unire esperienza operativa, cultura della sicurezza, transizione digitale e sviluppo del Mezzogiorno, con particolare attenzione alla cybersecurity, alla governance e alla sicurezza integrata.
+          Studio e costruisco un percorso tra <strong>sicurezza fisica, cybersecurity, gestione del rischio e innovazione tecnologica</strong>, con una visione orientata all’impresa e alla trasformazione digitale.
         </p>
 
+        <p>
+          Il mio punto di partenza è il settore della sicurezza privata. Da lì sto sviluppando una prospettiva più ampia: proteggere persone, dati, infrastrutture e processi in un mondo in cui il rischio è sempre più ibrido, digitale e strategico.
+        </p>
+
+        <p>
+          Il mio obiettivo è contribuire alla crescita di modelli di sicurezza integrata capaci di unire vigilanza, cultura del rischio, cybersecurity, governance e sviluppo tecnologico del Mezzogiorno.
+        </p>
+
+        <div class="value-strip" aria-label="Aree di valore">
+          <div class="value-item">
+            <strong>Sicurezza integrata</strong>
+            <span>fisica, digitale, organizzativa</span>
+          </div>
+          <div class="value-item">
+            <strong>Visione imprenditoriale</strong>
+            <span>servizi, processi, territorio</span>
+          </div>
+          <div class="value-item">
+            <strong>Cyber & AI</strong>
+            <span>studio, ricerca, applicazioni</span>
+          </div>
+        </div>
+
         <div class="actions">
-          <a class="btn btn-primary" href="#aree">Apri le sezioni</a>
+          <a class="btn btn-primary" href="#aree">Esplora il portfolio</a>
           <a class="btn btn-secondary" href="#competenze">Vedi competenze</a>
         </div>
       </div>
@@ -559,6 +745,7 @@
         <h2>Visione</h2>
         <p>Un percorso orientato non solo alla formazione, ma alla costruzione di un progetto professionale e imprenditoriale nel settore della sicurezza integrata.</p>
       </div>
+
       <div class="panel vision-grid">
         <article class="vision-block">
           <h3>Sicurezza integrata</h3>
@@ -566,6 +753,7 @@
             La sicurezza non può più essere considerata a compartimenti separati. Vigilanza, procedure operative, protezione dei dati, cybersecurity e risk management devono dialogare all’interno di un unico modello di protezione.
           </p>
         </article>
+
         <article class="vision-block">
           <h3>Cyber e territorio</h3>
           <p>
@@ -580,6 +768,7 @@
         <h2>Aree del sito</h2>
         <p>Tre sezioni pensate per organizzare in modo chiaro progetti, percorso universitario e competenze.</p>
       </div>
+
       <div class="folders">
         <a class="folder-card" href="progetti-universitari/">
           <div>
@@ -621,6 +810,7 @@
         <h2>Percorso</h2>
         <p>Una sintesi essenziale del mio percorso formativo, professionale e personale.</p>
       </div>
+
       <div class="panel timeline">
         <article class="timeline-item">
           <div class="year">2025 · Attuale</div>
@@ -629,6 +819,7 @@
             <p>Laurea triennale L-36 in Studi diplomatici, internazionali e sulla sicurezza globale, con interesse per sicurezza, governance e trasformazione digitale.</p>
           </div>
         </article>
+
         <article class="timeline-item">
           <div class="year">2024 · 2025</div>
           <div>
@@ -636,6 +827,7 @@
             <p>Supporto amministrativo e gestionale, gestione documentale e primo coinvolgimento nelle procedure operative del settore della sicurezza privata.</p>
           </div>
         </article>
+
         <article class="timeline-item">
           <div class="year">2019 · 2024</div>
           <div>
@@ -651,6 +843,7 @@
         <h2>Competenze e interessi</h2>
         <p>Le aree su cui sto costruendo il mio posizionamento personale, universitario e professionale.</p>
       </div>
+
       <div class="skills">
         <div class="skill">Cybersecurity</div>
         <div class="skill">Sicurezza fisica</div>
