@@ -1,11 +1,392 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Giovanni Palma</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Giovanni Palma | Sicurezza, Cybersecurity e Innovazione</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card: #111827;
+      --card-soft: #162033;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --border: rgba(255, 255, 255, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: radial-gradient(circle at top left, #1e3a8a 0, transparent 32%), var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-card,
+    .photo-card,
+    .section-card,
+    .folder-card {
+      background: linear-gradient(145deg, rgba(17, 24, 39, 0.94), rgba(22, 32, 51, 0.86));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    }
+
+    .hero-card {
+      padding: 36px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: #bae6fd;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 4.2rem);
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.12rem;
+      max-width: 720px;
+      margin-bottom: 24px;
+    }
+
+    .highlight {
+      color: var(--accent);
+    }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border-radius: 14px;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #2563eb);
+      color: white;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+    }
+
+    .photo-card {
+      padding: 18px;
+      text-align: center;
+    }
+
+    .photo-box {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 22px;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.16), rgba(34, 197, 94, 0.12));
+      border: 1px dashed rgba(255, 255, 255, 0.26);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      padding: 24px;
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 12px;
+    }
+
+    section {
+      margin-top: 34px;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin-bottom: 14px;
+    }
+
+    .section-card {
+      padding: 26px;
+      color: var(--muted);
+    }
+
+    .section-card strong {
+      color: var(--text);
+    }
+
+    .folders {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .folder-card {
+      padding: 24px;
+      min-height: 210px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .folder-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.55);
+    }
+
+    .folder-icon {
+      font-size: 2.1rem;
+      margin-bottom: 12px;
+    }
+
+    .folder-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .folder-card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .folder-link {
+      margin-top: 18px;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .skill {
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-weight: 700;
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 44px;
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    @media (max-width: 860px) {
+      header,
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .folders,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Ciao, sono Giovanni Palma</h1>
-  <p>Questo è il mio sito personale.</p>
+  <div class="page">
+    <header>
+      <div class="logo">Giovanni Palma</div>
+      <nav>
+        <a href="#profilo">Profilo</a>
+        <a href="#aree">Aree</a>
+        <a href="#competenze">Competenze</a>
+        <a href="mailto:giovannip2504@gmail.com">Contatti</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="profilo">
+        <div class="hero-card">
+          <div class="tag">Sicurezza fisica · Cybersecurity · Innovazione</div>
+          <h1>Costruire sicurezza a 360° nel mondo digitale.</h1>
+          <p class="subtitle">
+            Sono Giovanni Palma, studente universitario e giovane professionista interessato all’evoluzione della sicurezza: dalla vigilanza fisica alla cybersecurity, dalla gestione del rischio alla transizione digitale delle imprese e del territorio meridionale.
+          </p>
+          <p class="subtitle">
+            Il mio obiettivo è sviluppare un percorso imprenditoriale capace di integrare <strong class="highlight">sicurezza, tecnologia e governance</strong>, trasformando l’esperienza nel settore della vigilanza in una visione più ampia: protezione fisica, protezione digitale, prevenzione, innovazione e cultura del rischio.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#aree">Esplora il mio percorso</a>
+            <a class="btn btn-secondary" href="mailto:giovannip2504@gmail.com">Contattami</a>
+          </div>
+        </div>
+
+        <div class="photo-card">
+          <div class="photo-box">
+            <!-- Carica una tua foto nel repository e chiamala foto.jpg, poi sostituisci il testo sotto con questa riga: <img src="foto.jpg" alt="Foto di Giovanni Palma"> -->
+            <span>Inserisci qui la tua foto personale</span>
+          </div>
+          <p class="photo-note">Suggerimento: carica una foto chiamata <strong>foto.jpg</strong> nella stessa cartella di questo file.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Visione personale</h2>
+        <div class="section-card">
+          <p>
+            La mia formazione nasce da un interesse per la sicurezza globale e si sta orientando verso un profilo sempre più operativo e imprenditoriale. Mi interessa capire come le organizzazioni possano proteggere persone, dati, infrastrutture e processi in un contesto in cui il rischio non è più soltanto fisico, ma anche digitale, reputazionale e strategico.
+          </p>
+          <br />
+          <p>
+            Credo che il Mezzogiorno abbia bisogno di una transizione digitale concreta, capace di creare competenze, imprese e servizi avanzati nel campo cyber. Per questo voglio costruire un percorso che unisca <strong>sicurezza privata, cybersecurity, GRC, innovazione tecnologica e sviluppo territoriale</strong>.
+          </p>
+        </div>
+      </section>
+
+      <section id="aree">
+        <h2 class="section-title">Aree del sito</h2>
+        <div class="folders">
+          <a class="folder-card" href="progetti-universitari/">
+            <div>
+              <div class="folder-icon">📁</div>
+              <h3>Progetti universitari</h3>
+              <p>Raccolta dei progetti, degli elaborati e degli studi realizzati durante il percorso accademico.</p>
+            </div>
+            <div class="folder-link">Apri cartella →</div>
+          </a>
+
+          <a class="folder-card" href="carriera-universitaria/">
+            <div>
+              <div class="folder-icon">🎓</div>
+              <h3>Carriera universitaria</h3>
+              <p>Informazioni sul mio percorso di studi, sugli obiettivi formativi e sulle aree di approfondimento.</p>
+            </div>
+            <div class="folder-link">Apri cartella →</div>
+          </a>
+
+          <a class="folder-card" href="competenze/">
+            <div>
+              <div class="folder-icon">🛡️</div>
+              <h3>Competenze</h3>
+              <p>Competenze organizzative, digitali, comunicative e interessi in ambito sicurezza, cyber e innovazione.</p>
+            </div>
+            <div class="folder-link">Apri cartella →</div>
+          </a>
+        </div>
+      </section>
+
+      <section id="competenze">
+        <h2 class="section-title">Focus professionale</h2>
+        <div class="skills-grid">
+          <div class="skill">Cybersecurity</div>
+          <div class="skill">Sicurezza fisica</div>
+          <div class="skill">Risk management</div>
+          <div class="skill">GRC</div>
+          <div class="skill">Vigilanza</div>
+          <div class="skill">Transizione digitale</div>
+          <div class="skill">Innovazione</div>
+          <div class="skill">Organizzazione</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Giovanni Palma · Sicurezza, cybersecurity e innovazione tecnologica
+    </footer>
+  </div>
 </body>
 </html>
