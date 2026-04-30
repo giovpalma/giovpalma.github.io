@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio progetti di Giovanni Palma: progetti universitari, personali e di ricerca in ambito intelligenza artificiale, sicurezza, studi L-36 e innovazione." />
+  <meta name="description" content="Portfolio progetti di Giovanni Palma: spazio dedicato ai progetti in sviluppo e alle future schede di approfondimento." />
   <title>Progetti | Giovanni Palma</title>
 
   <style>
@@ -210,8 +210,7 @@
       margin-bottom: 17px;
     }
 
-    .hero-panel,
-    .feature-card {
+    .hero-panel {
       padding: 30px;
       border-radius: var(--radius-xl);
       background: linear-gradient(160deg, rgba(13, 25, 48, 0.92), rgba(7, 17, 33, 0.88));
@@ -220,7 +219,6 @@
     }
 
     .panel-title,
-    .feature-label,
     .card-label {
       color: var(--blue-pale);
       font-size: 0.78rem;
@@ -230,16 +228,14 @@
       margin-bottom: 16px;
     }
 
-    .hero-panel h2,
-    .feature-card h3 {
+    .hero-panel h2 {
       font-size: 1.6rem;
       line-height: 1.15;
       letter-spacing: -0.04em;
       margin-bottom: 16px;
     }
 
-    .hero-panel p,
-    .feature-card p {
+    .hero-panel p {
       color: var(--muted);
     }
 
@@ -292,14 +288,6 @@
       color: var(--muted);
     }
 
-    .panel {
-      padding: 28px;
-      border-radius: var(--radius-xl);
-      background: linear-gradient(160deg, rgba(13, 25, 48, 0.86), rgba(7, 17, 33, 0.84));
-      border: 1px solid var(--line);
-      box-shadow: var(--shadow);
-    }
-
     .project-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -307,7 +295,7 @@
     }
 
     .project-card {
-      min-height: 310px;
+      min-height: 300px;
       padding: 28px;
       border-radius: var(--radius-lg);
       background: linear-gradient(160deg, rgba(18, 32, 58, 0.91), rgba(9, 20, 38, 0.9));
@@ -325,13 +313,21 @@
       background: linear-gradient(160deg, rgba(37, 99, 235, 0.16), rgba(9, 20, 38, 0.94));
     }
 
-    .project-card.featured {
+    .project-card.active {
       grid-column: span 2;
       border-color: var(--line-blue);
     }
 
-    .project-card.placeholder {
+    .project-card.empty {
+      border-style: dashed;
       opacity: 0.72;
+      box-shadow: none;
+      background: rgba(255, 255, 255, 0.032);
+    }
+
+    .project-card.empty:hover {
+      opacity: 0.9;
+      transform: translateY(-4px);
     }
 
     .project-card h3 {
@@ -351,67 +347,6 @@
       margin-top: 24px;
       color: var(--blue-soft);
       font-weight: 760;
-    }
-
-    .two-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .three-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .detail-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .card {
-      padding: 26px;
-      border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.044);
-      border: 1px solid var(--line);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      color: var(--blue-soft);
-      font-size: 1.14rem;
-    }
-
-    .card p,
-    .card li {
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
-
-    .card ul {
-      list-style: none;
-      display: grid;
-      gap: 9px;
-      margin-top: 8px;
-    }
-
-    .card li {
-      position: relative;
-      padding-left: 16px;
-    }
-
-    .card li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.72em;
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--blue-soft);
     }
 
     .tag-list {
@@ -479,14 +414,11 @@
 
     @media (max-width: 980px) {
       .hero,
-      .two-grid,
-      .three-grid,
-      .detail-layout,
       .project-grid {
         grid-template-columns: 1fr;
       }
 
-      .project-card.featured {
+      .project-card.active {
         grid-column: auto;
       }
 
@@ -541,8 +473,7 @@
       <div class="menu">
         <a href="../">Home</a>
         <a href="#portfolio">Portfolio</a>
-        <a href="#generative-ai">Progetto IA</a>
-        <a href="#sviluppi">Sviluppi</a>
+        <a href="../nexora-hub/">Nexora Hub</a>
         <a class="nav-cta" href="mailto:giovannip2504@gmail.com">Contatti</a>
       </div>
     </nav>
@@ -552,41 +483,41 @@
     <section class="hero" aria-label="Presentazione progetti">
       <div class="hero-text">
         <div class="eyebrow">Portfolio progetti</div>
-        <h1>Progetti di studio, <span>ricerca e applicazione.</span></h1>
+        <h1>Uno spazio per <span>progetti e approfondimenti.</span></h1>
 
         <p class="lead">
-          Questa sezione raccoglie i progetti sviluppati nel mio percorso universitario e personale, con una struttura pensata per crescere nel tempo.
+          Questa sezione raccoglie i progetti sviluppati nel mio percorso universitario, personale e professionale.
         </p>
 
         <p>
-          Al momento è presente il progetto dedicato all’intelligenza artificiale generativa. In futuro potranno essere aggiunte nuove schede, mantenendo lo stesso ordine visivo e la stessa impostazione professionale.
+          La pagina è pensata per crescere nel tempo: ogni progetto avrà una propria scheda cliccabile e potrà essere aggiornato con materiali, presentazioni e contenuti dedicati quando saranno pronti.
         </p>
 
         <div class="actions">
-          <a class="btn btn-primary" href="#portfolio">Vedi il portfolio</a>
+          <a class="btn btn-primary" href="#portfolio">Vedi i progetti</a>
           <a class="btn btn-secondary" href="../">Torna alla home</a>
         </div>
       </div>
 
       <aside class="hero-panel">
-        <p class="panel-title">Impostazione</p>
-        <h2>Una pagina costruita per ospitare più progetti.</h2>
+        <p class="panel-title">Struttura</p>
+        <h2>Una cartella ordinata, pronta per nuovi progetti.</h2>
         <p>
-          Ogni progetto avrà una scheda sintetica nel portfolio e, quando necessario, una sezione di approfondimento dedicata. In questo modo la pagina resta ordinata anche con nuovi contenuti.
+          Per ora è presente una sola scheda. Successivamente potranno essere aggiunti altri progetti mantenendo lo stesso stile e la stessa organizzazione.
         </p>
 
         <div class="values-list">
           <div class="value-row">
-            <strong>Progetti attivi</strong>
-            <span>schede già sviluppate e consultabili</span>
+            <strong>Schede cliccabili</strong>
+            <span>ogni progetto potrà avere una pagina dedicata</span>
           </div>
           <div class="value-row">
-            <strong>Progetti futuri</strong>
-            <span>nuove aree da aggiungere senza rifare la pagina</span>
+            <strong>Ordine visivo</strong>
+            <span>griglia semplice, leggibile e professionale</span>
           </div>
           <div class="value-row">
-            <strong>Coerenza visiva</strong>
-            <span>stesso stile per IA, L-36 e futuri lavori</span>
+            <strong>Crescita progressiva</strong>
+            <span>nuovi progetti aggiungibili senza rifare la pagina</span>
           </div>
         </div>
       </aside>
@@ -595,136 +526,37 @@
     <section id="portfolio">
       <div class="section-heading">
         <h2>Portfolio</h2>
-        <p>Per ora è presente un solo progetto. La griglia è già predisposta per aggiungerne altri, ad esempio un progetto di filosofia politica in ambito L-36.</p>
+        <p>Per ora è presente solo il primo progetto. Le altre schede potranno essere aggiunte quando mi fornirai i contenuti.</p>
       </div>
 
       <div class="project-grid">
-        <a class="project-card featured" href="#generative-ai">
+        <a class="project-card active" href="introduction-generative-ai/">
           <div>
             <p class="card-label">Progetto attivo</p>
             <h3>Introduction and Application of Generative AI</h3>
-            <p>Studio introduttivo sull’intelligenza artificiale generativa, sulle sue applicazioni pratiche e sul suo impatto nei contesti professionali, formativi e organizzativi.</p>
+            <p>Scheda progetto predisposta. I contenuti verranno inseriti quando saranno disponibili.</p>
             <div class="tag-list">
-              <span class="tag">Generative AI</span>
-              <span class="tag">Applicazioni</span>
-              <span class="tag">Governance</span>
+              <span class="tag">IA</span>
+              <span class="tag">In sviluppo</span>
             </div>
           </div>
-          <span class="project-link">Apri scheda →</span>
+          <span class="project-link">Apri progetto →</span>
         </a>
 
-        <article class="project-card placeholder">
+        <article class="project-card empty">
           <div>
-            <p class="card-label">Prossimo inserimento</p>
-            <h3>Filosofia politica e percorso L-36</h3>
-            <p>Spazio predisposto per un futuro progetto legato agli studi diplomatici, internazionali e alla riflessione politico-istituzionale.</p>
-            <div class="tag-list">
-              <span class="tag">L-36</span>
-              <span class="tag">Filosofia politica</span>
-              <span class="tag">In preparazione</span>
-            </div>
+            <p class="card-label">Nuovo progetto</p>
+            <h3>Prossima scheda</h3>
+            <p>Spazio disponibile per aggiungere un nuovo progetto quando sarà definito.</p>
           </div>
           <span class="project-link">Da aggiornare</span>
         </article>
       </div>
     </section>
 
-    <section id="generative-ai">
-      <div class="section-heading">
-        <h2>Introduction and Application of Generative AI</h2>
-        <p>Prima scheda progetto dedicata all’intelligenza artificiale generativa e alle sue applicazioni nei contesti professionali.</p>
-      </div>
-
-      <div class="detail-layout">
-        <article class="feature-card">
-          <p class="feature-label">Obiettivo</p>
-          <h3>Comprendere le potenzialità della Generative AI e collegarle a processi, competenze e innovazione.</h3>
-          <p>
-            Il progetto introduce i concetti principali dell’intelligenza artificiale generativa, analizzando come questa tecnologia possa supportare creazione di contenuti, automazione, analisi, formazione e sviluppo di nuovi servizi.
-          </p>
-          <p>
-            Il focus è costruire una visione equilibrata: opportunità applicative, limiti tecnici, rischi informativi, impatto sulle competenze e necessità di governance.
-          </p>
-          <div class="tag-list">
-            <span class="tag">Generative AI</span>
-            <span class="tag">Innovazione</span>
-            <span class="tag">Formazione</span>
-            <span class="tag">Governance</span>
-          </div>
-        </article>
-
-        <aside class="panel">
-          <div class="values-list">
-            <div class="value-row">
-              <strong>Che cos’è</strong>
-              <span>introduzione ai modelli generativi e ai principali casi d’uso.</span>
-            </div>
-            <div class="value-row">
-              <strong>Dove si applica</strong>
-              <span>formazione, produttività, comunicazione, ricerca e servizi digitali.</span>
-            </div>
-            <div class="value-row">
-              <strong>Perché è rilevante</strong>
-              <span>impatto su imprese, processi, competenze e gestione del rischio.</span>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section id="struttura">
-      <div class="section-heading">
-        <h2>Struttura</h2>
-        <p>Il progetto sarà sviluppato come una presentazione chiara, utilizzabile anche in contesto universitario.</p>
-      </div>
-
-      <div class="three-grid">
-        <article class="card">
-          <h3>Introduzione</h3>
-          <p>Definizione di Generative AI, logica di funzionamento generale, esempi di strumenti e principali scenari applicativi.</p>
-        </article>
-
-        <article class="card">
-          <h3>Applicazioni</h3>
-          <p>Analisi di casi d’uso in ambito formazione, impresa, comunicazione, produttività e supporto ai processi decisionali.</p>
-        </article>
-
-        <article class="card">
-          <h3>Rischi e governance</h3>
-          <p>Riflessione su affidabilità, privacy, uso responsabile, sicurezza informativa e necessità di competenze critiche.</p>
-        </article>
-      </div>
-    </section>
-
-    <section id="sviluppi">
-      <div class="section-heading">
-        <h2>Sviluppi</h2>
-        <p>La pagina verrà aggiornata con nuovi materiali e, quando vorrai, con nuovi progetti.</p>
-      </div>
-
-      <div class="two-grid">
-        <article class="card">
-          <h3>Materiali da integrare per il progetto IA</h3>
-          <ul>
-            <li>presentazione completa del progetto</li>
-            <li>fonti e riferimenti</li>
-            <li>casi applicativi</li>
-            <li>riflessione su rischi, limiti e governance</li>
-          </ul>
-        </article>
-
-        <article class="card">
-          <h3>Nuovi progetti</h3>
-          <p>
-            La struttura è già pronta per aggiungere nuove schede, come il futuro progetto di filosofia politica in ambito L-36, senza modificare l’identità visiva della pagina.
-          </p>
-        </article>
-      </div>
-    </section>
-
     <footer>
       <span>© 2026 Giovanni Palma</span>
-      <span>Progetti · Generative AI · L-36 · Ricerca applicata</span>
+      <span>Progetti · Portfolio · Ricerca · Applicazione</span>
     </footer>
   </main>
 </body>
