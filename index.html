@@ -3,27 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio personale di Giovanni Palma: sicurezza fisica, cybersecurity, gestione del rischio, innovazione digitale e percorso universitario." />
-  <title>Giovanni Palma | Portfolio</title>
+  <meta name="description" content="Portfolio personale di Giovanni Palma: sicurezza integrata, cybersecurity, gestione del rischio, innovazione digitale e percorso universitario." />
+  <title>Giovanni Palma | Portfolio personale</title>
 
   <style>
     :root {
       --bg: #050914;
-      --bg-deep: #070d1c;
-      --panel: rgba(12, 21, 39, 0.88);
-      --panel-soft: rgba(16, 29, 54, 0.82);
-      --text: #f7f9fd;
+      --bg-2: #071122;
+      --surface: rgba(12, 22, 42, 0.88);
+      --surface-2: rgba(15, 29, 54, 0.78);
+      --text: #f8fafc;
       --muted: #b8c3d6;
-      --soft: #8794aa;
+      --subtle: #8794aa;
       --blue: #3b82f6;
       --blue-soft: #60a5fa;
       --blue-pale: #bfdbfe;
-      --cyan: #22d3ee;
       --line: rgba(148, 163, 184, 0.18);
-      --line-blue: rgba(96, 165, 250, 0.32);
-      --shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
-      --radius-xl: 30px;
-      --radius-lg: 22px;
+      --line-blue: rgba(96, 165, 250, 0.28);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
       --max: 1180px;
     }
 
@@ -42,9 +41,9 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 15% 0%, rgba(59, 130, 246, 0.20), transparent 30%),
-        radial-gradient(circle at 84% 12%, rgba(34, 211, 238, 0.08), transparent 26%),
-        linear-gradient(135deg, var(--bg), var(--bg-deep) 56%, #06101f);
+        radial-gradient(circle at 18% 0%, rgba(59, 130, 246, 0.18), transparent 32%),
+        radial-gradient(circle at 84% 14%, rgba(96, 165, 250, 0.08), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg-2) 58%, #050b18);
       line-height: 1.7;
       overflow-x: hidden;
     }
@@ -55,10 +54,10 @@
       inset: 0;
       pointer-events: none;
       background-image:
-        linear-gradient(rgba(148, 163, 184, 0.032) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(148, 163, 184, 0.026) 1px, transparent 1px);
-      background-size: 78px 78px;
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.76), transparent 74%);
+        linear-gradient(rgba(148, 163, 184, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.02) 1px, transparent 1px);
+      background-size: 82px 82px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.70), transparent 72%);
     }
 
     a {
@@ -70,14 +69,14 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(5, 9, 20, 0.82);
+      background: rgba(5, 9, 20, 0.84);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(18px);
     }
 
     .nav {
       width: min(var(--max), calc(100% - 44px));
-      min-height: 76px;
+      min-height: 78px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -87,29 +86,29 @@
 
     .brand {
       display: inline-grid;
-      gap: 7px;
+      gap: 8px;
       line-height: 1;
     }
 
     .brand-name {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.66rem;
+      font-size: 1.62rem;
       font-weight: 700;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.045em;
       color: #ffffff;
     }
 
-    .brand-line {
-      width: 82px;
-      height: 2px;
+    .brand-rule {
+      width: 88px;
+      height: 1px;
       border-radius: 999px;
-      background: linear-gradient(90deg, rgba(219, 234, 254, 0.92), rgba(96, 165, 250, 0.68), transparent);
+      background: linear-gradient(90deg, rgba(226, 232, 240, 0.88), rgba(96, 165, 250, 0.65), transparent);
     }
 
     .menu {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 24px;
       color: var(--muted);
       font-size: 0.94rem;
       font-weight: 650;
@@ -125,7 +124,7 @@
       content: "";
       position: absolute;
       left: 0;
-      bottom: 2px;
+      bottom: 1px;
       width: 0;
       height: 1px;
       border-radius: 999px;
@@ -145,8 +144,8 @@
       padding: 10px 16px;
       border-radius: 999px;
       color: #ffffff;
-      background: rgba(59, 130, 246, 0.13);
-      border: 1px solid rgba(96, 165, 250, 0.26);
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.25);
     }
 
     .menu .nav-cta::after {
@@ -154,21 +153,21 @@
     }
 
     .menu .nav-cta:hover {
-      background: rgba(59, 130, 246, 0.22);
+      background: rgba(59, 130, 246, 0.20);
     }
 
     .page {
       position: relative;
       width: min(var(--max), calc(100% - 44px));
       margin: 0 auto;
-      padding: 66px 0 58px;
+      padding: 70px 0 58px;
     }
 
     .hero {
-      min-height: calc(100vh - 160px);
+      min-height: calc(100vh - 165px);
       display: grid;
-      grid-template-columns: 410px 1fr;
-      gap: 60px;
+      grid-template-columns: 390px 1fr;
+      gap: 68px;
       align-items: center;
     }
 
@@ -177,7 +176,7 @@
       overflow: hidden;
       padding: 34px 30px 32px;
       border-radius: var(--radius-xl);
-      background: linear-gradient(160deg, rgba(15, 27, 52, 0.94), rgba(8, 17, 34, 0.9));
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.96), rgba(7, 16, 32, 0.92));
       border: 1px solid var(--line-blue);
       box-shadow: var(--shadow);
       text-align: center;
@@ -187,9 +186,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at 50% -8%, rgba(96, 165, 250, 0.16), transparent 38%),
-        linear-gradient(135deg, rgba(96, 165, 250, 0.10), transparent 42%);
+      background: radial-gradient(circle at 50% -8%, rgba(96, 165, 250, 0.13), transparent 42%);
       pointer-events: none;
     }
 
@@ -199,15 +196,15 @@
     }
 
     .portrait-wrap {
-      width: 232px;
-      height: 232px;
-      margin: 4px auto 30px;
-      padding: 6px;
+      width: 226px;
+      height: 226px;
+      margin: 0 auto 30px;
+      padding: 5px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(219, 234, 254, 0.85), rgba(59, 130, 246, 0.72), rgba(34, 211, 238, 0.62));
+      background: linear-gradient(135deg, rgba(226, 232, 240, 0.82), rgba(96, 165, 250, 0.72), rgba(59, 130, 246, 0.55));
       box-shadow:
-        0 0 0 10px rgba(59, 130, 246, 0.055),
-        0 22px 56px rgba(37, 99, 235, 0.18);
+        0 0 0 10px rgba(59, 130, 246, 0.045),
+        0 22px 56px rgba(37, 99, 235, 0.16);
     }
 
     .portrait {
@@ -231,14 +228,14 @@
 
     .identity-card h1 {
       color: #ffffff;
-      font-size: 2.42rem;
+      font-size: 2.34rem;
       line-height: 1.04;
-      letter-spacing: -0.06em;
+      letter-spacing: -0.055em;
       margin-bottom: 14px;
     }
 
     .role {
-      max-width: 330px;
+      max-width: 322px;
       margin: 0 auto 22px;
       color: #c7d4e7;
       font-size: 1rem;
@@ -262,33 +259,31 @@
     .focus-line span {
       padding: 8px 11px;
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.052);
-      border: 1px solid rgba(147, 197, 253, 0.15);
-      color: #cfe4ff;
+      background: rgba(255, 255, 255, 0.048);
+      border: 1px solid rgba(147, 197, 253, 0.14);
+      color: #d6e9ff;
       font-size: 0.8rem;
-      font-weight: 700;
+      font-weight: 680;
       line-height: 1;
     }
 
-    .proof-grid {
+    .profile-summary {
       display: grid;
-      grid-template-columns: 1fr;
       gap: 12px;
       margin: 24px 0 22px;
     }
 
-    .proof {
+    .summary-item {
       position: relative;
-      min-height: 78px;
       padding: 16px 18px 16px 20px;
       border-radius: 20px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.032));
-      border: 1px solid rgba(147, 197, 253, 0.16);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.058), rgba(255, 255, 255, 0.026));
+      border: 1px solid rgba(147, 197, 253, 0.15);
       text-align: left;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
     }
 
-    .proof::before {
+    .summary-item::before {
       content: "";
       position: absolute;
       left: 0;
@@ -296,31 +291,35 @@
       bottom: 14px;
       width: 3px;
       border-radius: 999px;
-      background: linear-gradient(180deg, var(--blue-soft), var(--cyan));
+      background: linear-gradient(180deg, rgba(96, 165, 250, 0.95), rgba(191, 219, 254, 0.45));
     }
 
-    .proof strong {
+    .summary-item strong {
       display: block;
       color: var(--text);
-      font-size: 1.02rem;
+      font-size: 1.01rem;
       line-height: 1.15;
       margin-bottom: 5px;
       letter-spacing: -0.02em;
     }
 
-    .proof span {
+    .summary-item span {
       display: block;
       color: var(--soft);
       font-size: 0.86rem;
-      line-height: 1.4;
-      font-weight: 650;
+      line-height: 1.45;
+      font-weight: 640;
     }
 
     .quick-links {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 10px;
       margin-top: 22px;
+    }
+
+    .quick-links .icon-link:first-child {
+      grid-column: 1 / -1;
     }
 
     .icon-link {
@@ -330,22 +329,22 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.052);
+      background: rgba(255, 255, 255, 0.048);
       border: 1px solid var(--line-blue);
       color: var(--blue-pale);
-      font-weight: 760;
+      font-weight: 740;
       transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
     }
 
     .icon-link:hover {
       transform: translateY(-3px);
-      background: rgba(59, 130, 246, 0.14);
-      border-color: rgba(147, 197, 253, 0.56);
-      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.12);
+      background: rgba(59, 130, 246, 0.13);
+      border-color: rgba(147, 197, 253, 0.50);
+      box-shadow: 0 16px 32px rgba(37, 99, 235, 0.11);
     }
 
     .intro {
-      max-width: 770px;
+      max-width: 790px;
     }
 
     .eyebrow {
@@ -353,18 +352,18 @@
       align-items: center;
       padding: 8px 14px;
       border-radius: 999px;
-      background: rgba(59, 130, 246, 0.10);
+      background: rgba(59, 130, 246, 0.095);
       color: #dbeafe;
-      border: 1px solid rgba(96, 165, 250, 0.22);
+      border: 1px solid rgba(96, 165, 250, 0.20);
       font-size: 0.88rem;
-      font-weight: 650;
+      font-weight: 640;
       margin-bottom: 24px;
     }
 
     .intro h2 {
-      max-width: 830px;
-      font-size: clamp(3.5rem, 7.1vw, 6rem);
-      line-height: 0.96;
+      max-width: 850px;
+      font-size: clamp(3.55rem, 7vw, 5.85rem);
+      line-height: 0.98;
       letter-spacing: -0.076em;
       margin-bottom: 30px;
     }
@@ -372,7 +371,7 @@
     .intro h2 span {
       display: inline-block;
       color: var(--blue-soft);
-      text-shadow: 0 0 34px rgba(96, 165, 250, 0.16);
+      text-shadow: 0 0 32px rgba(96, 165, 250, 0.14);
     }
 
     .lead {
@@ -389,7 +388,7 @@
     .intro p:not(.lead) {
       color: var(--muted);
       font-size: 1.04rem;
-      max-width: 770px;
+      max-width: 780px;
       margin-bottom: 17px;
     }
 
@@ -397,13 +396,13 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin: 28px 0 8px;
+      margin: 30px 0 8px;
     }
 
     .value-item {
-      padding: 15px 16px;
+      padding: 16px 16px;
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.048);
+      background: rgba(255, 255, 255, 0.045);
       border: 1px solid var(--line);
     }
 
@@ -417,7 +416,7 @@
     .value-item span {
       color: var(--soft);
       font-size: 0.86rem;
-      font-weight: 650;
+      font-weight: 640;
     }
 
     .actions {
@@ -435,7 +434,7 @@
       align-items: center;
       justify-content: center;
       border: 1px solid var(--line-blue);
-      font-weight: 780;
+      font-weight: 760;
       transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
     }
 
@@ -446,17 +445,17 @@
     .btn-primary {
       color: white;
       background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-      box-shadow: 0 22px 48px rgba(59, 130, 246, 0.26);
+      box-shadow: 0 22px 48px rgba(59, 130, 246, 0.24);
     }
 
     .btn-secondary {
       color: var(--text);
-      background: rgba(255, 255, 255, 0.055);
+      background: rgba(255, 255, 255, 0.05);
     }
 
     section {
       scroll-margin-top: 95px;
-      margin-top: 74px;
+      margin-top: 78px;
     }
 
     .section-heading {
@@ -481,95 +480,83 @@
     .panel {
       padding: 28px;
       border-radius: var(--radius-xl);
-      background: linear-gradient(160deg, rgba(13, 25, 48, 0.88), rgba(7, 17, 33, 0.86));
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.86), rgba(7, 17, 33, 0.84));
       border: 1px solid var(--line);
       box-shadow: var(--shadow);
     }
 
     .vision-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
     .vision-block {
       padding: 26px;
       border-radius: var(--radius-lg);
-      background: rgba(255, 255, 255, 0.047);
+      background: rgba(255, 255, 255, 0.044);
       border: 1px solid var(--line);
     }
 
     .vision-block h3 {
       margin-bottom: 10px;
       color: var(--blue-soft);
-      font-size: 1.16rem;
+      font-size: 1.14rem;
     }
 
     .vision-block p {
       color: var(--muted);
     }
 
-    .folders {
+    .content-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1.25fr 0.875fr 0.875fr;
       gap: 18px;
     }
 
-    .folder-card {
+    .content-card {
       min-height: 260px;
-      padding: 26px;
+      padding: 28px;
       border-radius: var(--radius-lg);
-      background: linear-gradient(160deg, rgba(18, 32, 58, 0.92), rgba(9, 20, 38, 0.9));
+      background: linear-gradient(160deg, rgba(18, 32, 58, 0.91), rgba(9, 20, 38, 0.9));
       border: 1px solid var(--line);
-      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.24);
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.22);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
 
-    .folder-card:hover {
+    .content-card:hover {
       transform: translateY(-7px);
-      border-color: rgba(147, 197, 253, 0.50);
-      background: linear-gradient(160deg, rgba(37, 99, 235, 0.18), rgba(9, 20, 38, 0.94));
+      border-color: rgba(147, 197, 253, 0.46);
+      background: linear-gradient(160deg, rgba(37, 99, 235, 0.16), rgba(9, 20, 38, 0.94));
     }
 
-    .folder-top {
-      display: flex;
-      align-items: center;
-      gap: 14px;
+    .card-label {
+      color: var(--blue-pale);
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
       margin-bottom: 14px;
     }
 
-    .folder-index {
-      width: 50px;
-      height: 50px;
-      border-radius: 18px;
-      display: grid;
-      place-items: center;
-      background: rgba(59, 130, 246, 0.11);
-      border: 1px solid rgba(96, 165, 250, 0.22);
-      color: var(--blue-pale);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-    }
-
-    .folder-card h3 {
-      font-size: 1.18rem;
+    .content-card h3 {
+      font-size: 1.24rem;
       line-height: 1.2;
+      margin-bottom: 12px;
     }
 
-    .folder-card p {
+    .content-card p {
       color: var(--muted);
       font-size: 0.98rem;
-      margin-top: 10px;
     }
 
-    .folder-link {
+    .card-link {
       margin-top: 24px;
       color: var(--blue-soft);
-      font-weight: 780;
+      font-weight: 760;
     }
 
     .skills {
@@ -581,15 +568,21 @@
     .skill {
       padding: 15px 13px;
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.048);
+      background: rgba(255, 255, 255, 0.046);
       border: 1px solid var(--line);
       color: var(--muted);
-      font-weight: 720;
+      font-weight: 700;
       text-align: center;
     }
 
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
     footer {
-      margin-top: 70px;
+      margin-top: 72px;
       padding: 28px 0 10px;
       border-top: 1px solid var(--line);
       color: var(--muted);
@@ -602,7 +595,9 @@
 
     @media (max-width: 980px) {
       .hero,
-      .vision-grid {
+      .vision-grid,
+      .content-grid,
+      .contact-grid {
         grid-template-columns: 1fr;
       }
 
@@ -615,7 +610,6 @@
         max-width: 100%;
       }
 
-      .folders,
       .skills,
       .value-strip {
         grid-template-columns: repeat(2, 1fr);
@@ -631,7 +625,7 @@
       }
 
       .brand-name {
-        font-size: 1.55rem;
+        font-size: 1.52rem;
       }
 
       .menu {
@@ -642,12 +636,12 @@
 
       .page {
         width: min(100% - 28px, var(--max));
-        padding-top: 36px;
+        padding-top: 38px;
       }
 
       .hero {
         min-height: auto;
-        gap: 34px;
+        gap: 36px;
       }
 
       .identity-card {
@@ -655,12 +649,12 @@
       }
 
       .portrait-wrap {
-        width: 216px;
-        height: 216px;
+        width: 210px;
+        height: 210px;
       }
 
       .identity-card h1 {
-        font-size: 2.15rem;
+        font-size: 2.1rem;
       }
 
       .role {
@@ -668,7 +662,7 @@
       }
 
       .intro h2 {
-        font-size: 3.2rem;
+        font-size: 3rem;
       }
 
       .section-heading {
@@ -676,10 +670,9 @@
         flex-direction: column;
       }
 
-      .folders,
       .skills,
       .value-strip,
-      .proof-grid,
+      .profile-summary,
       .quick-links {
         grid-template-columns: 1fr;
       }
@@ -692,7 +685,7 @@
     <nav class="nav">
       <a class="brand" href="#home" aria-label="Torna alla home">
         <span class="brand-name">Giovanni Palma</span>
-        <span class="brand-line" aria-hidden="true"></span>
+        <span class="brand-rule" aria-hidden="true"></span>
       </a>
 
       <div class="menu">
@@ -726,24 +719,24 @@
           <span>Risk management</span>
         </div>
 
-        <div class="proof-grid" aria-label="Punti di forza">
-          <div class="proof">
+        <div class="profile-summary" aria-label="Profilo in sintesi">
+          <div class="summary-item">
             <strong>Formazione scientifica</strong>
             <span>Diploma con valutazione 100/100 e lode.</span>
           </div>
-          <div class="proof">
+          <div class="summary-item">
             <strong>Sicurezza globale</strong>
-            <span>Percorso universitario L-36 con focus su governance e scenari internazionali.</span>
+            <span>Percorso universitario L-36 con interesse per governance, rischio e scenari internazionali.</span>
           </div>
-          <div class="proof">
-            <strong>Cyber & risk mindset</strong>
-            <span>Interesse per cybersecurity, vigilanza, gestione del rischio e processi organizzativi.</span>
+          <div class="summary-item">
+            <strong>Mentalità imprenditoriale</strong>
+            <span>Obiettivo di integrare sicurezza fisica, cyber e innovazione in un modello professionale concreto.</span>
           </div>
         </div>
 
         <div class="quick-links" aria-label="Link rapidi">
-          <a class="icon-link" href="mailto:giovannip2504@gmail.com" title="Email">Contatto</a>
-          <a class="icon-link" href="progetti-universitari/" title="Progetti">Portfolio</a>
+          <a class="icon-link" href="mailto:giovannip2504@gmail.com" title="Email">Contatto diretto</a>
+          <a class="icon-link" href="progetti-universitari/" title="Progetti">Progetti</a>
           <a class="icon-link" href="competenze/" title="Competenze">Competenze</a>
         </div>
       </aside>
@@ -788,22 +781,29 @@
 
     <section id="visione">
       <div class="section-heading">
-        <h2>Visione</h2>
-        <p>Un percorso orientato non solo alla formazione, ma alla costruzione di un progetto professionale e imprenditoriale nel settore della sicurezza integrata.</p>
+        <h2>Direzione professionale</h2>
+        <p>La sicurezza come sistema integrato: persone, dati, infrastrutture, processi e territorio.</p>
       </div>
 
       <div class="panel vision-grid">
         <article class="vision-block">
-          <h3>Sicurezza integrata</h3>
+          <h3>Sicurezza fisica</h3>
           <p>
-            La sicurezza non può più essere considerata a compartimenti separati. Vigilanza, procedure operative, protezione dei dati, cybersecurity e risk management devono dialogare all’interno di un unico modello di protezione.
+            Interesse per il settore della vigilanza, delle procedure operative e della protezione organizzativa, con attenzione alla qualità dei processi e alla prevenzione del rischio.
           </p>
         </article>
 
         <article class="vision-block">
-          <h3>Cyber e territorio</h3>
+          <h3>Cybersecurity</h3>
           <p>
-            Il Mezzogiorno può diventare un laboratorio di transizione digitale: imprese più sicure, servizi più evoluti, competenze cyber diffuse e una nuova cultura della prevenzione.
+            Studio della protezione digitale, della gestione del rischio informatico e del ruolo della governance nelle organizzazioni che affrontano la trasformazione tecnologica.
+          </p>
+        </article>
+
+        <article class="vision-block">
+          <h3>Innovazione e impresa</h3>
+          <p>
+            Obiettivo di costruire un profilo capace di collegare sicurezza, servizi, tecnologia e sviluppo del Mezzogiorno in una prospettiva imprenditoriale.
           </p>
         </article>
       </div>
@@ -812,41 +812,35 @@
     <section id="aree">
       <div class="section-heading">
         <h2>Aree del sito</h2>
-        <p>Tre sezioni pensate per organizzare in modo chiaro progetti, percorso universitario e competenze.</p>
+        <p>Sezioni essenziali, pensate per presentare progetti, formazione e competenze senza sovraccaricare la homepage.</p>
       </div>
 
-      <div class="folders">
-        <a class="folder-card" href="progetti-universitari/">
+      <div class="content-grid">
+        <a class="content-card" href="progetti-universitari/">
           <div>
-            <div class="folder-top">
-              <span class="folder-index">01</span>
-              <h3>Progetti universitari</h3>
-            </div>
+            <p class="card-label">Area principale</p>
+            <h3>Progetti universitari</h3>
             <p>Elaborati, ricerche, presentazioni e lavori sviluppati durante il percorso accademico, con spazio per futuri progetti su intelligenza artificiale, cybersecurity e sicurezza.</p>
           </div>
-          <span class="folder-link">Apri sezione →</span>
+          <span class="card-link">Apri sezione →</span>
         </a>
 
-        <a class="folder-card" href="carriera-universitaria/">
+        <a class="content-card" href="carriera-universitaria/">
           <div>
-            <div class="folder-top">
-              <span class="folder-index">02</span>
-              <h3>Carriera universitaria</h3>
-            </div>
-            <p>Percorso di studi, formazione, obiettivi accademici e aree di approfondimento legate alla sicurezza globale, alla gestione del rischio e alla trasformazione digitale.</p>
+            <p class="card-label">Formazione</p>
+            <h3>Carriera universitaria</h3>
+            <p>Percorso di studi, obiettivi accademici e aree di approfondimento legate a sicurezza globale, gestione del rischio e trasformazione digitale.</p>
           </div>
-          <span class="folder-link">Apri sezione →</span>
+          <span class="card-link">Apri sezione →</span>
         </a>
 
-        <a class="folder-card" href="competenze/">
+        <a class="content-card" href="competenze/">
           <div>
-            <div class="folder-top">
-              <span class="folder-index">03</span>
-              <h3>Competenze</h3>
-            </div>
+            <p class="card-label">Profilo operativo</p>
+            <h3>Competenze</h3>
             <p>Competenze organizzative, digitali e comunicative, con interessi in cybersecurity, vigilanza, GRC, innovazione e gestione del rischio.</p>
           </div>
-          <span class="folder-link">Apri sezione →</span>
+          <span class="card-link">Apri sezione →</span>
         </a>
       </div>
     </section>
@@ -876,41 +870,26 @@
     <section id="contatti">
       <div class="section-heading">
         <h2>Contatti</h2>
-        <p>Uno spazio professionale per entrare in contatto, proporre collaborazioni e seguire l’evoluzione dei miei progetti legati a sicurezza fisica, sicurezza integrata, cybersecurity, innovazione tecnologica e percorso universitario.</p>
+        <p>Per collaborazioni, proposte progettuali, iniziative universitarie e confronti legati a sicurezza fisica, sicurezza integrata, cybersecurity e innovazione digitale.</p>
       </div>
 
-      <div class="folders">
-        <a class="folder-card" href="mailto:giovannip2504@gmail.com">
+      <div class="contact-grid">
+        <a class="content-card" href="mailto:giovannip2504@gmail.com">
           <div>
-            <div class="folder-top">
-              <span class="folder-index">A</span>
-              <h3>Email professionale</h3>
-            </div>
-            <p>Per contatti diretti, collaborazioni, proposte progettuali, iniziative universitarie o attività legate a sicurezza fisica, sicurezza integrata, vigilanza, cybersecurity, gestione del rischio e innovazione digitale.</p>
+            <p class="card-label">Contatto diretto</p>
+            <h3>Email professionale</h3>
+            <p>Per comunicazioni, collaborazioni, proposte e iniziative collegate a sicurezza, cyber, progetti universitari e innovazione.</p>
           </div>
-          <span class="folder-link">Scrivimi →</span>
+          <span class="card-link">Scrivimi →</span>
         </a>
 
-        <a class="folder-card" href="https://github.com/giovpalma" target="_blank" rel="noopener noreferrer">
+        <a class="content-card" href="#" aria-label="LinkedIn da aggiungere">
           <div>
-            <div class="folder-top">
-              <span class="folder-index">B</span>
-              <h3>GitHub</h3>
-            </div>
-            <p>Archivio dei miei progetti, esercitazioni, pagine web e futuri lavori universitari legati a intelligenza artificiale, cybersecurity, sicurezza integrata e trasformazione digitale.</p>
+            <p class="card-label">Network professionale</p>
+            <h3>LinkedIn</h3>
+            <p>Sezione pronta per essere collegata al profilo LinkedIn quando sarà disponibile.</p>
           </div>
-          <span class="folder-link">Apri profilo →</span>
-        </a>
-
-        <a class="folder-card" href="#" aria-label="LinkedIn da aggiungere">
-          <div>
-            <div class="folder-top">
-              <span class="folder-index">C</span>
-              <h3>LinkedIn</h3>
-            </div>
-            <p>Sezione da collegare al profilo LinkedIn per presentare il mio percorso, creare rete professionale e sviluppare contatti in ambito sicurezza, cyber, innovazione e progetti universitari.</p>
-          </div>
-          <span class="folder-link">Da aggiornare →</span>
+          <span class="card-link">Da aggiornare →</span>
         </a>
       </div>
     </section>
