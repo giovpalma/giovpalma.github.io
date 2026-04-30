@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Istruzione e formazione | Giovanni Palma</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background: radial-gradient(circle at top left, rgba(59,130,246,.32), transparent 35%), #050b18;
+      color: #f8fbff;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 26px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+
+    .back {
+      color: #93c5fd;
+      font-weight: 800;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 50px 22px 80px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(96,165,250,.35);
+      border-radius: 999px;
+      color: #bfdbfe;
+      background: rgba(59,130,246,.15);
+      font-weight: 900;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.4rem);
+      line-height: .95;
+      letter-spacing: -.07em;
+      margin: 0 0 24px;
+    }
+
+    h1 span { color: #60a5fa; }
+
+    .intro {
+      max-width: 780px;
+      color: #b8c6dc;
+      font-size: 1.1rem;
+      margin-bottom: 42px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 18px;
+    }
+
+    .item {
+      display: grid;
+      grid-template-columns: 170px 1fr;
+      gap: 24px;
+      padding: 28px;
+      border-radius: 28px;
+      background: linear-gradient(160deg, rgba(18,32,58,.95), rgba(9,20,38,.92));
+      border: 1px solid rgba(147,197,253,.18);
+      box-shadow: 0 24px 70px rgba(0,0,0,.28);
+    }
+
+    .year {
+      color: #60a5fa;
+      font-weight: 950;
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+    }
+
+    p {
+      color: #b8c6dc;
+      margin: 0;
+    }
+
+    .detail {
+      margin-top: 14px;
+      color: #dbeafe;
+      font-weight: 800;
+    }
+
+    @media (max-width: 750px) {
+      .item { grid-template-columns: 1fr; }
+      .nav { align-items: flex-start; flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a class="brand" href="../">Giovanni Palma</a>
+    <a class="back" href="../">← Torna alla home</a>
+  </nav>
+
+  <main>
+    <div class="badge">Istruzione e formazione</div>
+    <h1>Un percorso verso <span>sicurezza e innovazione.</span></h1>
+
+    <p class="intro">
+      La mia formazione unisce basi scientifiche, attenzione alla sicurezza globale e interesse crescente per cybersecurity, governance, gestione del rischio e transizione digitale.
+    </p>
+
+    <section class="timeline">
+      <article class="item">
+        <div class="year">2025 · Attuale</div>
+        <div>
+          <h2>Laurea Triennale L-36</h2>
+          <p>
+            Studi diplomatici, internazionali e sulla sicurezza globale presso l’Università degli Studi di Salerno.
+          </p>
+          <p class="detail">
+            Focus personale: sicurezza globale, trasformazione digitale, governance, cybersecurity e gestione del rischio.
+          </p>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="year">2019 · 2024</div>
+        <div>
+          <h2>Diploma di Maturità Scientifica</h2>
+          <p>
+            Liceo Scientifico “Imbriani”, Pomigliano d’Arco.
+          </p>
+          <p class="detail">
+            Voto finale: 100/100 e lode.
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
