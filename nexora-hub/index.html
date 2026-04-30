@@ -1,1 +1,861 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Nexora Hub: progetto imprenditoriale dedicato a spazi di lavoro, academy, finanza agevolata, servizi B2B e sviluppo startup." />
+  <title>Nexora Hub | Giovanni Palma</title>
 
+  <style>
+    :root {
+      --bg: #050914;
+      --bg-2: #071122;
+      --surface: rgba(12, 22, 42, 0.88);
+      --surface-2: rgba(15, 29, 54, 0.78);
+      --text: #f8fafc;
+      --muted: #b8c3d6;
+      --subtle: #8794aa;
+      --blue: #3b82f6;
+      --blue-soft: #60a5fa;
+      --blue-pale: #bfdbfe;
+      --line: rgba(148, 163, 184, 0.18);
+      --line-blue: rgba(96, 165, 250, 0.28);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(59, 130, 246, 0.18), transparent 32%),
+        radial-gradient(circle at 84% 14%, rgba(96, 165, 250, 0.08), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg-2) 58%, #050b18);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.02) 1px, transparent 1px);
+      background-size: 82px 82px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.70), transparent 72%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5, 9, 20, 0.84);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      width: min(var(--max), calc(100% - 44px));
+      min-height: 78px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      display: inline-grid;
+      gap: 8px;
+      line-height: 1;
+    }
+
+    .brand-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.62rem;
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      color: #ffffff;
+    }
+
+    .brand-rule {
+      width: 88px;
+      height: 1px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(226, 232, 240, 0.88), rgba(96, 165, 250, 0.65), transparent);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 650;
+    }
+
+    .menu a {
+      position: relative;
+      padding: 8px 0;
+      transition: color 0.18s ease;
+    }
+
+    .menu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      width: 0;
+      height: 1px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      transition: width 0.18s ease;
+    }
+
+    .menu a:hover {
+      color: #ffffff;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .menu .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+    }
+
+    .menu .nav-cta::after {
+      display: none;
+    }
+
+    .menu .nav-cta:hover {
+      background: rgba(59, 130, 246, 0.20);
+    }
+
+    .page {
+      position: relative;
+      width: min(var(--max), calc(100% - 44px));
+      margin: 0 auto;
+      padding: 70px 0 58px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+      min-height: calc(100vh - 165px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.095);
+      color: #dbeafe;
+      border: 1px solid rgba(96, 165, 250, 0.20);
+      font-size: 0.88rem;
+      font-weight: 640;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      max-width: 900px;
+      font-size: clamp(3.4rem, 7vw, 6rem);
+      line-height: 0.98;
+      letter-spacing: -0.078em;
+      margin-bottom: 30px;
+    }
+
+    h1 span {
+      display: inline-block;
+      color: var(--blue-soft);
+      text-shadow: 0 0 32px rgba(96, 165, 250, 0.14);
+    }
+
+    .lead {
+      font-size: 1.17rem;
+      color: #dbeafe;
+      max-width: 760px;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p:not(.lead) {
+      color: var(--muted);
+      font-size: 1.04rem;
+      max-width: 780px;
+      margin-bottom: 17px;
+    }
+
+    .hero-panel {
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.92), rgba(7, 17, 33, 0.88));
+      border: 1px solid var(--line-blue);
+      box-shadow: var(--shadow);
+    }
+
+    .panel-title {
+      color: var(--blue-pale);
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-panel h2 {
+      font-size: 1.56rem;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+
+    .hero-panel p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .hero-metrics {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .metric {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.046);
+      border: 1px solid var(--line);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.04rem;
+      margin-bottom: 3px;
+    }
+
+    .metric span {
+      color: var(--subtle);
+      font-size: 0.9rem;
+    }
+
+    section {
+      scroll-margin-top: 95px;
+      margin-top: 78px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      font-size: 2.15rem;
+      letter-spacing: -0.055em;
+      line-height: 1.08;
+    }
+
+    .section-heading p {
+      max-width: 640px;
+      color: var(--muted);
+    }
+
+    .panel {
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.86), rgba(7, 17, 33, 0.84));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .two-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .three-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .four-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.044);
+      border: 1px solid var(--line);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--blue-soft);
+      font-size: 1.14rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .card ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue-soft);
+    }
+
+    .business-model {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .feature-card {
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(18, 32, 58, 0.92), rgba(9, 20, 38, 0.9));
+      border: 1px solid var(--line-blue);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-label,
+    .card-label {
+      color: var(--blue-pale);
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.7rem;
+      line-height: 1.12;
+      letter-spacing: -0.045em;
+      margin-bottom: 14px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+    }
+
+    .process-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .process-item {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.046);
+      border: 1px solid var(--line);
+    }
+
+    .process-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .process-item span {
+      color: var(--subtle);
+      font-size: 0.9rem;
+    }
+
+    .offering-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.048);
+      border: 1px solid var(--line);
+      color: var(--blue-pale);
+      font-size: 0.84rem;
+      font-weight: 650;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      min-height: 54px;
+      padding: 13px 22px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line-blue);
+      font-weight: 760;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      box-shadow: 0 22px 48px rgba(59, 130, 246, 0.24);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    footer {
+      margin-top: 72px;
+      padding: 28px 0 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 1100px) {
+      .four-grid,
+      .offering-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .business-model,
+      .two-grid,
+      .three-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        min-height: auto;
+        padding: 16px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-size: 1.52rem;
+      }
+
+      .menu {
+        gap: 14px;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+      }
+
+      .page {
+        width: min(100% - 28px, var(--max));
+        padding-top: 38px;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .four-grid,
+      .offering-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="../" aria-label="Torna alla home">
+        <span class="brand-name">Giovanni Palma</span>
+        <span class="brand-rule" aria-hidden="true"></span>
+      </a>
+
+      <div class="menu">
+        <a href="../">Home</a>
+        <a href="#modello">Modello</a>
+        <a href="#offerta">Offerta</a>
+        <a href="#scalabilita">Scalabilità</a>
+        <a class="nav-cta" href="mailto:giovannip2504@gmail.com">Contatti</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="page">
+    <section class="hero" aria-label="Presentazione Nexora Hub">
+      <div class="hero-text">
+        <div class="eyebrow">Progetto imprenditoriale</div>
+        <h1>Nexora Hub: <span>spazi, formazione e crescita d’impresa.</span></h1>
+
+        <p class="lead">
+          Nexora Hub è un progetto di hub d’impresa pensato per unire spazi di lavoro privati, academy, consulenza in finanza agevolata e, nel medio periodo, incubazione e lancio di startup.
+        </p>
+
+        <p>
+          L’obiettivo è offrire alle imprese un punto operativo immediato e un percorso di crescita strutturato: ambienti professionali, formazione, accesso a incentivi e servizi pensati per trasformare idee e attività in progetti finanziati e scalabili.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="#modello">Esplora il modello</a>
+          <a class="btn btn-secondary" href="../progetti/">Torna ai progetti</a>
+        </div>
+      </div>
+
+      <aside class="hero-panel">
+        <p class="panel-title">Sintesi del progetto</p>
+        <h2>Un sistema B2B per imprese, professionisti e startup.</h2>
+        <p>
+          Nexora nasce con un modello operativo pensato per generare ricavi ricorrenti, aumentare la marginalità tramite servizi professionali e costruire una community imprenditoriale nel tempo.
+        </p>
+
+        <div class="hero-metrics">
+          <div class="metric">
+            <strong>750 m²</strong>
+            <span>spazi progettati per uffici, sale, aree comuni e servizi</span>
+          </div>
+          <div class="metric">
+            <strong>Target B2B</strong>
+            <span>PMI, startup, professionisti e aziende esterne</span>
+          </div>
+          <div class="metric">
+            <strong>Fase 2</strong>
+            <span>incubazione, demo day, corporate innovation e PoC</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section id="visione">
+      <div class="section-heading">
+        <h2>Visione e missione</h2>
+        <p>Una piattaforma territoriale e replicabile per accelerare crescita, competenze e innovazione.</p>
+      </div>
+
+      <div class="two-grid">
+        <article class="card">
+          <h3>Visione</h3>
+          <p>
+            Creare una rete di hub capaci di accelerare la crescita di imprese e startup, offrendo spazi, competenze, connessioni e accesso a strumenti di sviluppo.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Missione</h3>
+          <p>
+            Offrire un punto operativo immediato e un percorso di crescita che combini formazione, incentivi, consulenza e servizi per trasformare idee e imprese in progetti finanziati e scalabili.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="target">
+      <div class="section-heading">
+        <h2>Target</h2>
+        <p>Il target principale è B2B, perché consente maggiore ricorrenza, stabilità commerciale e marginalità.</p>
+      </div>
+
+      <div class="three-grid">
+        <article class="card">
+          <h3>PMI</h3>
+          <p>Imprese dell’indotto e dei servizi che necessitano di sale, team temporanei, spazio operativo, formazione e supporto sugli incentivi.</p>
+        </article>
+        <article class="card">
+          <h3>Startup e professionisti</h3>
+          <p>Founder, consulenti e professionisti che cercano uffici dedicati, sale meeting, incontri con clienti/investitori e supporto alla crescita.</p>
+        </article>
+        <article class="card">
+          <h3>Aziende esterne</h3>
+          <p>Corporate e organizzazioni interessate a sale, pacchetti meeting, eventi, workshop, formazione e servizi su misura.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="modello">
+      <div class="section-heading">
+        <h2>Modello operativo</h2>
+        <p>Una struttura pensata per massimizzare utilizzo degli spazi, controllo dei costi e qualità dell’esperienza.</p>
+      </div>
+
+      <div class="business-model">
+        <article class="feature-card">
+          <p class="feature-label">Asset e struttura</p>
+          <h3>Spazi progettati per utilizzo flessibile e monetizzazione.</h3>
+          <p>
+            La struttura prevede uffici privati, sale meeting/formazione modulari, sale riunioni aggiuntive, aree comuni e servizi. Il modello consente utilizzo giornaliero, carnet, pacchetti aziendali e formule continuative.
+          </p>
+          <div class="tag-list">
+            <span class="tag">5 uffici da 2 postazioni</span>
+            <span class="tag">4 uffici da 1 postazione</span>
+            <span class="tag">2 sale da circa 25 posti</span>
+            <span class="tag">sale riunioni aggiuntive</span>
+            <span class="tag">aree comuni</span>
+          </div>
+        </article>
+
+        <aside class="panel">
+          <div class="process-list">
+            <div class="process-item">
+              <strong>Prenotazione digitale</strong>
+              <span>App per prenotazione, pagamento e gestione dell’accesso.</span>
+            </div>
+            <div class="process-item">
+              <strong>Accesso controllato</strong>
+              <span>Chiave digitale e uso esclusivo giornaliero degli ambienti.</span>
+            </div>
+            <div class="process-item">
+              <strong>Costi energetici gestibili</strong>
+              <span>Sottocontatori, soglia inclusa e conguaglio oltre soglia.</span>
+            </div>
+            <div class="process-item">
+              <strong>Ambienti indipendenti</strong>
+              <span>Climatizzazione autonoma per singolo ambiente.</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="pilastri">
+      <div class="section-heading">
+        <h2>Pilastri di fatturato</h2>
+        <p>Il progetto è costruito su quattro pilastri progressivi: spazi, consulenza, academy e incubazione.</p>
+      </div>
+
+      <div class="four-grid">
+        <article class="card">
+          <h3>Spazi</h3>
+          <p>Ricavi ricorrenti e cassa tramite day office, carnet, mensili, sale riunioni e pacchetti corporate prepagati.</p>
+        </article>
+        <article class="card">
+          <h3>Consulenza</h3>
+          <p>Margine alto attraverso finanza agevolata, incentivi UE/nazionali/regionali, retainer, progetto e success fee.</p>
+        </article>
+        <article class="card">
+          <h3>Academy</h3>
+          <p>Volume e reputazione tramite formazione finanziata; margine e ricorrenza con pacchetti B2B privati.</p>
+        </article>
+        <article class="card">
+          <h3>Incubatore</h3>
+          <p>Fase 2: startup program, demo day, corporate innovation, PoC e sponsor corporate.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="offerta">
+      <div class="section-heading">
+        <h2>Offerta commerciale</h2>
+        <p>Per essere replicabile, Nexora vende pacchetti chiari e standardizzati, non servizi generici.</p>
+      </div>
+
+      <div class="offering-grid">
+        <article class="card">
+          <h3>Spazi</h3>
+          <ul>
+            <li>Day office per 1 o 2 postazioni</li>
+            <li>Carnet aziendali da 10/20 giorni</li>
+            <li>Corporate Meeting Packs prepagati</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Consulenza</h3>
+          <ul>
+            <li>Retainer “Incentivi Radar”</li>
+            <li>Pacchetto progetto per delivery pratica</li>
+            <li>Success fee sui risultati ottenuti</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Academy</h3>
+          <ul>
+            <li>Calendario trimestrale di corsi standard</li>
+            <li>Formazione finanziata</li>
+            <li>Pacchetti corporate da 12–24 giornate/anno</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="controllo">
+      <div class="section-heading">
+        <h2>Controllo e sicurezza</h2>
+        <p>Un modello leggero, controllato e orientato alla qualità del servizio.</p>
+      </div>
+
+      <div class="four-grid">
+        <article class="card">
+          <h3>Presidio e controllo</h3>
+          <p>Sicurezza, controllo accessi e videosorveglianza intelligente a supporto dell’operatività.</p>
+        </article>
+        <article class="card">
+          <h3>Reception leggera</h3>
+          <p>Automazione e supporto interno, senza necessità di receptionist fissa.</p>
+        </article>
+        <article class="card">
+          <h3>Standard elevato</h3>
+          <p>Pulizia giornaliera, ordine degli ambienti e cura dell’esperienza professionale.</p>
+        </article>
+        <article class="card">
+          <h3>Costi misurabili</h3>
+          <p>Sottocontatori, soglie energetiche incluse e gestione trasparente dei consumi.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="scalabilita">
+      <div class="section-heading">
+        <h2>Scalabilità</h2>
+        <p>Nexora viene progettata come sistema replicabile, non come singola struttura isolata.</p>
+      </div>
+
+      <div class="panel four-grid">
+        <article class="card">
+          <h3>Playbook operativo</h3>
+          <p>Processi standard per spazi, academy, consulenza, prenotazioni, controllo e vendita.</p>
+        </article>
+        <article class="card">
+          <h3>CRM e proprietà dei lead</h3>
+          <p>Un sistema unico per tracciare aziende, opportunità, vendite, corsi, richieste e follow-up.</p>
+        </article>
+        <article class="card">
+          <h3>KPI mensili</h3>
+          <p>Occupazione, ARPU, MRR consulenza, giornate academy e pacchetti corporate venduti.</p>
+        </article>
+        <article class="card">
+          <h3>Nuovi nodi</h3>
+          <p>Possibilità di aprire nuove sedi mantenendo lo stesso modello commerciale e operativo.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="startup">
+      <div class="section-heading">
+        <h2>Incubazione e startup</h2>
+        <p>L’incubatore non è il punto di partenza: è una conseguenza naturale della community e dei bisogni generati dall’hub.</p>
+      </div>
+
+      <div class="three-grid">
+        <article class="card">
+          <h3>Community</h3>
+          <p>L’hub genera contatti, aziende, professionisti, bisogni reali e casi concreti da trasformare in opportunità.</p>
+        </article>
+        <article class="card">
+          <h3>Challenge</h3>
+          <p>Le esigenze emerse da consulenza e academy possono diventare sfide per startup e progetti innovativi.</p>
+        </article>
+        <article class="card">
+          <h3>Corporate innovation</h3>
+          <p>Nexora può creare match startup–aziende, PoC, demo day e percorsi sponsorizzati da corporate partner.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="risultato">
+      <div class="section-heading">
+        <h2>Risultato atteso</h2>
+        <p>Un riferimento territoriale per PMI e startup, con un modello operativo scalabile e investibile nel medio periodo.</p>
+      </div>
+
+      <article class="feature-card">
+        <p class="feature-label">Obiettivo finale</p>
+        <h3>Una piattaforma che combina spazi, competenze e accesso a risorse finanziarie.</h3>
+        <p>
+          Nexora Hub vuole diventare un’infrastruttura di crescita per imprese e startup: un luogo fisico e operativo in cui lavorare, formarsi, intercettare incentivi, sviluppare progetti e costruire opportunità di innovazione.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="mailto:giovannip2504@gmail.com">Contatto diretto</a>
+          <a class="btn btn-secondary" href="../">Torna alla home</a>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span>© 2026 Giovanni Palma</span>
+      <span>Nexora Hub · Spazi · Academy · Finanza agevolata · Startup</span>
+    </footer>
+  </main>
+</body>
+</html>
