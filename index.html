@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio personale di Giovanni Palma: sicurezza integrata, cybersecurity, gestione del rischio, innovazione digitale e percorso universitario." />
+  <meta name="description" content="Portfolio personale di Giovanni Palma: sicurezza integrata, cyber awareness, formazione, innovazione e sviluppo del progetto Nexora Hub." />
   <title>Giovanni Palma | Portfolio personale</title>
 
   <style>
@@ -305,7 +305,7 @@
 
     .summary-item span {
       display: block;
-      color: var(--soft);
+      color: var(--subtle);
       font-size: 0.86rem;
       line-height: 1.45;
       font-weight: 640;
@@ -344,7 +344,7 @@
     }
 
     .intro {
-      max-width: 790px;
+      max-width: 800px;
     }
 
     .eyebrow {
@@ -361,8 +361,8 @@
     }
 
     .intro h2 {
-      max-width: 850px;
-      font-size: clamp(3.55rem, 7vw, 5.85rem);
+      max-width: 880px;
+      font-size: clamp(3.45rem, 6.8vw, 5.65rem);
       line-height: 0.98;
       letter-spacing: -0.076em;
       margin-bottom: 30px;
@@ -377,7 +377,7 @@
     .lead {
       font-size: 1.17rem;
       color: #dbeafe;
-      max-width: 760px;
+      max-width: 780px;
       margin-bottom: 20px;
     }
 
@@ -388,7 +388,7 @@
     .intro p:not(.lead) {
       color: var(--muted);
       font-size: 1.04rem;
-      max-width: 780px;
+      max-width: 790px;
       margin-bottom: 17px;
     }
 
@@ -414,7 +414,7 @@
     }
 
     .value-item span {
-      color: var(--soft);
+      color: var(--subtle);
       font-size: 0.86rem;
       font-weight: 640;
     }
@@ -473,7 +473,7 @@
     }
 
     .section-heading p {
-      max-width: 610px;
+      max-width: 640px;
       color: var(--muted);
     }
 
@@ -487,7 +487,7 @@
 
     .vision-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 18px;
     }
 
@@ -506,11 +506,98 @@
 
     .vision-block p {
       color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .feature-card {
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(18, 32, 58, 0.92), rgba(9, 20, 38, 0.9));
+      border: 1px solid var(--line-blue);
+      box-shadow: var(--shadow);
+    }
+
+    .feature-top {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      align-items: start;
+      margin-bottom: 26px;
+    }
+
+    .feature-label,
+    .card-label {
+      color: var(--blue-pale);
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+      font-size: 2rem;
+      line-height: 1.08;
+      letter-spacing: -0.045em;
+      margin-bottom: 14px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+    }
+
+    .feature-metrics {
+      display: grid;
+      gap: 10px;
+    }
+
+    .metric {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.046);
+      border: 1px solid var(--line);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.05rem;
+      margin-bottom: 2px;
+    }
+
+    .metric span {
+      color: var(--subtle);
+      font-size: 0.86rem;
+    }
+
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .pillar {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.044);
+      border: 1px solid var(--line);
+    }
+
+    .pillar strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .pillar span {
+      color: var(--muted);
+      font-size: 0.92rem;
     }
 
     .content-grid {
       display: grid;
-      grid-template-columns: 1.25fr 0.875fr 0.875fr;
+      grid-template-columns: 1.1fr 1fr 1fr 1fr;
       gap: 18px;
     }
 
@@ -531,15 +618,6 @@
       transform: translateY(-7px);
       border-color: rgba(147, 197, 253, 0.46);
       background: linear-gradient(160deg, rgba(37, 99, 235, 0.16), rgba(9, 20, 38, 0.94));
-    }
-
-    .card-label {
-      color: var(--blue-pale);
-      font-size: 0.78rem;
-      font-weight: 760;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
     }
 
     .content-card h3 {
@@ -593,10 +671,17 @@
       font-size: 0.94rem;
     }
 
+    @media (max-width: 1100px) {
+      .vision-grid,
+      .pillar-grid,
+      .content-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 980px) {
       .hero,
-      .vision-grid,
-      .content-grid,
+      .feature-top,
       .contact-grid {
         grid-template-columns: 1fr;
       }
@@ -673,7 +758,10 @@
       .skills,
       .value-strip,
       .profile-summary,
-      .quick-links {
+      .quick-links,
+      .vision-grid,
+      .pillar-grid,
+      .content-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -690,6 +778,7 @@
 
       <div class="menu">
         <a href="#profilo">Profilo</a>
+        <a href="#nexora">Nexora Hub</a>
         <a href="#aree">Progetti</a>
         <a href="carriera-universitaria/">Formazione</a>
         <a href="#competenze">Competenze</a>
@@ -710,13 +799,13 @@
         <h1>Giovanni Palma</h1>
 
         <p class="role">
-          Profilo orientato a <strong>sicurezza integrata</strong>, cybersecurity, governance del rischio e innovazione tecnologica.
+          Profilo orientato a <strong>sicurezza integrata</strong>, cyber awareness, formazione e sviluppo imprenditoriale.
         </p>
 
         <div class="focus-line" aria-label="Aree di focus">
           <span>Sicurezza fisica</span>
-          <span>Cybersecurity</span>
-          <span>Risk management</span>
+          <span>Cyber awareness</span>
+          <span>Impresa</span>
         </div>
 
         <div class="profile-summary" aria-label="Profilo in sintesi">
@@ -725,36 +814,36 @@
             <span>Diploma con valutazione 100/100 e lode.</span>
           </div>
           <div class="summary-item">
-            <strong>Sicurezza globale</strong>
-            <span>Percorso universitario L-36 con interesse per governance, rischio e scenari internazionali.</span>
+            <strong>Sicurezza e rischio</strong>
+            <span>Interesse per vigilanza, processi operativi, cyber awareness e gestione del rischio.</span>
           </div>
           <div class="summary-item">
-            <strong>Mentalità imprenditoriale</strong>
-            <span>Obiettivo di integrare sicurezza fisica, cyber e innovazione in un modello professionale concreto.</span>
+            <strong>Visione imprenditoriale</strong>
+            <span>Lavoro alla costruzione di Nexora Hub: spazi, academy, finanza agevolata e startup.</span>
           </div>
         </div>
 
         <div class="quick-links" aria-label="Link rapidi">
           <a class="icon-link" href="mailto:giovannip2504@gmail.com" title="Email">Contatto diretto</a>
-          <a class="icon-link" href="progetti-universitari/" title="Progetti">Progetti</a>
-          <a class="icon-link" href="competenze/" title="Competenze">Competenze</a>
+          <a class="icon-link" href="#nexora" title="Nexora Hub">Nexora Hub</a>
+          <a class="icon-link" href="#aree" title="Progetti">Progetti</a>
         </div>
       </aside>
 
       <div class="intro" id="profilo">
         <div class="eyebrow">Portfolio personale</div>
-        <h2>Sicurezza integrata, <span>cyber e innovazione.</span></h2>
+        <h2>Sicurezza, formazione <span>e impresa.</span></h2>
 
         <p class="lead">
-          Studio e costruisco un percorso tra <strong>sicurezza fisica, cybersecurity, gestione del rischio e innovazione tecnologica</strong>, con una visione orientata all’impresa e alla trasformazione digitale.
+          Sto costruendo un percorso che unisce <strong>sicurezza fisica, cyber awareness, formazione e sviluppo imprenditoriale</strong>, con l’obiettivo di trasformare competenze e idee in progetti concreti per imprese, professionisti e territorio.
         </p>
 
         <p>
-          Il mio punto di partenza è il settore della sicurezza privata. Da lì sto sviluppando una prospettiva più ampia: proteggere persone, dati, infrastrutture e processi in un mondo in cui il rischio è sempre più ibrido, digitale e strategico.
+          Il mio punto di partenza è il settore della sicurezza privata. Da lì sto sviluppando una prospettiva più ampia: proteggere persone, dati, infrastrutture e processi, ma anche creare ambienti in cui imprese e startup possano crescere con strumenti, formazione e accesso a opportunità finanziarie.
         </p>
 
         <p>
-          Il mio obiettivo è contribuire alla crescita di modelli di sicurezza integrata capaci di unire vigilanza, cultura del rischio, cybersecurity, governance e sviluppo tecnologico del Mezzogiorno.
+          Questa visione prende forma in Nexora Hub, un progetto d’impresa pensato per integrare spazi operativi, academy, consulenza in finanza agevolata e, nel medio periodo, incubazione e lancio di startup.
         </p>
 
         <div class="value-strip" aria-label="Aree di valore">
@@ -763,18 +852,18 @@
             <span>fisica, digitale, organizzativa</span>
           </div>
           <div class="value-item">
-            <strong>Visione imprenditoriale</strong>
-            <span>servizi, processi, territorio</span>
+            <strong>Academy</strong>
+            <span>formazione, awareness, competenze</span>
           </div>
           <div class="value-item">
-            <strong>Cyber & AI</strong>
-            <span>studio, ricerca, applicazioni</span>
+            <strong>Hub d’impresa</strong>
+            <span>spazi, incentivi, startup</span>
           </div>
         </div>
 
         <div class="actions">
-          <a class="btn btn-primary" href="#aree">Esplora il portfolio</a>
-          <a class="btn btn-secondary" href="competenze/">Vedi competenze</a>
+          <a class="btn btn-primary" href="#nexora">Scopri Nexora Hub</a>
+          <a class="btn btn-secondary" href="#aree">Esplora i progetti</a>
         </div>
       </div>
     </section>
@@ -782,45 +871,114 @@
     <section id="visione">
       <div class="section-heading">
         <h2>Direzione professionale</h2>
-        <p>La sicurezza come sistema integrato: persone, dati, infrastrutture, processi e territorio.</p>
+        <p>Un profilo in costruzione tra sicurezza, formazione, consapevolezza cyber e sviluppo di ecosistemi imprenditoriali.</p>
       </div>
 
       <div class="panel vision-grid">
         <article class="vision-block">
           <h3>Sicurezza fisica</h3>
           <p>
-            Interesse per il settore della vigilanza, delle procedure operative e della protezione organizzativa, con attenzione alla qualità dei processi e alla prevenzione del rischio.
+            Interesse per vigilanza, procedure operative, protezione organizzativa e qualità dei processi, con attenzione alla prevenzione e al controllo del rischio.
           </p>
         </article>
 
         <article class="vision-block">
-          <h3>Cybersecurity</h3>
+          <h3>Cyber awareness</h3>
           <p>
-            Studio della protezione digitale, della gestione del rischio informatico e del ruolo della governance nelle organizzazioni che affrontano la trasformazione tecnologica.
+            Focus sulla cultura del rischio digitale, sulla formazione degli utenti e sulla protezione dei processi aziendali prima ancora della sola tecnologia.
           </p>
         </article>
 
         <article class="vision-block">
-          <h3>Innovazione e impresa</h3>
+          <h3>Formazione</h3>
           <p>
-            Obiettivo di costruire un profilo capace di collegare sicurezza, servizi, tecnologia e sviluppo del Mezzogiorno in una prospettiva imprenditoriale.
+            Interesse per academy, workshop, percorsi corporate e strumenti formativi capaci di aumentare competenze, consapevolezza e competitività.
+          </p>
+        </article>
+
+        <article class="vision-block">
+          <h3>Impresa</h3>
+          <p>
+            Obiettivo di sviluppare un hub per coworking, finanza agevolata, startup e servizi B2B, con un modello replicabile e orientato alla crescita.
           </p>
         </article>
       </div>
     </section>
 
+    <section id="nexora">
+      <div class="section-heading">
+        <h2>Nexora Hub</h2>
+        <p>Il progetto imprenditoriale che raccoglie la visione più ampia: spazi, academy, finanza agevolata e startup.</p>
+      </div>
+
+      <article class="feature-card">
+        <div class="feature-top">
+          <div>
+            <p class="feature-label">Progetto in sviluppo</p>
+            <h3>Un hub d’impresa per accelerare crescita, competenze e innovazione.</h3>
+            <p>
+              Nexora Hub nasce come piattaforma B2B che unisce spazi di lavoro privati chiavi in mano, formazione finanziata e privata, consulenza in finanza agevolata e, nel medio periodo, percorsi di incubazione e lancio di startup.
+            </p>
+          </div>
+
+          <div class="feature-metrics" aria-label="Elementi del progetto Nexora Hub">
+            <div class="metric">
+              <strong>750 m²</strong>
+              <span>spazi progettati per uffici, sale e servizi</span>
+            </div>
+            <div class="metric">
+              <strong>B2B</strong>
+              <span>target primario: PMI, startup, professionisti e aziende</span>
+            </div>
+            <div class="metric">
+              <strong>Scalabilità</strong>
+              <span>playbook operativo, CRM, KPI e modello replicabile</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pillar-grid" aria-label="Pilastri Nexora Hub">
+          <div class="pillar">
+            <strong>Spazi</strong>
+            <span>day office, carnet aziendali, uffici privati e sale meeting/formazione.</span>
+          </div>
+          <div class="pillar">
+            <strong>Academy</strong>
+            <span>formazione finanziata, corsi privati B2B, workshop e pacchetti corporate.</span>
+          </div>
+          <div class="pillar">
+            <strong>Finanza agevolata</strong>
+            <span>supporto su incentivi UE, nazionali e regionali per PMI e startup.</span>
+          </div>
+          <div class="pillar">
+            <strong>Startup</strong>
+            <span>fase successiva: incubazione, challenge, demo day e corporate innovation.</span>
+          </div>
+        </div>
+      </article>
+    </section>
+
     <section id="aree">
       <div class="section-heading">
         <h2>Aree</h2>
-        <p>Sezioni essenziali</p>
+        <p>Non solo progetti universitari: una struttura pensata per raccogliere progetti, formazione, competenze e sviluppo imprenditoriale.</p>
       </div>
 
       <div class="content-grid">
-        <a class="content-card" href="progetti-universitari/">
+        <a class="content-card" href="progetti/">
           <div>
-            <p class="card-label">Area principale</p>
+            <p class="card-label">Portfolio</p>
             <h3>Progetti</h3>
-            <p>Elaborati, ricerche, presentazioni e lavori sviluppati durante il percorso accademico, con spazio per futuri progetti su intelligenza artificiale, cybersecurity e sicurezza.</p>
+            <p>Raccolta di progetti universitari, imprenditoriali e personali legati a intelligenza artificiale, sicurezza, formazione e innovazione.</p>
+          </div>
+          <span class="card-link">Apri sezione →</span>
+        </a>
+
+        <a class="content-card" href="nexora-hub/">
+          <div>
+            <p class="card-label">Impresa</p>
+            <h3>Nexora Hub</h3>
+            <p>Pagina dedicata allo sviluppo del progetto: spazi, academy, consulenza, finanza agevolata, modello operativo e scalabilità.</p>
           </div>
           <span class="card-link">Apri sezione →</span>
         </a>
@@ -838,7 +996,7 @@
           <div>
             <p class="card-label">Profilo operativo</p>
             <h3>Competenze</h3>
-            <p>Competenze organizzative, digitali e comunicative, con interessi in cybersecurity, vigilanza, GRC, innovazione e gestione del rischio.</p>
+            <p>Competenze organizzative, digitali e comunicative, con interessi in sicurezza fisica, cyber awareness, GRC, formazione e innovazione.</p>
           </div>
           <span class="card-link">Apri sezione →</span>
         </a>
@@ -852,17 +1010,17 @@
       </div>
 
       <div class="skills">
-        <div class="skill">Cybersecurity</div>
         <div class="skill">Sicurezza fisica</div>
-        <div class="skill">Vigilanza</div>
+        <div class="skill">Cyber awareness</div>
         <div class="skill">Risk management</div>
+        <div class="skill">Formazione</div>
+        <div class="skill">Vigilanza</div>
         <div class="skill">GRC</div>
-        <div class="skill">Transizione digitale</div>
-        <div class="skill">Innovazione tecnologica</div>
+        <div class="skill">Finanza agevolata</div>
+        <div class="skill">Startup</div>
+        <div class="skill">Organizzazione</div>
         <div class="skill">Gestione documentale</div>
         <div class="skill">Comunicazione</div>
-        <div class="skill">Organizzazione</div>
-        <div class="skill">AI e sicurezza</div>
         <div class="skill">Inglese B2</div>
       </div>
     </section>
@@ -870,22 +1028,22 @@
     <section id="contatti">
       <div class="section-heading">
         <h2>Contatti</h2>
-        <p>Per collaborazioni, proposte progettuali, iniziative universitarie e confronti legati a sicurezza fisica, sicurezza integrata, cybersecurity e innovazione digitale.</p>
+        <p>Per collaborazioni, proposte progettuali, iniziative formative e confronti legati a sicurezza fisica, cyber awareness, innovazione, PMI e sviluppo imprenditoriale.</p>
       </div>
 
       <div class="contact-grid">
         <a class="content-card" href="mailto:giovannip2504@gmail.com">
           <div>
             <p class="card-label">Contatto diretto</p>
-            <h3>Email </h3>
-            <p>Per comunicazioni, collaborazioni, proposte e iniziative collegate a sicurezza fisica e cyber, progetti universitari e innovazione.</p>
+            <h3>Email</h3>
+            <p>Per comunicazioni, collaborazioni, proposte e iniziative collegate a sicurezza, formazione, progetti, Nexora Hub e innovazione.</p>
           </div>
           <span class="card-link">Scrivimi →</span>
         </a>
 
         <a class="content-card" href="#" aria-label="LinkedIn da aggiungere">
           <div>
-            <p class="card-label">Network </p>
+            <p class="card-label">Network professionale</p>
             <h3>LinkedIn</h3>
             <p>Sezione pronta per essere collegata al profilo LinkedIn quando sarà disponibile.</p>
           </div>
@@ -896,7 +1054,7 @@
 
     <footer>
       <span>© 2026 Giovanni Palma</span>
-      <span>Sicurezza · Cybersecurity · Innovazione · Mezzogiorno digitale</span>
+      <span>Sicurezza · Cyber awareness · Formazione · Impresa</span>
     </footer>
   </main>
 </body>
