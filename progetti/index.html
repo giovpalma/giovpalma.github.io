@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio progetti di Giovanni Palma: spazio dedicato ai progetti in sviluppo e alle future schede di approfondimento." />
+  <meta name="description" content="Portfolio progetti di Giovanni Palma: elaborati accademici, ricerca applicata, intelligenza artificiale, sicurezza, innovazione e studi L-36." />
   <title>Progetti | Giovanni Palma</title>
 
   <style>
@@ -295,7 +295,7 @@
     }
 
     .project-card {
-      min-height: 300px;
+      min-height: 310px;
       padding: 28px;
       border-radius: var(--radius-lg);
       background: linear-gradient(160deg, rgba(18, 32, 58, 0.91), rgba(9, 20, 38, 0.9));
@@ -318,15 +318,15 @@
       border-color: var(--line-blue);
     }
 
-    .project-card.empty {
+    .project-card.reserved {
       border-style: dashed;
-      opacity: 0.72;
+      opacity: 0.78;
       box-shadow: none;
       background: rgba(255, 255, 255, 0.032);
     }
 
-    .project-card.empty:hover {
-      opacity: 0.9;
+    .project-card.reserved:hover {
+      opacity: 0.95;
       transform: translateY(-4px);
     }
 
@@ -364,6 +364,19 @@
       color: var(--blue-pale);
       font-size: 0.84rem;
       font-weight: 650;
+    }
+
+    .project-note {
+      margin-top: 24px;
+      padding: 22px 24px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.044);
+      border: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .project-note strong {
+      color: var(--blue-pale);
     }
 
     .actions {
@@ -483,41 +496,41 @@
     <section class="hero" aria-label="Presentazione progetti">
       <div class="hero-text">
         <div class="eyebrow">Portfolio progetti</div>
-        <h1>Uno spazio per <span>progetti e approfondimenti.</span></h1>
+        <h1>Ricerca applicata, <span>studio e innovazione.</span></h1>
 
         <p class="lead">
-          Questa sezione raccoglie i progetti sviluppati nel mio percorso universitario, personale e professionale.
+          Questa sezione raccoglie progetti accademici e personali sviluppati come approfondimenti strutturati, con particolare attenzione a intelligenza artificiale, sicurezza, governance, trasformazione digitale e studi politico-istituzionali.
         </p>
 
         <p>
-          La pagina è pensata per crescere nel tempo.
+          Ogni progetto è pensato come una scheda autonoma: un punto di accesso a materiali, analisi, presentazioni e contenuti di approfondimento.
         </p>
 
         <div class="actions">
-          <a class="btn btn-primary" href="#portfolio">Vedi i progetti</a>
+          <a class="btn btn-primary" href="#portfolio">Esplora il portfolio</a>
           <a class="btn btn-secondary" href="../">Torna alla home</a>
         </div>
       </div>
 
       <aside class="hero-panel">
-        <p class="panel-title">Struttura</p>
-        <h2>Una cartella ordinata, pronta per nuovi progetti.</h2>
+        <p class="panel-title">Impostazione</p>
+        <h2>Una raccolta ordinata di lavori e approfondimenti.</h2>
         <p>
-          Per ora è presente una sola scheda. Successivamente potranno essere aggiunti altri progetti .
+          Il portfolio è costruito per valorizzare progetti diversi mantenendo coerenza visiva, chiarezza espositiva e un taglio professionale.
         </p>
 
         <div class="values-list">
           <div class="value-row">
-            <strong>Schede cliccabili</strong>
-            <span>ogni progetto potrà avere una pagina dedicata</span>
+            <strong>Ricerca applicata</strong>
+            <span>elaborati e analisi con finalità accademica e progettuale</span>
           </div>
           <div class="value-row">
-            <strong>Ordine visivo</strong>
-            <span>griglia semplice, leggibile e professionale</span>
+            <strong>Metodo</strong>
+            <span>obiettivi, contesto, metodologia, risultati e valutazione critica</span>
           </div>
           <div class="value-row">
-            <strong>Crescita progressiva</strong>
-            <span>nuovi progetti aggiungibili senza rifare la pagina</span>
+            <strong>Evoluzione</strong>
+            <span>nuove schede integrabili con la stessa struttura editoriale</span>
           </div>
         </div>
       </aside>
@@ -526,37 +539,55 @@
     <section id="portfolio">
       <div class="section-heading">
         <h2>Portfolio</h2>
-        <p>Per ora è presente solo il primo progetto.</p>
+        <p>
+          I progetti sono presentati come percorsi di approfondimento, ciascuno con una propria pagina dedicata.
+        </p>
       </div>
 
       <div class="project-grid">
         <a class="project-card active" href="introduction-generative-ai/">
           <div>
-            <p class="card-label">Progetto attivo</p>
-            <h3>Introduction and Application of Generative AI</h3>
-            <p>I contenuti verranno inseriti quando saranno disponibili.</p>
+            <p class="card-label">Progetto accademico</p>
+            <h3>GRC Risk Assistant</h3>
+            <p>
+              Valutazione del prompt engineering nell’uso di modelli LLM locali per supportare una prima analisi dei rischi cyber in ambito GRC.
+            </p>
             <div class="tag-list">
-              <span class="tag">IA</span>
-              <span class="tag">In sviluppo</span>
+              <span class="tag">Generative AI</span>
+              <span class="tag">Prompt engineering</span>
+              <span class="tag">LLM locali</span>
+              <span class="tag">GRC</span>
             </div>
           </div>
           <span class="project-link">Apri progetto →</span>
         </a>
 
-        <article class="project-card empty">
+        <article class="project-card reserved">
           <div>
-            <p class="card-label">Nuovo progetto</p>
-            <h3>Prossima scheda</h3>
-            <p>Spazio disponibile per aggiungere un nuovo progetto quando sarà definito.</p>
+            <p class="card-label">Area progettuale</p>
+            <h3>Studi politico-istituzionali</h3>
+            <p>
+              Sezione predisposta per futuri progetti collegati al percorso L-36, con particolare attenzione a filosofia politica, istituzioni, sicurezza globale e dinamiche internazionali.
+            </p>
+            <div class="tag-list">
+              <span class="tag">L-36</span>
+              <span class="tag">Filosofia politica</span>
+              <span class="tag">Sicurezza globale</span>
+            </div>
           </div>
-          <span class="project-link">Da aggiornare</span>
+          <span class="project-link">Area in preparazione</span>
         </article>
+      </div>
+
+      <div class="project-note">
+        <strong>Nota editoriale.</strong>
+        La sezione è pensata per crescere in modo ordinato: ogni nuovo progetto potrà essere aggiunto come pagina autonoma, mantenendo coerenza grafica e chiarezza nella navigazione.
       </div>
     </section>
 
     <footer>
       <span>© 2026 Giovanni Palma</span>
-      <span>Progetti · Portfolio · Ricerca · Applicazione</span>
+      <span>Progetti · Ricerca applicata · Generative AI · L-36</span>
     </footer>
   </main>
 </body>
