@@ -3,15 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Tesina universitaria su prompt engineering, LLM locali, Ollama e analisi preliminare del rischio cyber in ambito GRC." />
+  <meta name="description" content="Progetto accademico su prompt engineering, LLM locali, Ollama e analisi preliminare del rischio cyber in ambito GRC." />
   <title>GRC Risk Assistant | Generative AI</title>
 
   <style>
     :root {
-      --bg: #f5f7fb;
+      --bg: #f4f7fb;
       --paper: #ffffff;
       --paper-soft: #f8fafc;
-      --text: #111827;
+      --ink: #0f172a;
+      --text: #1f2937;
       --muted: #526173;
       --subtle: #6b7280;
       --blue: #1d4ed8;
@@ -21,10 +22,11 @@
       --green-pale: #dcfce7;
       --green: #15803d;
       --amber-pale: #fef3c7;
-      --red-pale: #fee2e2;
+      --orange-pale: #fff7ed;
       --line: #d9e2ef;
       --line-strong: #b9c7d8;
       --code-bg: #0f172a;
+      --code-head: #111c31;
       --code-text: #e5e7eb;
       --shadow: 0 22px 60px rgba(15, 23, 42, 0.10);
       --radius-xl: 28px;
@@ -47,10 +49,10 @@
       font-family: Inter, Segoe UI, Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.14), transparent 32%),
-        radial-gradient(circle at 95% 8%, rgba(14, 165, 233, 0.10), transparent 30%),
-        var(--bg);
-      line-height: 1.72;
+        radial-gradient(circle at 0% 0%, rgba(37, 99, 235, 0.12), transparent 34%),
+        radial-gradient(circle at 98% 6%, rgba(14, 165, 233, 0.09), transparent 30%),
+        linear-gradient(180deg, #f8fbff 0%, var(--bg) 48%, #eef4fb 100%);
+      line-height: 1.74;
     }
 
     a {
@@ -62,7 +64,7 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.90);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(16px);
     }
@@ -88,7 +90,7 @@
       font-size: 1.35rem;
       font-weight: 700;
       letter-spacing: -0.04em;
-      color: #0f172a;
+      color: var(--ink);
     }
 
     .brand-rule {
@@ -122,27 +124,31 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.18fr 0.82fr;
       gap: 28px;
       align-items: stretch;
-      margin-bottom: 54px;
+      margin-bottom: 32px;
     }
 
     .hero-main,
     .hero-side,
     section {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
     }
 
     .hero-main {
-      padding: 42px;
+      padding: 44px;
     }
 
     .hero-side {
       padding: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 24px;
     }
 
     .eyebrow,
@@ -163,10 +169,10 @@
     }
 
     h1 {
-      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-size: clamp(2.65rem, 6vw, 4.8rem);
       line-height: 0.98;
       letter-spacing: -0.07em;
-      color: #0f172a;
+      color: var(--ink);
       margin-bottom: 24px;
     }
 
@@ -177,8 +183,17 @@
     .subtitle {
       color: var(--muted);
       font-size: 1.12rem;
-      max-width: 760px;
+      max-width: 790px;
       margin-bottom: 24px;
+    }
+
+    .academic-note {
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: var(--paper-soft);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.98rem;
     }
 
     .meta-grid {
@@ -188,47 +203,62 @@
       margin-top: 28px;
     }
 
-    .meta-card {
+    .meta-card,
+    .compact-item {
       padding: 16px;
       border-radius: 16px;
       background: var(--paper-soft);
       border: 1px solid var(--line);
     }
 
-    .meta-card strong {
+    .meta-card strong,
+    .compact-item strong {
       display: block;
-      color: #0f172a;
+      color: var(--ink);
       font-size: 0.96rem;
       margin-bottom: 4px;
     }
 
-    .meta-card span {
+    .meta-card span,
+    .compact-item span {
       color: var(--subtle);
       font-size: 0.88rem;
     }
 
-    .toc {
-      display: grid;
-      gap: 9px;
-      margin-top: 16px;
+    .mini-index {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
     }
 
-    .toc a {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 10px 12px;
-      border-radius: 12px;
+    .mini-index a {
+      padding: 9px 12px;
+      border-radius: 999px;
       color: var(--muted);
       background: var(--paper-soft);
       border: 1px solid var(--line);
-      font-size: 0.92rem;
-      font-weight: 700;
+      font-size: 0.86rem;
+      font-weight: 800;
     }
 
-    .toc a:hover {
+    .mini-index a:hover {
       color: var(--blue);
       border-color: #bfdbfe;
+    }
+
+    .side-title {
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .side-list {
+      display: grid;
+      gap: 12px;
     }
 
     section {
@@ -238,7 +268,7 @@
     }
 
     h2 {
-      color: #0f172a;
+      color: var(--ink);
       font-size: 2rem;
       line-height: 1.1;
       letter-spacing: -0.045em;
@@ -246,7 +276,7 @@
     }
 
     h3 {
-      color: #0f172a;
+      color: var(--ink);
       font-size: 1.2rem;
       line-height: 1.25;
       letter-spacing: -0.025em;
@@ -258,7 +288,7 @@
       margin-bottom: 14px;
     }
 
-    .section-number {
+    .section-kicker {
       color: var(--blue);
       font-size: 0.9rem;
       font-weight: 900;
@@ -315,7 +345,7 @@
     .highlight strong,
     .card strong {
       display: block;
-      color: #0f172a;
+      color: var(--ink);
       margin-bottom: 8px;
       font-size: 1.05rem;
     }
@@ -354,7 +384,7 @@
       justify-content: space-between;
       gap: 12px;
       padding: 12px 16px;
-      background: #111c31;
+      background: var(--code-head);
       color: #bfdbfe;
       font-size: 0.86rem;
       font-weight: 900;
@@ -409,7 +439,7 @@
     }
 
     th {
-      color: #0f172a;
+      color: var(--ink);
       background: #eef4ff;
       font-weight: 900;
     }
@@ -425,10 +455,11 @@
     .analysis-box {
       background: #f0f9ff;
       border-color: #bae6fd;
+      margin-top: 14px;
     }
 
     .critical-box {
-      background: #fff7ed;
+      background: var(--orange-pale);
       border: 1px solid #fed7aa;
       border-radius: var(--radius-lg);
       padding: 22px;
@@ -443,7 +474,7 @@
     .final-sentence {
       padding: 24px;
       border-radius: var(--radius-lg);
-      background: #0f172a;
+      background: var(--ink);
       color: #ffffff;
       font-size: 1.18rem;
       font-weight: 900;
@@ -522,7 +553,8 @@
       }
 
       .menu,
-      .print-note {
+      .print-note,
+      .mini-index {
         display: none;
       }
 
@@ -542,10 +574,11 @@
       </a>
       <div class="menu">
         <a href="../">Progetti</a>
+        <a href="#impianto">Impianto</a>
         <a href="#codice">Codice</a>
         <a href="#prompt">Prompt</a>
-        <a href="#confronto">Confronto</a>
-        <a href="#conclusioni">Conclusioni</a>
+        <a href="#risultati">Risultati</a>
+        <a href="#valutazione">Valutazione</a>
       </div>
     </nav>
   </header>
@@ -553,65 +586,59 @@
   <main class="page">
     <div class="hero">
       <div class="hero-main">
-        <div class="eyebrow">Tesina universitaria · Generative AI</div>
+        <div class="eyebrow">Progetto accademico · Generative AI</div>
         <h1>GRC Risk Assistant: <span>prompt engineering e LLM locali.</span></h1>
         <p class="subtitle">
-          Valutazione del prompt engineering nell’uso di modelli LLM locali per supportare una prima analisi dei rischi cyber in ambito GRC.
+          Valutazione dell’impatto del prompt engineering nell’impiego di modelli linguistici locali per supportare una prima analisi dei rischi cyber in ambito GRC.
         </p>
-        <div class="meta-grid">
-          <div class="meta-card"><strong>Tema</strong><span>Generative AI applicata</span></div>
-          <div class="meta-card"><strong>Strumenti</strong><span>Python, Ollama, LLM locali</span></div>
-          <div class="meta-card"><strong>Approccio</strong><span>human-in-the-loop</span></div>
+        <div class="academic-note">
+          Il progetto indaga la Generative AI come strumento di supporto alla produzione di analisi preliminari, checklist e matrici di rischio. Il caso GRC non è il fine tecnico della ricerca, ma il contesto applicativo scelto per osservare qualità, limiti e variazioni degli output generati.
         </div>
-        <p class="print-note">Pagina autonoma, leggibile e stampabile o convertibile in PDF.</p>
+        <div class="meta-grid">
+          <div class="meta-card"><strong>Ambito</strong><span>Generative AI applicata</span></div>
+          <div class="meta-card"><strong>Strumenti</strong><span>Python, Ollama, LLM locali</span></div>
+          <div class="meta-card"><strong>Metodo</strong><span>confronto qualitativo degli output</span></div>
+        </div>
+        <div class="mini-index" aria-label="Navigazione sintetica">
+          <a href="#impianto">Impianto</a>
+          <a href="#metodologia">Metodologia</a>
+          <a href="#codice">Codice</a>
+          <a href="#prompt">Prompt</a>
+          <a href="#risultati">Risultati</a>
+          <a href="#valutazione">Valutazione</a>
+          <a href="#sintesi">Sintesi finale</a>
+        </div>
       </div>
 
       <aside class="hero-side">
-        <div class="panel-title">Indice</div>
-        <div class="toc">
-          <a href="#introduzione"><span>01</span> Introduzione</a>
-          <a href="#corso"><span>02</span> Collegamento con il corso</a>
-          <a href="#obiettivo"><span>03</span> Obiettivo e risultato atteso</a>
-          <a href="#scenario"><span>04</span> Scenario aziendale</a>
-          <a href="#metodologia"><span>05</span> Metodologia</a>
-          <a href="#codice"><span>06</span> Codice Python</a>
-          <a href="#prompt"><span>07</span> Prompt utilizzati</a>
-          <a href="#output"><span>08</span> Output selezionati</a>
-          <a href="#confronto"><span>09</span> Confronto e valutazione</a>
-          <a href="#analisi"><span>10</span> Analisi critica</a>
-          <a href="#conclusioni"><span>11</span> Conclusioni</a>
-          <a href="#orale"><span>12</span> Discussione orale</a>
+        <div>
+          <div class="side-title">Lettura del progetto</div>
+          <p>
+            La pagina è organizzata come un elaborato accademico continuo: prima viene definito l’impianto del lavoro, poi vengono presentati metodo, codice, prompt, output e valutazione critica.
+          </p>
+        </div>
+        <div class="side-list">
+          <div class="compact-item"><strong>Domanda guida</strong><span>Il prompt engineering migliora l’utilità degli output generati da LLM locali?</span></div>
+          <div class="compact-item"><strong>Variabile centrale</strong><span>struttura del prompt: generico, con ruolo, strutturato</span></div>
+          <div class="compact-item"><strong>Risultato atteso</strong><span>output più ordinati, pertinenti e valutabili con prompt strutturato</span></div>
         </div>
       </aside>
     </div>
 
     <section id="introduzione">
-      <div class="section-number">01 · Titolo e introduzione</div>
-      <h2>Introduzione</h2>
+      <div class="section-kicker">Introduzione</div>
+      <h2>Generative AI come supporto ad attività professionali</h2>
       <p>
-        I modelli di Generative AI, in particolare i Large Language Models, sono sempre più utilizzati come strumenti di supporto in attività professionali basate su analisi, classificazione e produzione testuale. Questa tesina approfondisce il tema del prompt engineering applicandolo a un caso concreto: la produzione di una prima analisi dei rischi cyber per una piccola azienda di vigilanza privata in fase di digitalizzazione.
+        I modelli di Generative AI, in particolare i Large Language Models, sono sempre più utilizzati come strumenti di supporto in attività professionali basate su analisi, classificazione e produzione testuale. Questo progetto approfondisce il tema del prompt engineering applicandolo a un caso concreto: la produzione di una prima analisi dei rischi cyber per una piccola azienda di vigilanza privata in fase di digitalizzazione.
       </p>
       <p>
-        L’obiettivo non è costruire un software di cybersecurity, né sostituire il lavoro di un analista umano. L’obiettivo è valutare come cambia la qualità dell’output generato da un LLM locale al variare della struttura del prompt. In questo senso, il progetto è un approfondimento applicativo sulla Generative AI, coerente con il corso, perché utilizza Python, Ollama, modelli LLM locali e prompt engineering.
+        L’obiettivo non è costruire un software di cybersecurity, né sostituire il lavoro di un analista umano. L’obiettivo è valutare come cambia la qualità dell’output generato da un LLM locale al variare della struttura del prompt. In questo senso, il lavoro è un approfondimento applicativo sulla Generative AI: utilizza Python, Ollama, modelli LLM locali e prompt engineering per costruire una base di discussione analitica.
       </p>
     </section>
 
-    <section id="corso">
-      <div class="section-number">02 · Collegamento con il corso</div>
-      <h2>Collegamento con il corso</h2>
-      <p>
-        Il progetto riprende la logica degli esempi affrontati durante il corso: una funzione Python invoca Ollama, mentre modello e prompt diventano variabili sperimentali. In questo modo è possibile osservare come cambiano gli output a seconda del modello utilizzato e della struttura del prompt.
-      </p>
-      <div class="cards-3">
-        <div class="card"><strong>Python e Ollama</strong><p>La funzione Python invia prompt a modelli locali tramite Ollama.</p></div>
-        <div class="card"><strong>Prompt engineering</strong><p>Il prompt è la variabile centrale dell’esperimento.</p></div>
-        <div class="card"><strong>Confronto output</strong><p>Le risposte vengono confrontate in base a criteri qualitativi.</p></div>
-      </div>
-    </section>
-
-    <section id="obiettivo">
-      <div class="section-number">03 · Obiettivo, punto di partenza e risultato atteso</div>
-      <h2>Obiettivo del progetto</h2>
+    <section id="impianto">
+      <div class="section-kicker">Impianto del lavoro</div>
+      <h2>Obiettivo, punto di partenza e risultato atteso</h2>
       <div class="highlight-grid">
         <div class="highlight objective">
           <strong>Obiettivo</strong>
@@ -636,9 +663,11 @@
     </section>
 
     <section id="scenario">
-      <div class="section-number">04 · Scenario aziendale</div>
-      <h2>Scenario aziendale</h2>
-      <p>Lo scenario scelto è una piccola azienda di vigilanza privata in fase di digitalizzazione. L’azienda utilizza strumenti e servizi digitali, ma non dispone ancora di un processo GRC strutturato.</p>
+      <div class="section-kicker">Scenario applicativo</div>
+      <h2>Piccola azienda di vigilanza privata in digitalizzazione</h2>
+      <p>
+        Lo scenario scelto è realistico ma volutamente sintetico. La sua funzione è fornire ai modelli un contesto comune e stabile, così da rendere confrontabili gli output generati dai diversi prompt e dai diversi LLM locali.
+      </p>
       <div class="code-block">
         <div class="block-title">Scenario utilizzato nei test</div>
         <pre><code>Una piccola azienda di vigilanza privata sta digitalizzando i propri servizi.
@@ -656,8 +685,8 @@ Non esiste un processo GRC formalizzato.</code></pre>
     </section>
 
     <section id="metodologia">
-      <div class="section-number">05 · Metodologia</div>
-      <h2>Metodologia</h2>
+      <div class="section-kicker">Metodologia</div>
+      <h2>Confronto tra prompt e modelli locali</h2>
       <p>
         L’esperimento confronta tre prompt con complessità crescente su tre modelli LLM locali. Lo scenario rimane costante, mentre cambiano prompt e modello. Con tre modelli e tre prompt si ottengono nove output complessivi.
       </p>
@@ -674,7 +703,7 @@ Non esiste un processo GRC formalizzato.</code></pre>
     </section>
 
     <section id="codice">
-      <div class="section-number">06 · Codice Python</div>
+      <div class="section-kicker">Implementazione</div>
       <h2>Codice Python</h2>
 
       <div class="code-block">
@@ -688,7 +717,7 @@ def genera_risposta(modello, prompt):
     )
     return risposta["response"]</code></pre>
       </div>
-      <p>Questa funzione rappresenta il cuore dell’esperimento. Riceve in input il nome del modello e il prompt, invia la richiesta a Ollama e restituisce la risposta generata. La semplicità della funzione è coerente con l’impostazione pratica vista a lezione.</p>
+      <p>Questa funzione rappresenta il cuore dell’esperimento. Riceve in input il nome del modello e il prompt, invia la richiesta a Ollama e restituisce la risposta generata. La semplicità della funzione è coerente con un’impostazione applicativa e riproducibile.</p>
 
       <div class="code-block"><div class="block-title">Blocco 2 · Scenario</div><pre><code>scenario = """
 Una piccola azienda di vigilanza privata sta digitalizzando i propri servizi.
@@ -750,13 +779,20 @@ prompts = [
 with open("output.txt", "w", encoding="utf-8") as f:
     for modello in modelli:
         for nome, prompt in prompts:
-            intestazione = f"\n{'='*60}\nMODELLO: {modello}\nPROMPT: {nome}\n{'='*60}\n"
+            intestazione = f"
+{'='*60}
+MODELLO: {modello}
+PROMPT: {nome}
+{'='*60}
+"
             print(intestazione)
             f.write(intestazione)
             risposta = genera_risposta(modello, prompt)
             print(risposta)
             f.write(risposta)
-            f.write("\n\n")
+            f.write("
+
+")
 
 print("Esperimento completato.")
 print("Controlla il file output.txt")</code></pre></div>
@@ -764,7 +800,7 @@ print("Controlla il file output.txt")</code></pre></div>
     </section>
 
     <section id="prompt">
-      <div class="section-number">07 · Prompt utilizzati</div>
+      <div class="section-kicker">Prompt engineering</div>
       <h2>Prompt utilizzati</h2>
       <div class="cards-3">
         <div class="prompt-card">
@@ -834,17 +870,17 @@ VINCOLI:
 - Distingui chiaramente tra minaccia, vulnerabilità e rischio.
 FORMATO:
 Rispondi con una tabella e aggiungi una breve conclusione critica.</code></pre></div>
-          <p>Questo è il prompt principale dell’esperimento. Contiene ruolo, obiettivo, scenario, istruzioni, vincoli e formato. Per questo è quello che dovrebbe generare gli output migliori.</p>
+          <p>Questo è il prompt principale dell’esperimento. Contiene ruolo, obiettivo, scenario, istruzioni, vincoli e formato; per questo dovrebbe generare gli output più ordinati e valutabili.</p>
         </div>
       </div>
     </section>
 
-    <section id="output">
-      <div class="section-number">08 · Output generati dai modelli</div>
+    <section id="risultati">
+      <div class="section-kicker">Risultati</div>
       <h2>Output selezionati</h2>
       <p>Non vengono riportati tutti gli output completi, ma alcuni spezzoni significativi per il confronto.</p>
 
-      <h3>Output 1 — qwen3-vl:4b, prompt generico</h3>
+      <h3>qwen3-vl:4b · prompt generico</h3>
       <div class="output-block"><pre><code>L'azienda, pur essendo in transizione verso la digitalizzazione, presenta rischi significativi dovuti a una mancanza di governance strutturata e all'uso di infrastrutture e dispositivi non sempre sicuri.
 1. Rischio di vulnerabilità da parte di fornitori esterni
 L'accesso remoto del fornitore IT rappresenta un punto di ingresso critico. Un'eventuale vulnerabilità nel sistema del fornitore o nel controllo delle credenziali potrebbe permettere l'intercettazione dei dati dell'azienda.
@@ -854,11 +890,11 @@ L'uso di un gestionale clienti e di email non protette aumenta il rischio di fal
 Le telecamere IP senza aggiornamenti di sicurezza o password predefinite possono portare ad accesso non autorizzato.</code></pre></div>
       <div class="analysis-box"><p>Questo output è abbastanza pertinente, ma resta descrittivo. Il modello identifica rischi reali, ma non li organizza ancora in una matrice GRC.</p></div>
 
-      <h3>Output 2 — qwen3-vl:4b, prompt strutturato</h3>
+      <h3>qwen3-vl:4b · prompt strutturato</h3>
       <table><thead><tr><th>Asset</th><th>Minaccia</th><th>Vulnerabilità</th><th>Impatto</th><th>Probabilità</th><th>Controllo</th></tr></thead><tbody><tr><td>Email aziendale</td><td>Phishing o ransomware</td><td>Assenza di MFA, password deboli</td><td>Alto</td><td>Medio</td><td>MFA, formazione, policy password</td></tr><tr><td>Gestionale clienti</td><td>Accesso non autorizzato</td><td>Software non aggiornato, controlli deboli</td><td>Alto</td><td>Medio</td><td>Aggiornamenti, controllo basato su ruoli</td></tr><tr><td>Telecamere IP</td><td>Exploitation remota</td><td>Credenziali predefinite, traffico non crittografato</td><td>Medio-Alto</td><td>Medio</td><td>Cambiare credenziali, crittografia, segmentazione</td></tr><tr><td>Cloud storage</td><td>Accesso non autorizzato</td><td>Configurazioni errate, permessi troppo ampi</td><td>Alto</td><td>Medio</td><td>Minima autorizzazione, crittografia, audit</td></tr></tbody></table>
       <div class="analysis-box"><p>Con il prompt strutturato, Qwen produce una matrice più adatta alla valutazione GRC. La risposta è più ordinata e confrontabile rispetto al prompt generico.</p></div>
 
-      <h3>Output 3 — gemma4:e4b, prompt generico</h3>
+      <h3>gemma4:e4b · prompt generico</h3>
       <div class="output-block"><pre><code>Questo è un profilo di rischio elevato, tipico delle PMI in fase di rapida digitalizzazione.
 I rischi non sono solo tecnologici, ma sono profondamente radicati nella governance e nella gestione delle identità. Data l'industria, i dati rubati non sono solo informazioni finanziarie, ma riguardano la sicurezza fisica e i luoghi di vita o lavoro dei clienti.
 I principali rischi identificati sono:
@@ -871,30 +907,30 @@ I principali rischi identificati sono:
 - telecamere IP non isolate.</code></pre></div>
       <div class="analysis-box"><p>Gemma produce già con il prompt generico un output più ricco e maturo rispetto agli altri modelli. Tuttavia, la risposta resta prevalentemente discorsiva.</p></div>
 
-      <h3>Output 4 — gemma4:e4b, prompt strutturato</h3>
+      <h3>gemma4:e4b · prompt strutturato</h3>
       <table><thead><tr><th>Rischio</th><th>Asset</th><th>Minaccia</th><th>Vulnerabilità</th><th>Impatto</th><th>Probabilità</th><th>Controllo raccomandato</th></tr></thead><tbody><tr><td>Furto dati sensibili</td><td>Gestionale clienti, cloud storage</td><td>Spear phishing o ingegneria sociale</td><td>Formazione insufficiente, uso non controllato email</td><td>Alto</td><td>Alta</td><td>Formazione, simulazioni phishing, MFA</td></tr><tr><td>Compromissione e cifratura dati</td><td>Gestionale, cloud, backup</td><td>Ransomware</td><td>Sistemi non segregati, backup non immutabili</td><td>Alto</td><td>Media</td><td>Isolare backup, incident response plan</td></tr><tr><td>Accesso non autorizzato</td><td>Controllo accessi, IP camera, smartphone</td><td>Furto o manipolazione credenziali</td><td>Password deboli, telefoni non protetti</td><td>Alto</td><td>Media</td><td>MFA, policy mobile, MDM</td></tr><tr><td>Compromissione terze parti</td><td>Fornitore IT esterno</td><td>Credenziali compromesse o backdoor remote</td><td>Accesso troppo ampio, accesso remoto non monitorato</td><td>Alto</td><td>Media</td><td>SLA sicurezza, least privilege, monitoraggio</td></tr></tbody></table>
       <div class="analysis-box"><p>Questo è l’output migliore. Gemma collega bene asset, minacce, vulnerabilità e controlli. Inoltre riconosce che il rischio è anche di processo e governance, non solo tecnico.</p></div>
 
-      <h3>Output 5 — llama3.2:3b, prompt strutturato</h3>
+      <h3>llama3.2:3b · prompt strutturato</h3>
       <table><thead><tr><th>Asset</th><th>Minaccia</th><th>Vulnerabilità</th><th>Impatto</th><th>Probabilità</th><th>Controllo</th></tr></thead><tbody><tr><td>Email aziendale</td><td>Phishing, Malware, V malware</td><td>Inadeguatezza sicurezza email, mancanza antivirus</td><td>Basso</td><td>Alta</td><td>Test di sicurezza email</td></tr><tr><td>Telecamere IP</td><td>Accesso non autorizzato, vittimizzazione</td><td>Mancanza sicurezza, inadeguatezza protezione</td><td>Alto</td><td>Alta</td><td>Firmware di sicurezza, monitoraggio costante</td></tr><tr><td>Backup periodici</td><td>Dati persi o danneggiati</td><td>Mancanza di backup, manutenzione infrequente</td><td>Basso</td><td>Alta</td><td>Backup semestrali, verifica periodica</td></tr></tbody></table>
       <div class="analysis-box"><p>Llama rispetta il formato richiesto, ma l’output è meno accurato. Alcuni termini sono impropri, come “V malware” o “vittimizzazione”. Alcuni controlli sono generici o deboli, per esempio i backup semestrali.</p></div>
     </section>
 
-    <section id="confronto">
-      <div class="section-number">09 · Confronto tra prompt e modelli</div>
-      <h2>Confronto tra prompt</h2>
+    <section id="valutazione">
+      <div class="section-kicker">Valutazione</div>
+      <h2>Confronto tra prompt e modelli</h2>
       <table><thead><tr><th>Aspetto</th><th>Prompt generico</th><th>Prompt con ruolo</th><th>Prompt strutturato</th></tr></thead><tbody><tr><td>Struttura</td><td>bassa/media</td><td>media</td><td>alta</td></tr><tr><td>Specificità</td><td>variabile</td><td>buona</td><td>alta</td></tr><tr><td>Utilità GRC</td><td>limitata</td><td>discreta</td><td>elevata</td></tr><tr><td>Rischio di genericità</td><td>alto</td><td>medio</td><td>più basso</td></tr><tr><td>Facilità di valutazione</td><td>bassa</td><td>media</td><td>alta</td></tr></tbody></table>
 
-      <h2>Valutazione modelli</h2>
+      <h2>Valutazione dei modelli</h2>
       <table><thead><tr><th>Modello</th><th>Prompt generico</th><th>Prompt con ruolo</th><th>Prompt strutturato</th><th>Valutazione complessiva</th></tr></thead><tbody><tr><td>qwen3-vl:4b</td><td>3.5</td><td>4.0</td><td>4.5</td><td>Molto buono</td></tr><tr><td>gemma4:e4b</td><td>4.0</td><td>4.5</td><td>5.0</td><td>Migliore output complessivo</td></tr><tr><td>llama3.2:3b</td><td>2.5</td><td>3.0</td><td>3.0</td><td>Utile come baseline, ma più debole</td></tr></tbody></table>
 
-      <h2>Criteri di valutazione</h2>
+      <h2>Criteri qualitativi</h2>
       <table><thead><tr><th>Criterio</th><th>Domanda guida</th></tr></thead><tbody><tr><td>Completezza</td><td>Il modello identifica abbastanza rischi?</td></tr><tr><td>Specificità</td><td>La risposta è collegata allo scenario della vigilanza privata?</td></tr><tr><td>Chiarezza</td><td>La risposta è ordinata e leggibile?</td></tr><tr><td>Coerenza GRC</td><td>Distingue asset, minaccia, vulnerabilità e rischio?</td></tr><tr><td>Utilità</td><td>I controlli proposti sono applicabili?</td></tr><tr><td>Cautela</td><td>Il modello riconosce i limiti dell’analisi?</td></tr></tbody></table>
     </section>
 
     <section id="analisi">
-      <div class="section-number">10 · Valutazione qualitativa e analisi critica</div>
-      <h2>Analisi critica</h2>
+      <div class="section-kicker">Analisi critica</div>
+      <h2>Interpretazione dei risultati</h2>
       <div class="critical-box">
         <p>Dai risultati emerge che il prompt engineering incide in modo evidente sulla qualità dell’output. Il prompt generico permette al modello di produrre una risposta corretta ma spesso discorsiva e poco operativa. Il prompt con ruolo migliora il linguaggio e orienta il modello verso una prospettiva più professionale. Il prompt strutturato, invece, produce l’output più utile perché obbliga il modello a organizzare la risposta secondo categorie rilevanti per il GRC.</p>
         <p>Il caso più evidente è il confronto tra Qwen con prompt generico e Qwen con prompt strutturato. Nel primo caso il modello elenca rischi in forma discorsiva. Nel secondo caso produce una matrice con asset, minaccia, vulnerabilità, impatto, probabilità e controllo. Questo rende l’output più confrontabile e utilizzabile.</p>
@@ -904,8 +940,8 @@ I principali rischi identificati sono:
     </section>
 
     <section id="limiti">
-      <div class="section-number">11 · Limiti metodologici</div>
-      <h2>Limiti metodologici</h2>
+      <div class="section-kicker">Limiti metodologici</div>
+      <h2>Limiti dell’esperimento</h2>
       <div class="cards-3">
         <div class="card"><strong>Valutazione qualitativa</strong><p>La valutazione è basata su giudizio umano e contiene una componente soggettiva.</p></div>
         <div class="card"><strong>Scenario semplificato</strong><p>Lo scenario aziendale è realistico ma sintetico. Mancano informazioni su dimensione aziendale, architettura di rete, budget, policy esistenti e configurazioni reali.</p></div>
@@ -913,24 +949,15 @@ I principali rischi identificati sono:
       </div>
     </section>
 
-    <section id="conclusioni">
-      <div class="section-number">12 · Conclusioni</div>
-      <h2>Conclusioni</h2>
+    <section id="sintesi">
+      <div class="section-kicker">Sintesi finale</div>
+      <h2>Conclusioni del progetto</h2>
       <div class="conclusion-box">
         <p>L’esperimento mostra che gli LLM locali possono essere utili per generare una prima bozza di analisi dei rischi cyber. Il valore principale non consiste nella sostituzione dell’esperto umano, ma nella capacità di accelerare la produzione di bozze, checklist e matrici iniziali.</p>
         <p>Il prompt engineering emerge come la leva principale per migliorare la qualità dell’output. Specificare ruolo, obiettivo, scenario, vincoli e formato consente di ottenere risposte più ordinate, pertinenti e valutabili.</p>
         <p>Tuttavia, anche il miglior output deve essere validato. Un LLM può generare testo plausibile ma non necessariamente corretto. Per questo l’approccio più adeguato è human-in-the-loop: il modello produce una bozza, l’analista umano verifica, corregge e valida.</p>
       </div>
       <div class="final-sentence">Un output plausibile non è necessariamente corretto: il valore dell’LLM è generare una bozza strutturata, non sostituire il giudizio umano.</div>
-    </section>
-
-    <section id="orale">
-      <div class="section-number">13 · Schema per la discussione orale</div>
-      <h2>Discussione orale</h2>
-      <p>La mia tesina è un approfondimento applicativo sul prompt engineering. Ho usato Python e Ollama per interrogare tre modelli LLM locali e ho confrontato tre prompt con complessità crescente.</p>
-      <p>Il caso applicativo è una piccola azienda di vigilanza privata in fase di digitalizzazione. Il mio obiettivo non era costruire un software di cybersecurity, ma valutare se un LLM locale può supportare un analista GRC junior nella produzione di una prima matrice dei rischi.</p>
-      <p>I risultati mostrano che il prompt strutturato produce output più ordinati, specifici e utilizzabili. Tuttavia, i modelli non sono infallibili: possono generalizzare, proporre controlli generici o introdurre assunzioni non verificate.</p>
-      <p>La conclusione è che gli LLM sono utili come supporto preliminare, ma devono essere inseriti in un processo human-in-the-loop.</p>
     </section>
   </main>
 </body>
