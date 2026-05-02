@@ -3,68 +3,292 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Istruzione e formazione | Giovanni Palma</title>
+  <meta name="description" content="Formazione di Giovanni Palma: diploma scientifico, percorso universitario L-36, certificazione inglese B2 e aree di approfondimento." />
+  <title>Formazione | Giovanni Palma</title>
+
   <style>
-    body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: radial-gradient(circle at top left, rgba(59,130,246,.32), transparent 35%), #050b18;
-      color: #f8fbff;
-      line-height: 1.7;
+    :root {
+      --bg: #050914;
+      --bg-2: #071122;
+      --text: #f8fafc;
+      --muted: #b8c3d6;
+      --subtle: #8794aa;
+      --blue: #3b82f6;
+      --blue-soft: #60a5fa;
+      --blue-pale: #bfdbfe;
+      --line: rgba(148, 163, 184, 0.18);
+      --line-blue: rgba(96, 165, 250, 0.28);
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.38);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --max: 1180px;
     }
 
-    a { color: inherit; text-decoration: none; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 18% 0%, rgba(59, 130, 246, 0.18), transparent 32%),
+        radial-gradient(circle at 84% 14%, rgba(96, 165, 250, 0.08), transparent 30%),
+        linear-gradient(135deg, var(--bg), var(--bg-2) 58%, #050b18);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.02) 1px, transparent 1px);
+      background-size: 82px 82px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.70), transparent 72%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5, 9, 20, 0.84);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
 
     .nav {
-      max-width: 1100px;
+      width: min(var(--max), calc(100% - 44px));
+      min-height: 78px;
       margin: 0 auto;
-      padding: 26px 22px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      gap: 30px;
     }
 
     .brand {
-      font-weight: 900;
-      font-size: 1.2rem;
+      display: inline-grid;
+      gap: 8px;
+      line-height: 1;
     }
 
-    .back {
-      color: #93c5fd;
-      font-weight: 800;
+    .brand-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.62rem;
+      font-weight: 700;
+      letter-spacing: -0.045em;
+      color: #ffffff;
     }
 
-    main {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 50px 22px 80px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      border: 1px solid rgba(96,165,250,.35);
+    .brand-rule {
+      width: 88px;
+      height: 1px;
       border-radius: 999px;
-      color: #bfdbfe;
-      background: rgba(59,130,246,.15);
-      font-weight: 900;
+      background: linear-gradient(90deg, rgba(226, 232, 240, 0.88), rgba(96, 165, 250, 0.65), transparent);
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 650;
+    }
+
+    .menu a {
+      position: relative;
+      padding: 8px 0;
+      transition: color 0.18s ease;
+    }
+
+    .menu a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 1px;
+      width: 0;
+      height: 1px;
+      border-radius: 999px;
+      background: var(--blue-soft);
+      transition: width 0.18s ease;
+    }
+
+    .menu a:hover {
+      color: #ffffff;
+    }
+
+    .menu a:hover::after {
+      width: 100%;
+    }
+
+    .menu .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: #ffffff;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.25);
+    }
+
+    .menu .nav-cta::after {
+      display: none;
+    }
+
+    .menu .nav-cta:hover {
+      background: rgba(59, 130, 246, 0.20);
+    }
+
+    .page {
+      position: relative;
+      width: min(var(--max), calc(100% - 44px));
+      margin: 0 auto;
+      padding: 70px 0 58px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 48px;
+      align-items: center;
+      min-height: calc(100vh - 165px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.095);
+      color: #dbeafe;
+      border: 1px solid rgba(96, 165, 250, 0.20);
+      font-size: 0.88rem;
+      font-weight: 640;
       margin-bottom: 24px;
     }
 
     h1 {
-      font-size: clamp(3rem, 7vw, 5.4rem);
-      line-height: .95;
-      letter-spacing: -.07em;
-      margin: 0 0 24px;
+      max-width: 920px;
+      font-size: clamp(3.35rem, 6.7vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.078em;
+      margin-bottom: 30px;
     }
 
-    h1 span { color: #60a5fa; }
+    h1 span {
+      display: inline-block;
+      color: var(--blue-soft);
+      text-shadow: 0 0 32px rgba(96, 165, 250, 0.14);
+    }
 
-    .intro {
+    .lead {
+      font-size: 1.17rem;
+      color: #dbeafe;
       max-width: 780px;
-      color: #b8c6dc;
-      font-size: 1.1rem;
-      margin-bottom: 42px;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p:not(.lead) {
+      color: var(--muted);
+      font-size: 1.04rem;
+      max-width: 780px;
+      margin-bottom: 17px;
+    }
+
+    .hero-panel,
+    .feature-card {
+      padding: 30px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.92), rgba(7, 17, 33, 0.88));
+      border: 1px solid var(--line-blue);
+      box-shadow: var(--shadow);
+    }
+
+    .panel-title,
+    .card-label {
+      color: var(--blue-pale);
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .hero-panel h2,
+    .feature-card h3 {
+      font-size: 1.6rem;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+    }
+
+    .hero-panel p,
+    .feature-card p {
+      color: var(--muted);
+    }
+
+    .values-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .value-row {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.046);
+      border: 1px solid var(--line);
+    }
+
+    .value-row strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.04rem;
+      margin-bottom: 3px;
+    }
+
+    .value-row span {
+      color: var(--subtle);
+      font-size: 0.9rem;
+    }
+
+    section {
+      scroll-margin-top: 95px;
+      margin-top: 78px;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 22px;
+    }
+
+    .section-heading h2 {
+      font-size: 2.15rem;
+      letter-spacing: -0.055em;
+      line-height: 1.08;
+    }
+
+    .section-heading p {
+      max-width: 660px;
+      color: var(--muted);
     }
 
     .timeline {
@@ -72,85 +296,429 @@
       gap: 18px;
     }
 
-    .item {
+    .timeline-item {
       display: grid;
-      grid-template-columns: 170px 1fr;
+      grid-template-columns: 220px 1fr;
       gap: 24px;
       padding: 28px;
-      border-radius: 28px;
-      background: linear-gradient(160deg, rgba(18,32,58,.95), rgba(9,20,38,.92));
-      border: 1px solid rgba(147,197,253,.18);
-      box-shadow: 0 24px 70px rgba(0,0,0,.28);
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(18, 32, 58, 0.91), rgba(9, 20, 38, 0.9));
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 52px rgba(0, 0, 0, 0.22);
     }
 
-    .year {
-      color: #60a5fa;
-      font-weight: 950;
-    }
-
-    h2 {
-      margin: 0 0 8px;
-      font-size: 1.35rem;
-    }
-
-    p {
-      color: #b8c6dc;
-      margin: 0;
-    }
-
-    .detail {
-      margin-top: 14px;
-      color: #dbeafe;
+    .timeline-date {
+      color: var(--blue-pale);
       font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
     }
 
-    @media (max-width: 750px) {
-      .item { grid-template-columns: 1fr; }
-      .nav { align-items: flex-start; flex-direction: column; gap: 10px; }
+    .timeline-content h3 {
+      font-size: 1.32rem;
+      line-height: 1.15;
+      letter-spacing: -0.035em;
+      margin-bottom: 10px;
+    }
+
+    .timeline-content p {
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.048);
+      border: 1px solid var(--line);
+      color: var(--blue-pale);
+      font-size: 0.84rem;
+      font-weight: 650;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      min-height: 230px;
+      padding: 26px;
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.044);
+      border: 1px solid var(--line);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--blue-soft);
+      font-size: 1.14rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .card ul {
+      list-style: none;
+      display: grid;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 16px;
+    }
+
+    .card li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--blue-soft);
+    }
+
+    .panel {
+      padding: 28px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(160deg, rgba(13, 25, 48, 0.86), rgba(7, 17, 33, 0.84));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      min-height: 54px;
+      padding: 13px 22px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line-blue);
+      font-weight: 760;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      box-shadow: 0 22px 48px rgba(59, 130, 246, 0.24);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    footer {
+      margin-top: 72px;
+      padding: 28px 0 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .nav {
+        min-height: auto;
+        padding: 16px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-size: 1.52rem;
+      }
+
+      .menu {
+        gap: 14px;
+        flex-wrap: wrap;
+        font-size: 0.9rem;
+      }
+
+      .page {
+        width: min(100% - 28px, var(--max));
+        padding-top: 38px;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
     }
   </style>
 </head>
+
 <body>
-  <nav class="nav">
-    <a class="brand" href="../">Giovanni Palma</a>
-    <a class="back" href="../">← Torna alla home</a>
-  </nav>
+  <header class="topbar">
+    <nav class="nav">
+      <a class="brand" href="../" aria-label="Torna alla home">
+        <span class="brand-name">Giovanni Palma</span>
+        <span class="brand-rule" aria-hidden="true"></span>
+      </a>
 
-  <main>
-    <div class="badge">Istruzione e formazione</div>
-    <h1>Un percorso verso <span>sicurezza e innovazione.</span></h1>
+      <div class="menu">
+        <a href="../">Home</a>
+        <a href="#percorso">Percorso</a>
+        <a href="#certificazioni">Certificazioni</a>
+        <a href="#aree">Aree di studio</a>
+        <a class="nav-cta" href="mailto:giovannip2504@gmail.com">Contatti</a>
+      </div>
+    </nav>
+  </header>
 
-    <p class="intro">
-      La mia formazione unisce basi scientifiche, attenzione alla sicurezza globale e interesse crescente per cybersecurity, governance, gestione del rischio e transizione digitale.
-    </p>
+  <main class="page">
+    <section class="hero" aria-label="Presentazione formazione">
+      <div class="hero-text">
+        <div class="eyebrow">Formazione</div>
+        <h1>Percorso formativo, <span>metodo e crescita.</span></h1>
 
-    <section class="timeline">
-      <article class="item">
-        <div class="year">2025 · Attuale</div>
-        <div>
-          <h2>Laurea Triennale L-36</h2>
-          <p>
-            Studi diplomatici, internazionali e sulla sicurezza globale presso l’Università degli Studi di Salerno.
-          </p>
-          <p class="detail">
-            Focus personale: sicurezza globale, trasformazione digitale, governance, cybersecurity e gestione del rischio.
-          </p>
+        <p class="lead">
+          Questa sezione raccoglie il mio percorso di istruzione e formazione: diploma scientifico, studi universitari in ambito L-36 e certificazione linguistica di inglese B2.
+        </p>
+
+        <p>
+          La formazione rappresenta la base su cui sto costruendo un profilo orientato a sicurezza globale, gestione del rischio, cyber awareness, innovazione e sviluppo imprenditoriale.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="#percorso">Vedi percorso</a>
+          <a class="btn btn-secondary" href="../">Torna alla home</a>
         </div>
-      </article>
+      </div>
 
-      <article class="item">
-        <div class="year">2019 · 2024</div>
-        <div>
-          <h2>Diploma di Maturità Scientifica</h2>
-          <p>
-            Liceo Scientifico “Imbriani”, Pomigliano d’Arco.
-          </p>
-          <p class="detail">
-            Voto finale: 100/100 e lode.
-          </p>
+      <aside class="hero-panel">
+        <p class="panel-title">Sintesi</p>
+        <h2>Una formazione che collega metodo scientifico, sicurezza e visione internazionale.</h2>
+        <p>
+          Il percorso unisce una base scientifica solida, lo studio delle dinamiche diplomatiche e internazionali, l’interesse per la sicurezza globale e una competenza linguistica certificata.
+        </p>
+
+        <div class="values-list">
+          <div class="value-row">
+            <strong>Base scientifica</strong>
+            <span>diploma con valutazione 100/100 e lode</span>
+          </div>
+          <div class="value-row">
+            <strong>Percorso universitario</strong>
+            <span>L-36 · studi diplomatici, internazionali e sicurezza globale</span>
+          </div>
+          <div class="value-row">
+            <strong>Lingua inglese</strong>
+            <span>certificazione di livello B2</span>
+          </div>
         </div>
-      </article>
+      </aside>
     </section>
+
+    <section id="percorso">
+      <div class="section-heading">
+        <h2>Percorso</h2>
+        <p>Una sintesi ordinata delle tappe principali del mio percorso formativo.</p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-date">2025 · Attuale</div>
+          <div class="timeline-content">
+            <p class="card-label">Università</p>
+            <h3>Laurea triennale L-36 – Studi diplomatici, internazionali e sulla sicurezza globale</h3>
+            <p>
+              Università degli Studi di Salerno. Percorso orientato allo studio delle relazioni internazionali, delle istituzioni, della sicurezza globale e dei processi politici, sociali e strategici che influenzano gli scenari contemporanei.
+            </p>
+            <div class="tag-list">
+              <span class="tag">L-36</span>
+              <span class="tag">Sicurezza globale</span>
+              <span class="tag">Relazioni internazionali</span>
+              <span class="tag">Governance</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-date">Certificazione</div>
+          <div class="timeline-content">
+            <p class="card-label">Lingua inglese</p>
+            <h3>Certificazione di inglese B2</h3>
+            <p>
+              Certificazione linguistica di livello B2, utile per lo studio, la consultazione di fonti internazionali, la comunicazione in contesti professionali e l’approfondimento di temi legati a tecnologia, sicurezza e innovazione.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Inglese B2</span>
+              <span class="tag">Comunicazione</span>
+              <span class="tag">Fonti internazionali</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="timeline-item">
+          <div class="timeline-date">2019 · 2024</div>
+          <div class="timeline-content">
+            <p class="card-label">Diploma</p>
+            <h3>Diploma di Maturità Scientifica</h3>
+            <p>
+              Liceo Scientifico “Imbriani”. Percorso concluso con valutazione finale 100/100 e lode. La formazione scientifica ha contribuito a consolidare metodo di studio, capacità analitica, precisione e approccio razionale alla risoluzione dei problemi.
+            </p>
+            <div class="tag-list">
+              <span class="tag">100/100 e lode</span>
+              <span class="tag">Metodo scientifico</span>
+              <span class="tag">Analisi</span>
+              <span class="tag">Problem solving</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="certificazioni">
+      <div class="section-heading">
+        <h2>Certificazioni</h2>
+        <p>Competenze certificate e strumenti formativi che rafforzano il profilo accademico e professionale.</p>
+      </div>
+
+      <div class="grid-2">
+        <article class="feature-card">
+          <p class="card-label">Lingua straniera</p>
+          <h3>Certificazione inglese B2</h3>
+          <p>
+            Il livello B2 consente di comprendere testi complessi, seguire contenuti specialistici, consultare fonti internazionali e comunicare con maggiore sicurezza in contesti accademici e professionali.
+          </p>
+          <div class="tag-list">
+            <span class="tag">B2</span>
+            <span class="tag">Academic English</span>
+            <span class="tag">Professional communication</span>
+          </div>
+        </article>
+
+        <article class="feature-card">
+          <p class="card-label">Valore per il profilo</p>
+          <h3>Lingua inglese come competenza trasversale</h3>
+          <p>
+            Nel mio percorso, l’inglese è una competenza utile per accedere a documenti, standard, materiali internazionali, contenuti su cybersecurity, innovazione, governance e trasformazione digitale.
+          </p>
+          <div class="tag-list">
+            <span class="tag">Ricerca</span>
+            <span class="tag">Tecnologia</span>
+            <span class="tag">Sicurezza</span>
+            <span class="tag">Innovazione</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="aree">
+      <div class="section-heading">
+        <h2>Aree di studio e approfondimento</h2>
+        <p>Le aree che collegano il percorso formativo alla mia direzione professionale.</p>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <h3>Sicurezza globale</h3>
+          <p>
+            Interesse per i temi della sicurezza, della gestione del rischio, della protezione di persone, infrastrutture, dati e processi in scenari sempre più ibridi.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Governance e istituzioni</h3>
+          <p>
+            Studio dei meccanismi istituzionali, politici e organizzativi che influenzano decisioni, responsabilità, regole e processi di gestione.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Innovazione e trasformazione digitale</h3>
+          <p>
+            Approfondimento dei cambiamenti tecnologici e organizzativi che incidono su imprese, pubblica amministrazione, sicurezza e sviluppo territoriale.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="direzione">
+      <div class="section-heading">
+        <h2>Direzione formativa</h2>
+        <p>Il percorso è in evoluzione e sostiene la costruzione di un profilo trasversale tra studio, sicurezza e impresa.</p>
+      </div>
+
+      <div class="panel">
+        <div class="grid-3">
+          <article class="card">
+            <h3>Metodo</h3>
+            <p>Rafforzare capacità di analisi, sintesi, scrittura, esposizione e organizzazione dei contenuti.</p>
+          </article>
+          <article class="card">
+            <h3>Specializzazione</h3>
+            <p>Approfondire sicurezza globale, cyber awareness, GRC, innovazione digitale e gestione del rischio.</p>
+          </article>
+          <article class="card">
+            <h3>Applicazione</h3>
+            <p>Collegare studio universitario, progetti personali e iniziative imprenditoriali in una direzione coerente.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© 2026 Giovanni Palma</span>
+      <span>Formazione · L-36 · Inglese B2 · Sicurezza globale</span>
+    </footer>
   </main>
 </body>
 </html>
+
