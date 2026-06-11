@@ -474,12 +474,11 @@ def genera_risposta(modello, prompt):
     risposta = ollama.generate(
         model=modello,
         prompt=prompt,
-        think=False
     )
     return risposta["response"]</code></pre>
       </div>
       <p>
-        La funzione è il cuore dell'esperimento: riceve il nome del modello e il prompt, invia la richiesta a Ollama e restituisce la risposta generata. Il parametro <code>think=False</code> è il risultato di un problema reale incontrato durante i test: i modelli della famiglia Qwen3 separano il ragionamento interno (campo <code>thinking</code>) dalla risposta finale (campo <code>response</code>), e con i prompt più strutturati restituivano un campo <code>response</code> vuoto. Disattivare il thinking ha reso il comportamento uniforme su tutti i modelli — un esempio concreto di come l'impiego applicativo degli LLM richieda la conoscenza delle loro caratteristiche architetturali.
+        La funzione è il cuore dell'esperimento: riceve il nome del modello e il prompt, invia la richiesta a Ollama e restituisce la risposta generata. 
       </p>
 
       <div class="code-block"><div class="block-title">Blocco 2 · Scenario (livello meno specifico)</div><pre><code>scenario = """
@@ -632,35 +631,35 @@ prompts = [
     ("RISEN", prompt_risen)
 ]
 
-if __name__ == "__main__":
-    with open("output.txt", "w", encoding="utf-8") as f:
-        f.write("SECURITY RISK ASSESSMENT - PFIZER CATANIA\n")
-        f.write("Esperimento di prompt engineering su LLM locali\n")
 
-        for modello in modelli:
-            for nome, prompt in prompts:
-                intestazione = (
-                    f"\n{'=' * 60}\n"
-                    f"MODELLO: {modello}\n"
-                    f"TECNICA DI PROMPTING: {nome}\n"
-                    f"{'=' * 60}\n"
-                )
-                print(intestazione)
-                f.write(intestazione)
+  with open("output.txt", "w", encoding="utf-8") as f:
+      f.write("SECURITY RISK ASSESSMENT - PFIZER CATANIA\n")
+      f.write("Esperimento di prompt engineering su LLM locali\n")
 
-                try:
-                    risposta = genera_risposta(modello, prompt)
-                except Exception as errore:
-                    risposta = f"[ERRORE con {modello}: {errore}]"
+      for modello in modelli:
+          for nome, prompt in prompts:
+              intestazione = (
+                  f"\n{'=' * 60}\n"
+                  f"MODELLO: {modello}\n"
+                  f"TECNICA DI PROMPTING: {nome}\n"
+                  f"{'=' * 60}\n"
+              )
+              print(intestazione)
+              f.write(intestazione)
 
-                print(risposta)
-                f.write(risposta)
-                f.write("\n\n")
+              try:
+                  risposta = genera_risposta(modello, prompt)
+              except Exception as errore:
+                  risposta = f"[ERRORE con {modello}: {errore}]"
 
-    print("Esperimento completato: 3 modelli x 3 tecniche = 9 output.")
-    print("Controlla il file output.txt")</code></pre></div>
+              print(risposta)
+              f.write(risposta)
+              f.write("\n\n")
+
+  print("Esperimento completato: 3 modelli x 3 tecniche = 9 output.")
+  print("Controlla il file output.txt")</code></pre></div>
       <p>
-        Il ciclo testa sistematicamente ogni combinazione modello-tecnica e scrive i risultati sia sul terminale sia su file. Il blocco <code>try/except</code> garantisce che un errore su un singolo modello non interrompa l'intero esperimento. Il costrutto <code>if __name__ == "__main__"</code> separa la parte di definizione (funzione, scenario, prompt) dalla parte di esecuzione, permettendo di riutilizzare i prompt e la funzione in altri script senza avviare l'esperimento.
+        Il ciclo testa sistematicamente ogni combinazione modello-tecnica e scrive i risultati sia sul terminale sia su file. Il blocco <code>try/except</code> garantisce che un errore su un singolo modello non interrompa l'intero esperimento. 
       </p>
     </section>
 
