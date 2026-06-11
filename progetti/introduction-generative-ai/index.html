@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GRC Risk Assistant: progetto accademico su prompt engineering, LLM locali, Ollama e analisi preliminare del rischio cyber in ambito GRC." />
-  <title>GRC Risk Assistant | Generative AI</title>
+  <meta name="description" content="Security Risk Assistant: progetto accademico su prompt engineering, LLM locali, Ollama e supporto a un security risk assessment fisico, con confronto rispetto a un registro dei rischi di riferimento." />
+  <title>Security Risk Assistant | Generative AI</title>
 
   <style>
     :root {
@@ -34,15 +34,8 @@
       --max: 1120px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       min-height: 100vh;
@@ -55,15 +48,10 @@
       line-height: 1.74;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    a { color: inherit; text-decoration: none; }
 
     .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
+      position: sticky; top: 0; z-index: 50;
       background: rgba(255, 255, 255, 0.90);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(16px);
@@ -71,507 +59,200 @@
 
     .nav {
       width: min(var(--max), calc(100% - 40px));
-      min-height: 72px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
+      min-height: 72px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 22px;
     }
 
-    .brand {
-      display: grid;
-      gap: 7px;
-      line-height: 1;
-    }
-
+    .brand { display: grid; gap: 7px; line-height: 1; }
     .brand-name {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      color: var(--ink);
+      font-size: 1.35rem; font-weight: 700; letter-spacing: -0.04em; color: var(--ink);
     }
+    .brand-rule { width: 76px; height: 1px; background: linear-gradient(90deg, var(--blue), transparent); }
 
-    .brand-rule {
-      width: 76px;
-      height: 1px;
-      background: linear-gradient(90deg, var(--blue), transparent);
-    }
+    .menu { display: flex; align-items: center; gap: 18px; color: var(--muted); font-size: 0.92rem; font-weight: 700; }
+    .menu a { padding: 8px 0; }
+    .menu a:hover { color: var(--blue); }
 
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      color: var(--muted);
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
+    .page { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; padding: 58px 0 72px; }
 
-    .menu a {
-      padding: 8px 0;
-    }
+    .hero { display: grid; grid-template-columns: 1.18fr 0.82fr; gap: 28px; align-items: stretch; margin-bottom: 32px; }
 
-    .menu a:hover {
-      color: var(--blue);
-    }
-
-    .page {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-      padding: 58px 0 72px;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.18fr 0.82fr;
-      gap: 28px;
-      align-items: stretch;
-      margin-bottom: 32px;
-    }
-
-    .hero-main,
-    .hero-side,
-    section {
+    .hero-main, .hero-side, section {
       background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--line);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
     }
 
-    .hero-main {
-      padding: 44px;
-    }
+    .hero-main { padding: 44px; }
+    .hero-side { padding: 30px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; }
 
-    .hero-side {
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .eyebrow,
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      width: fit-content;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: var(--blue-pale);
-      color: var(--blue);
-      border: 1px solid #bfdbfe;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .eyebrow, .badge {
+      display: inline-flex; align-items: center; width: fit-content;
+      padding: 7px 12px; border-radius: 999px;
+      background: var(--blue-pale); color: var(--blue); border: 1px solid #bfdbfe;
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
       margin-bottom: 18px;
     }
 
-    h1 {
-      font-size: clamp(2.65rem, 6vw, 4.8rem);
-      line-height: 0.98;
-      letter-spacing: -0.07em;
-      color: var(--ink);
-      margin-bottom: 24px;
-    }
+    h1 { font-size: clamp(2.65rem, 6vw, 4.8rem); line-height: 0.98; letter-spacing: -0.07em; color: var(--ink); margin-bottom: 24px; }
+    h1 span { color: var(--blue); }
 
-    h1 span {
-      color: var(--blue);
-    }
-
-    .subtitle {
-      color: var(--muted);
-      font-size: 1.12rem;
-      max-width: 790px;
-      margin-bottom: 24px;
-    }
+    .subtitle { color: var(--muted); font-size: 1.12rem; max-width: 790px; margin-bottom: 24px; }
 
     .academic-note {
-      padding: 18px 20px;
-      border-radius: 18px;
-      background: var(--paper-soft);
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 0.98rem;
+      padding: 18px 20px; border-radius: 18px;
+      background: var(--paper-soft); border: 1px solid var(--line);
+      color: var(--muted); font-size: 0.98rem;
     }
 
-    .meta-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 28px;
-    }
+    .meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
+    .meta-card, .compact-item { padding: 16px; border-radius: 16px; background: var(--paper-soft); border: 1px solid var(--line); }
+    .meta-card strong, .compact-item strong { display: block; color: var(--ink); font-size: 0.96rem; margin-bottom: 4px; }
+    .meta-card span, .compact-item span { color: var(--subtle); font-size: 0.88rem; }
 
-    .meta-card,
-    .compact-item {
-      padding: 16px;
-      border-radius: 16px;
-      background: var(--paper-soft);
-      border: 1px solid var(--line);
-    }
-
-    .meta-card strong,
-    .compact-item strong {
-      display: block;
-      color: var(--ink);
-      font-size: 0.96rem;
-      margin-bottom: 4px;
-    }
-
-    .meta-card span,
-    .compact-item span {
-      color: var(--subtle);
-      font-size: 0.88rem;
-    }
-
-    .mini-index {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
+    .mini-index { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
     .mini-index a {
-      padding: 9px 12px;
-      border-radius: 999px;
-      color: var(--muted);
-      background: var(--paper-soft);
-      border: 1px solid var(--line);
-      font-size: 0.86rem;
-      font-weight: 800;
+      padding: 9px 12px; border-radius: 999px; color: var(--muted);
+      background: var(--paper-soft); border: 1px solid var(--line);
+      font-size: 0.86rem; font-weight: 800;
+    }
+    .mini-index a:hover { color: var(--blue); border-color: #bfdbfe; }
+
+    .side-title { color: var(--blue); font-size: 0.78rem; font-weight: 850; letter-spacing: 0.10em; text-transform: uppercase; margin-bottom: 14px; }
+    .side-list { display: grid; gap: 12px; }
+
+    section { padding: 34px; margin-top: 24px; scroll-margin-top: 92px; }
+
+    h2 { color: var(--ink); font-size: 2rem; line-height: 1.1; letter-spacing: -0.045em; margin-bottom: 16px; }
+    h3 { color: var(--ink); font-size: 1.2rem; line-height: 1.25; letter-spacing: -0.025em; margin: 22px 0 10px; }
+    p { color: var(--muted); margin-bottom: 14px; }
+
+    .section-kicker { color: var(--blue); font-size: 0.9rem; font-weight: 900; margin-bottom: 8px; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    .highlight-grid, .cards-3, .cards-2, .rubric-grid { display: grid; gap: 16px; margin-top: 18px; }
+    .highlight-grid, .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .cards-2 { grid-template-columns: repeat(2, 1fr); }
+    .rubric-grid { grid-template-columns: repeat(4, 1fr); }
+
+    .highlight, .card, .analysis-box, .conclusion-box {
+      padding: 22px; border-radius: var(--radius-lg);
+      border: 1px solid var(--line); background: var(--paper-soft);
     }
 
-    .mini-index a:hover {
-      color: var(--blue);
-      border-color: #bfdbfe;
-    }
+    .highlight.objective { background: var(--blue-pale); border-color: #bfdbfe; }
+    .highlight.start { background: var(--cyan-pale); border-color: #bae6fd; }
+    .highlight.expected { background: var(--green-pale); border-color: #bbf7d0; }
+    .highlight strong, .card strong { display: block; color: var(--ink); margin-bottom: 8px; font-size: 1.05rem; }
 
-    .side-title {
-      color: var(--blue);
-      font-size: 0.78rem;
-      font-weight: 850;
-      letter-spacing: 0.10em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    .side-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    section {
-      padding: 34px;
-      margin-top: 24px;
-      scroll-margin-top: 92px;
-    }
-
-    h2 {
-      color: var(--ink);
-      font-size: 2rem;
-      line-height: 1.1;
-      letter-spacing: -0.045em;
-      margin-bottom: 16px;
-    }
-
-    h3 {
-      color: var(--ink);
-      font-size: 1.2rem;
-      line-height: 1.25;
-      letter-spacing: -0.025em;
-      margin-bottom: 10px;
-    }
-
-    p {
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
-
-    .section-kicker {
-      color: var(--blue);
-      font-size: 0.9rem;
-      font-weight: 900;
-      margin-bottom: 8px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .highlight-grid,
-    .cards-3,
-    .cards-2,
-    .rubric-grid {
-      display: grid;
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .highlight-grid,
-    .cards-3 {
-      grid-template-columns: repeat(3, 1fr);
-    }
-
-    .cards-2 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .rubric-grid {
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .highlight,
-    .card,
-    .analysis-box,
-    .conclusion-box {
-      padding: 22px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--line);
-      background: var(--paper-soft);
-    }
-
-    .highlight.objective {
-      background: var(--blue-pale);
-      border-color: #bfdbfe;
-    }
-
-    .highlight.start {
-      background: var(--cyan-pale);
-      border-color: #bae6fd;
-    }
-
-    .highlight.expected {
-      background: var(--green-pale);
-      border-color: #bbf7d0;
-    }
-
-    .highlight strong,
-    .card strong {
-      display: block;
-      color: var(--ink);
-      margin-bottom: 8px;
-      font-size: 1.05rem;
-    }
-
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 10px;
-      margin-top: 18px;
-    }
-
+    .timeline { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 18px; }
     .step {
-      padding: 16px 12px;
-      text-align: center;
-      border-radius: 16px;
-      background: var(--paper-soft);
-      border: 1px solid var(--line);
-      color: var(--muted);
-      font-weight: 800;
-      font-size: 0.9rem;
+      padding: 16px 10px; text-align: center; border-radius: 16px;
+      background: var(--paper-soft); border: 1px solid var(--line);
+      color: var(--muted); font-weight: 800; font-size: 0.86rem;
     }
+    .step.new { background: var(--blue-pale); border-color: #bfdbfe; color: var(--blue); }
 
-    .code-block,
-    .prompt-block,
-    .output-block {
-      margin: 16px 0 22px;
-      border-radius: 18px;
-      overflow: hidden;
-      border: 1px solid #263244;
-      background: var(--code-bg);
-    }
+    .code-block, .prompt-block, .output-block { margin: 16px 0 22px; border-radius: 18px; overflow: hidden; border: 1px solid #263244; background: var(--code-bg); }
 
     .block-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 16px;
-      background: var(--code-head);
-      color: #bfdbfe;
-      font-size: 0.86rem;
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 12px 16px; background: var(--code-head); color: #bfdbfe;
+      font-size: 0.86rem; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase;
       border-bottom: 1px solid #263244;
     }
 
     pre {
-      margin: 0;
-      padding: 18px;
-      overflow-x: auto;
-      white-space: pre-wrap;
+      margin: 0; padding: 18px; overflow-x: auto; white-space: pre-wrap;
       color: var(--code-text);
       font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-      font-size: 0.88rem;
-      line-height: 1.62;
+      font-size: 0.88rem; line-height: 1.62;
     }
+    code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; }
 
-    code {
-      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-    }
-
-    .prompt-card {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--line);
-      background: var(--paper-soft);
-      padding: 22px;
-    }
-
-    .prompt-card .badge {
-      margin-bottom: 14px;
-    }
+    .prompt-card { border-radius: var(--radius-lg); border: 1px solid var(--line); background: var(--paper-soft); padding: 22px; }
+    .prompt-card .badge { margin-bottom: 14px; }
 
     table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0 24px;
-      overflow: hidden;
-      border-radius: 16px;
-      border: 1px solid var(--line);
-      background: var(--paper);
-      font-size: 0.92rem;
+      width: 100%; border-collapse: collapse; margin: 16px 0 24px;
+      overflow: hidden; border-radius: 16px; border: 1px solid var(--line);
+      background: var(--paper); font-size: 0.92rem;
     }
+    th, td { padding: 13px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+    th { color: var(--ink); background: #eef4ff; font-weight: 900; }
+    tr:last-child td { border-bottom: 0; }
+    td { color: var(--muted); }
 
-    th,
-    td {
-      padding: 13px 14px;
-      text-align: left;
-      vertical-align: top;
-      border-bottom: 1px solid var(--line);
-    }
+    /* ----- novità grafiche di questa edizione ----- */
 
-    th {
-      color: var(--ink);
-      background: #eef4ff;
-      font-weight: 900;
+    .chip {
+      display: inline-block; padding: 3px 10px; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 900; letter-spacing: 0.03em; white-space: nowrap;
     }
+    .chip.basso   { background: var(--green-pale); color: #166534; border: 1px solid #bbf7d0; }
+    .chip.medio   { background: var(--amber-pale); color: #92400e; border: 1px solid #fde68a; }
+    .chip.alto    { background: var(--orange-pale); color: #c2410c; border: 1px solid #fed7aa; }
+    .chip.critico { background: var(--red-pale);   color: #b91c1c; border: 1px solid #fecaca; }
+    .chip.na      { background: var(--paper-soft); color: var(--subtle); border: 1px solid var(--line); }
 
-    tr:last-child td {
-      border-bottom: 0;
-    }
+    .mark { font-weight: 900; }
+    .mark.ok  { color: #15803d; }
+    .mark.mid { color: #b45309; }
+    .mark.bad { color: #b91c1c; }
 
-    td {
-      color: var(--muted);
-    }
+    .matrix td, .matrix th { text-align: center; font-weight: 800; }
+    .matrix td.basso   { background: var(--green-pale); color: #166534; }
+    .matrix td.medio   { background: var(--amber-pale); color: #92400e; }
+    .matrix td.alto    { background: var(--orange-pale); color: #c2410c; }
+    .matrix td.critico { background: var(--red-pale);   color: #b91c1c; }
+    .matrix th.axis    { background: #eef4ff; }
 
-    .analysis-box {
-      background: #f0f9ff;
-      border-color: #bae6fd;
-      margin-top: 14px;
+    .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; }
+    .stat {
+      padding: 18px; border-radius: var(--radius-lg);
+      background: var(--paper-soft); border: 1px solid var(--line);
     }
+    .stat strong { display: block; color: var(--ink); font-size: 0.92rem; margin-bottom: 10px; }
+    .stat ul { list-style: none; display: grid; gap: 6px; }
+    .stat li { color: var(--muted); font-size: 0.88rem; }
 
-    .critical-box {
-      background: var(--orange-pale);
-      border: 1px solid #fed7aa;
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      margin-top: 16px;
-    }
+    .score { display: inline-block; min-width: 44px; text-align: center; padding: 3px 10px; border-radius: 999px; font-weight: 900; font-size: 0.86rem; }
+    .score.s5 { background: var(--green-pale); color: #166534; border: 1px solid #bbf7d0; }
+    .score.s4 { background: var(--cyan-pale);  color: #0369a1; border: 1px solid #bae6fd; }
+    .score.s3 { background: var(--amber-pale); color: #92400e; border: 1px solid #fde68a; }
+    .score.s2 { background: var(--red-pale);   color: #b91c1c; border: 1px solid #fecaca; }
 
-    .warning-box {
-      background: #fff7ed;
-      border: 1px solid #fed7aa;
-      border-radius: var(--radius-lg);
-      padding: 22px;
-      margin-top: 18px;
-    }
-
-    .conclusion-box {
-      background: #ecfdf5;
-      border-color: #bbf7d0;
-    }
+    .analysis-box { background: #f0f9ff; border-color: #bae6fd; margin-top: 14px; }
+    .critical-box { background: var(--orange-pale); border: 1px solid #fed7aa; border-radius: var(--radius-lg); padding: 22px; margin-top: 16px; }
+    .warning-box  { background: #fff7ed; border: 1px solid #fed7aa; border-radius: var(--radius-lg); padding: 22px; margin-top: 18px; }
+    .conclusion-box { background: #ecfdf5; border-color: #bbf7d0; }
 
     .final-sentence {
-      padding: 24px;
-      border-radius: var(--radius-lg);
-      background: var(--ink);
-      color: #ffffff;
-      font-size: 1.18rem;
-      font-weight: 900;
-      line-height: 1.45;
-      margin-top: 18px;
-    }
-
-    .print-note {
-      color: var(--subtle);
-      font-size: 0.9rem;
-      margin-top: 12px;
+      padding: 24px; border-radius: var(--radius-lg);
+      background: var(--ink); color: #ffffff;
+      font-size: 1.18rem; font-weight: 900; line-height: 1.45; margin-top: 18px;
     }
 
     @media (max-width: 980px) {
-      .hero,
-      .highlight-grid,
-      .cards-3,
-      .cards-2,
-      .timeline,
-      .meta-grid,
-      .rubric-grid {
-        grid-template-columns: 1fr;
-      }
+      .hero, .highlight-grid, .cards-3, .cards-2, .timeline, .meta-grid, .rubric-grid, .stat-grid { grid-template-columns: 1fr; }
     }
 
     @media (max-width: 680px) {
-      .nav {
-        min-height: auto;
-        padding: 16px 0;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .menu {
-        gap: 12px;
-        flex-wrap: wrap;
-        font-size: 0.86rem;
-      }
-
-      .page {
-        width: min(100% - 28px, var(--max));
-        padding-top: 36px;
-      }
-
-      .hero-main,
-      .hero-side,
-      section {
-        padding: 24px;
-      }
-
-      h1 {
-        font-size: 2.7rem;
-      }
-
-      table {
-        display: block;
-        overflow-x: auto;
-        white-space: nowrap;
-      }
+      .nav { min-height: auto; padding: 16px 0; align-items: flex-start; flex-direction: column; }
+      .menu { gap: 12px; flex-wrap: wrap; font-size: 0.86rem; }
+      .page { width: min(100% - 28px, var(--max)); padding-top: 36px; }
+      .hero-main, .hero-side, section { padding: 24px; }
+      h1 { font-size: 2.7rem; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
     }
 
     @media print {
-      body {
-        background: white;
-      }
-
-      .topbar {
-        position: static;
-        background: white;
-      }
-
-      .hero-main,
-      .hero-side,
-      section {
-        box-shadow: none;
-        break-inside: avoid;
-      }
-
-      .menu,
-      .print-note,
-      .mini-index {
-        display: none;
-      }
-
-      pre {
-        white-space: pre-wrap;
-      }
+      body { background: white; }
+      .topbar { position: static; background: white; }
+      .hero-main, .hero-side, section { box-shadow: none; break-inside: avoid; }
+      .menu, .mini-index { display: none; }
+      pre { white-space: pre-wrap; }
     }
   </style>
 </head>
@@ -589,6 +270,7 @@
         <a href="#codice">Codice</a>
         <a href="#prompt">Prompt</a>
         <a href="#risultati">Risultati</a>
+        <a href="#confronto">Confronto</a>
         <a href="#valutazione">Valutazione</a>
       </div>
     </nav>
@@ -597,25 +279,27 @@
   <main class="page">
     <div class="hero">
       <div class="hero-main">
-        <div class="eyebrow">Progetto accademico · Generative AI</div>
-        <h1>GRC Risk Assistant: <span>prompt engineering e LLM locali.</span></h1>
+        <div class="eyebrow">Progetto conclusivo · Introduzione e applicazione dell'Intelligenza Artificiale</div>
+        <h1>Security Risk Assistant: <span>prompt engineering e LLM locali.</span></h1>
         <p class="subtitle">
-          Valutazione dell’impatto del prompt engineering nell’impiego di modelli linguistici locali per supportare una prima analisi dei rischi cyber in ambito GRC.
+          Valutazione del comportamento di tre modelli LLM locali e tre tecniche di prompt engineering nel supporto a un security risk assessment fisico, con confronto sistematico rispetto a un registro dei rischi di riferimento.
         </p>
         <div class="academic-note">
-          Il progetto analizza la Generative AI come strumento di supporto alla produzione di analisi preliminari, checklist e matrici di rischio. Il GRC non è trattato come esercizio di certificazione o consulenza professionale completa, ma come caso applicativo per valutare qualità, limiti e variazioni degli output generati da LLM locali.
+          L'obiettivo del progetto non è produrre un risk assessment professionale, né dimostrare che un LLM possa sostituire un security manager. L'obiettivo è osservare e valutare <strong>come si comportano i prompt e i modelli</strong>: quanto la tecnica di prompting incide sulla qualità e sulla confrontabilità dell'output, e quanto ciascun modello si avvicina a una valutazione di riferimento redatta in modo indipendente.
         </div>
         <div class="meta-grid">
-          <div class="meta-card"><strong>Ambito</strong><span>Generative AI applicata</span></div>
+          <div class="meta-card"><strong>Ambito</strong><span>Generative AI applicata alla security</span></div>
           <div class="meta-card"><strong>Strumenti</strong><span>Python, Ollama, LLM locali</span></div>
-          <div class="meta-card"><strong>Metodo</strong><span>confronto qualitativo controllato</span></div>
+          <div class="meta-card"><strong>Metodo</strong><span>confronto controllato con registro di riferimento</span></div>
         </div>
         <div class="mini-index" aria-label="Navigazione sintetica">
           <a href="#impianto">Impianto</a>
+          <a href="#criteri">Criteri</a>
           <a href="#metodologia">Metodologia</a>
           <a href="#codice">Codice</a>
           <a href="#prompt">Prompt</a>
           <a href="#risultati">Risultati</a>
+          <a href="#confronto">Confronto</a>
           <a href="#valutazione">Valutazione</a>
           <a href="#sintesi">Sintesi finale</a>
         </div>
@@ -625,25 +309,25 @@
         <div>
           <div class="side-title">Domanda di ricerca</div>
           <p>
-            A parità di scenario, una formulazione più strutturata del prompt produce output più utili, verificabili e coerenti con una prima analisi GRC?
+            A parità di scenario, quale combinazione di tecnica di prompting e modello locale produce l'output più vicino a un registro dei rischi redatto con metodologia professionale?
           </p>
         </div>
         <div class="side-list">
-          <div class="compact-item"><strong>Variabile osservata</strong><span>qualità dell’output al variare del prompt e del modello</span></div>
-          <div class="compact-item"><strong>Oggetto del confronto</strong><span>prompt generico, prompt con ruolo, prompt strutturato</span></div>
-          <div class="compact-item"><strong>Interpretazione corretta</strong><span>supporto preliminare, non sostituzione del giudizio umano</span></div>
+          <div class="compact-item"><strong>Variabile osservata</strong><span>qualità e correttezza metodologica dell'output al variare di prompt e modello</span></div>
+          <div class="compact-item"><strong>Oggetto del confronto</strong><span>Chain of Thought, Few-shot, framework RISEN × tre LLM locali</span></div>
+          <div class="compact-item"><strong>Novità rispetto al progetto precedente</strong><span>gli output sono confrontati con un registro dei rischi di riferimento (25 rischi, matrice 5×5)</span></div>
         </div>
       </aside>
     </div>
 
     <section id="introduzione">
       <div class="section-kicker">Introduzione</div>
-      <h2>Generative AI come supporto ad attività professionali</h2>
+      <h2>Dagli output plausibili agli output verificabili</h2>
       <p>
-        I modelli di Generative AI, in particolare i Large Language Models, sono sempre più utilizzati come strumenti di supporto in attività professionali basate su analisi, classificazione e produzione testuale. Questo progetto approfondisce il tema del prompt engineering applicandolo a un caso concreto: la produzione di una prima analisi dei rischi cyber per una piccola azienda di vigilanza privata in fase di digitalizzazione.
+        Questo lavoro nasce come evoluzione di un precedente esperimento sul prompt engineering applicato all'analisi dei rischi cyber in ambito GRC. In quel progetto la valutazione degli output era esclusivamente qualitativa: mancava un termine di paragone esterno. Qui il disegno sperimentale viene rafforzato in due direzioni. La prima: il caso applicativo diventa un <strong>security risk assessment fisico</strong> di uno stabilimento farmaceutico, un dominio in cui contesto territoriale e asset materiali rendono più facile distinguere risposte specifiche da risposte generiche. La seconda, più importante: gli output dei modelli vengono confrontati con un <strong>registro dei rischi di riferimento</strong> redatto in modo indipendente secondo la metodologia della matrice 5×5 (rif. UNI ISO 31000:2018), composto da 25 rischi con valutazione iniziale e residua.
       </p>
       <p>
-        L’obiettivo non è costruire un software di cybersecurity, né produrre una valutazione tecnica definitiva. L’obiettivo è osservare come cambia la qualità dell’output generato da un LLM locale al variare della struttura del prompt. In questo senso, il lavoro è un approfondimento applicativo sulla Generative AI: utilizza Python, Ollama, modelli LLM locali e prompt engineering per costruire una base di analisi e discussione.
+        Le tecniche di prompting messe a confronto sono tre, scelte tra quelle più consolidate in letteratura: il <strong>Chain of Thought prompting</strong>, che chiede al modello di esplicitare il ragionamento passo per passo; il <strong>Few-shot prompting</strong>, che fornisce esempi già compilati del formato atteso; e il <strong>framework RISEN</strong> (Role, Instructions, Steps, End goal, Narrowing), che struttura completamente la richiesta. Le informazioni vengono distribuite in modo progressivo, dal meno specifico al più specifico: lo scenario contiene solo il contesto del sito, i criteri di valutazione vengono iniettati solo nei prompt che richiedono la quantificazione del rischio, e gli esempi compilati compaiono solo nel few-shot.
       </p>
     </section>
 
@@ -653,15 +337,15 @@
       <div class="highlight-grid">
         <div class="highlight objective">
           <strong>Obiettivo</strong>
-          <p>Valutare se il prompt engineering migliora la qualità degli output prodotti da modelli LLM locali nella costruzione di una prima analisi dei rischi cyber in ambito GRC.</p>
+          <p>Valutare come si comportano tre tecniche di prompting e tre LLM locali nella produzione di una prima bozza di security risk assessment, misurandone la distanza da una valutazione di riferimento.</p>
         </div>
         <div class="highlight start">
           <strong>Punto di partenza</strong>
-          <p>Una piccola azienda di vigilanza privata sta digitalizzando i propri servizi e non ha ancora un processo GRC formalizzato.</p>
+          <p>Uno stabilimento farmaceutico nella zona industriale di Catania, in area ad alta sismicità e in prossimità dell'Etna, privo di un security risk assessment formalizzato.</p>
         </div>
         <div class="highlight expected">
           <strong>Risultato atteso</strong>
-          <p>Il prompt strutturato dovrebbe produrre risposte più ordinate, specifiche e valutabili rispetto al prompt generico.</p>
+          <p>Il prompt RISEN dovrebbe produrre gli output più confrontabili; il confronto con il riferimento dovrebbe far emergere le differenze di affidabilità tra i modelli.</p>
         </div>
       </div>
       <div class="timeline">
@@ -669,66 +353,110 @@
         <div class="step">Prompt</div>
         <div class="step">Modello</div>
         <div class="step">Output</div>
+        <div class="step new">Confronto con riferimento</div>
         <div class="step">Valutazione critica</div>
       </div>
     </section>
 
     <section id="definizioni">
       <div class="section-kicker">Chiarezza concettuale</div>
-      <h2>Distinzione tra asset, minaccia, vulnerabilità, rischio e controllo</h2>
+      <h2>Probabilità, impatto, rischio e rischio residuo</h2>
       <p>
-        Per evitare ambiguità, il progetto assume una distinzione operativa tra i principali elementi utilizzati nella matrice di rischio. Questa distinzione è importante perché una risposta linguisticamente plausibile può comunque essere debole se confonde categorie diverse.
+        A differenza del progetto precedente, centrato sulla distinzione asset/minaccia/vulnerabilità, qui il fulcro metodologico è la <strong>quantificazione del rischio</strong>. Una risposta linguisticamente plausibile può essere metodologicamente sbagliata: ad esempio se calcola correttamente R = P × I ma poi classifica il valore nella fascia errata, oppure se dichiara misure di mitigazione senza che queste incidano sul rischio residuo.
       </p>
       <div class="rubric-grid">
-        <div class="card"><strong>Asset</strong><p>Elemento da proteggere: dati, sistemi, dispositivi, processi o servizi.</p></div>
-        <div class="card"><strong>Minaccia</strong><p>Evento o agente che può causare un danno: phishing, ransomware, accesso non autorizzato.</p></div>
-        <div class="card"><strong>Vulnerabilità</strong><p>Debolezza sfruttabile: password deboli, assenza di MFA, configurazioni errate.</p></div>
-        <div class="card"><strong>Controllo</strong><p>Misura organizzativa o tecnica per ridurre probabilità o impatto del rischio.</p></div>
+        <div class="card"><strong>Probabilità (P)</strong><p>Frequenza attesa dell'evento, su scala 1–5: da "improbabile" a "quasi certo".</p></div>
+        <div class="card"><strong>Impatto (I)</strong><p>Gravità delle conseguenze, su scala 1–5: da "trascurabile" a "catastrofico".</p></div>
+        <div class="card"><strong>Rischio (R = P × I)</strong><p>Prodotto dei due valori, classificato in quattro fasce: BASSO, MEDIO, ALTO, CRITICO.</p></div>
+        <div class="card"><strong>Rischio residuo</strong><p>Rivalutazione di P e I a valle delle misure di prevenzione e mitigazione. Non può mai superare il rischio iniziale.</p></div>
       </div>
     </section>
 
     <section id="scenario">
       <div class="section-kicker">Scenario applicativo</div>
-      <h2>Piccola azienda di vigilanza privata in digitalizzazione</h2>
+      <h2>Stabilimento farmaceutico in zona industriale ad alta sismicità</h2>
       <p>
-        Lo scenario scelto è realistico ma volutamente sintetico. La sua funzione è fornire ai modelli un contesto comune e stabile, così da rendere confrontabili gli output generati dai diversi prompt e dai diversi LLM locali. Non vengono introdotti dati non disponibili, come architettura di rete, numero di dipendenti, policy esistenti o configurazioni tecniche reali.
+        Lo scenario è il livello informativo <strong>meno specifico</strong> dell'esperimento: contiene solo il contesto del sito ed è identico in tutti e nove i test. Non contiene scale di valutazione, formati di output o esempi: questi elementi vengono introdotti progressivamente nei prompt, in modo da poter attribuire le differenze tra gli output alla tecnica di prompting.
       </p>
       <div class="code-block">
         <div class="block-title">Scenario utilizzato nei test</div>
-        <pre><code>Una piccola azienda di vigilanza privata sta digitalizzando i propri servizi.
-L'azienda usa:
-- email aziendale
-- gestionale clienti
-- telecamere IP
-- smartphone del personale operativo
-- cloud storage
-- sistema di controllo accessi
-- backup periodici
-- fornitore IT esterno con accesso remoto
-Non esiste un processo GRC formalizzato.</code></pre>
+        <pre><code>Sito oggetto di analisi: stabilimento farmaceutico PFIZER.
+Indirizzo: Via Franco Gorgone - Zona Industriale, 95121 Catania (CT).
+Attivita' svolta: produzione, confezionamento e stoccaggio di
+prodotti farmaceutici.
+Contesto territoriale: zona industriale di Catania, area ad alta
+sismicita' (zona sismica 2), prossimita' del vulcano Etna.
+Asset principali del sito:
+- reparti di produzione e confezionamento
+- magazzini di stoccaggio prodotto finito e materie prime
+- celle frigorifere (catena del freddo)
+- laboratori e CED
+- perimetro, varchi di accesso, area spedizioni e parcheggi
+- personale dipendente, appaltatori e vettori esterni
+Il sito non dispone ancora di un security risk assessment
+formalizzato.</code></pre>
       </div>
+    </section>
+
+    <section id="criteri">
+      <div class="section-kicker">Criteri di valutazione</div>
+      <h2>La matrice di rischio 5×5</h2>
+      <p>
+        I criteri provengono dal documento metodologico di riferimento e costituiscono il livello informativo <strong>intermedio</strong>: vengono iniettati solo nei prompt che chiedono al modello di quantificare il rischio (Few-shot e RISEN). Il livello di rischio R è calcolato come prodotto R = P × I e classificato in quattro fasce.
+      </p>
+      <div class="cards-2">
+        <div class="card">
+          <strong>Scala della probabilità (P)</strong>
+          <p>1 Improbabile · 2 Poco probabile · 3 Possibile · 4 Probabile · 5 Quasi certo</p>
+        </div>
+        <div class="card">
+          <strong>Scala dell'impatto (I)</strong>
+          <p>1 Trascurabile · 2 Lieve · 3 Moderato · 4 Grave · 5 Catastrofico</p>
+        </div>
+      </div>
+
+      <h3>Matrice 5×5 e soglie di classificazione</h3>
+      <table class="matrix">
+        <thead>
+          <tr><th class="axis">P \ I</th><th>1 Trascurabile</th><th>2 Lieve</th><th>3 Moderato</th><th>4 Grave</th><th>5 Catastrofico</th></tr>
+        </thead>
+        <tbody>
+          <tr><th class="axis">5 Quasi certo</th><td class="medio">5</td><td class="alto">10</td><td class="critico">15</td><td class="critico">20</td><td class="critico">25</td></tr>
+          <tr><th class="axis">4 Probabile</th><td class="basso">4</td><td class="medio">8</td><td class="alto">12</td><td class="critico">16</td><td class="critico">20</td></tr>
+          <tr><th class="axis">3 Possibile</th><td class="basso">3</td><td class="medio">6</td><td class="medio">9</td><td class="alto">12</td><td class="critico">15</td></tr>
+          <tr><th class="axis">2 Poco probabile</th><td class="basso">2</td><td class="basso">4</td><td class="medio">6</td><td class="medio">8</td><td class="alto">10</td></tr>
+          <tr><th class="axis">1 Improbabile</th><td class="basso">1</td><td class="basso">2</td><td class="basso">3</td><td class="basso">4</td><td class="medio">5</td></tr>
+        </tbody>
+      </table>
+      <p>
+        <span class="chip basso">1–4 BASSO</span>&nbsp; rischio accettabile, monitorare ·
+        <span class="chip medio">5–9 MEDIO</span>&nbsp; miglioramenti nel medio termine ·
+        <span class="chip alto">10–14 ALTO</span>&nbsp; mitigazione a breve termine ·
+        <span class="chip critico">15–25 CRITICO</span>&nbsp; interventi immediati.
+      </p>
     </section>
 
     <section id="metodologia">
       <div class="section-kicker">Metodologia</div>
-      <h2>Confronto controllato tra prompt e modelli locali</h2>
+      <h2>Confronto controllato con registro di riferimento</h2>
       <p>
-        L’esperimento confronta tre prompt con complessità crescente su tre modelli LLM locali. Lo scenario rimane costante, mentre cambiano prompt e modello. Con tre modelli e tre prompt si ottengono nove output complessivi. La valutazione non misura la “verità assoluta” degli output, ma la loro qualità come bozze preliminari da sottoporre a revisione umana.
+        L'esperimento incrocia tre tecniche di prompting e tre modelli LLM locali: nove output complessivi. Lo scenario rimane costante. La novità metodologica è la presenza di un <strong>termine di paragone esterno</strong>: un registro dei rischi di riferimento, redatto in modo indipendente, con 25 rischi distribuiti nelle tre categorie (antropici intenzionali, tecnologici e incidentali, naturali e ambientali), ciascuno con valutazione iniziale e residua sulla matrice 5×5. Il confronto consente di valutare non solo la forma degli output, ma la loro correttezza metodologica.
       </p>
       <table>
         <thead>
-          <tr><th>Variabile</th><th>Valori utilizzati</th><th>Funzione nell’esperimento</th></tr>
+          <tr><th>Variabile</th><th>Valori utilizzati</th><th>Funzione nell'esperimento</th></tr>
         </thead>
         <tbody>
-          <tr><td>Prompt</td><td>Generico, con ruolo, strutturato</td><td>Misura l’impatto del prompt engineering</td></tr>
+          <tr><td>Tecnica di prompting</td><td>Chain of Thought, Few-shot, RISEN</td><td>Misura l'impatto del prompt engineering</td></tr>
           <tr><td>Modelli</td><td>qwen3-vl:4b, gemma4:e4b, llama3.2:3b</td><td>Confronta differenze qualitative tra LLM locali</td></tr>
-          <tr><td>Scenario</td><td>Azienda di vigilanza privata in digitalizzazione</td><td>Base comune per tutti i test</td></tr>
-          <tr><td>Valutazione</td><td>Qualitativa, basata su criteri espliciti</td><td>Evita di presentare i punteggi come misurazioni oggettive assolute</td></tr>
+          <tr><td>Scenario</td><td>Stabilimento farmaceutico, Catania</td><td>Base comune e costante per tutti i test</td></tr>
+          <tr><td>Riferimento</td><td>Registro dei rischi (25 voci, matrice 5×5)</td><td>Termine di paragone per la correttezza metodologica</td></tr>
+          <tr><td>Valutazione</td><td>Qualitativa + confronto quantitativo</td><td>Distanza tra output dei modelli e riferimento</td></tr>
         </tbody>
       </table>
       <div class="warning-box">
         <strong>Nota metodologica.</strong>
-        I punteggi assegnati ai modelli hanno valore comparativo interno all’esperimento. Non rappresentano un benchmark generale dei modelli, ma una valutazione qualitativa degli output generati in questo specifico scenario.
+        I punteggi assegnati ai modelli hanno valore comparativo interno all'esperimento e non costituiscono un benchmark generale. Il registro di riferimento, pur redatto con metodologia professionale, è esso stesso una valutazione a fini didattici: il confronto misura la coerenza con un termine di paragone esplicito, non la "verità" assoluta degli output.
       </div>
     </section>
 
@@ -737,243 +465,559 @@ Non esiste un processo GRC formalizzato.</code></pre>
       <h2>Codice Python</h2>
 
       <div class="code-block">
-        <div class="block-title">Blocco 1 · Import e funzione</div>
+        <div class="block-title">Blocco 1 · Import e funzione di generazione</div>
         <pre><code>import ollama
 
 def genera_risposta(modello, prompt):
+    """Invia il prompt al modello locale via Ollama e
+    restituisce il testo generato."""
     risposta = ollama.generate(
         model=modello,
-        prompt=prompt
+        prompt=prompt,
+        think=False
     )
     return risposta["response"]</code></pre>
       </div>
-      <p>Questa funzione rappresenta il cuore dell’esperimento. Riceve in input il nome del modello e il prompt, invia la richiesta a Ollama e restituisce la risposta generata. La semplicità della funzione rende il test riproducibile e coerente con un’impostazione applicativa.</p>
+      <p>
+        La funzione è il cuore dell'esperimento: riceve il nome del modello e il prompt, invia la richiesta a Ollama e restituisce la risposta generata. Il parametro <code>think=False</code> è il risultato di un problema reale incontrato durante i test: i modelli della famiglia Qwen3 separano il ragionamento interno (campo <code>thinking</code>) dalla risposta finale (campo <code>response</code>), e con i prompt più strutturati restituivano un campo <code>response</code> vuoto. Disattivare il thinking ha reso il comportamento uniforme su tutti i modelli — un esempio concreto di come l'impiego applicativo degli LLM richieda la conoscenza delle loro caratteristiche architetturali.
+      </p>
 
-      <div class="code-block"><div class="block-title">Blocco 2 · Scenario</div><pre><code>scenario = """
-Una piccola azienda di vigilanza privata sta digitalizzando i propri servizi.
-L'azienda usa:
-- email aziendale
-- gestionale clienti
-- telecamere IP
-- smartphone del personale operativo
-- cloud storage
-- sistema di controllo accessi
-- backup periodici
-- fornitore IT esterno con accesso remoto
-Non esiste un processo GRC formalizzato.
+      <div class="code-block"><div class="block-title">Blocco 2 · Scenario (livello meno specifico)</div><pre><code>scenario = """
+Sito oggetto di analisi: stabilimento farmaceutico PFIZER.
+Indirizzo: Via Franco Gorgone - Zona Industriale, 95121 Catania (CT).
+Attivita' svolta: produzione, confezionamento e stoccaggio di
+prodotti farmaceutici.
+Contesto territoriale: zona industriale di Catania, area ad alta
+sismicita' (zona sismica 2), prossimita' del vulcano Etna.
+Asset principali del sito:
+- reparti di produzione e confezionamento
+- magazzini di stoccaggio prodotto finito e materie prime
+- celle frigorifere (catena del freddo)
+- laboratori e CED
+- perimetro, varchi di accesso, area spedizioni e parcheggi
+- personale dipendente, appaltatori e vettori esterni
+Il sito non dispone ancora di un security risk assessment
+formalizzato.
 """</code></pre></div>
-      <p>Lo scenario rimane costante in tutti i test. In questo modo, l’unica variabile principale dell’esperimento è la formulazione del prompt.</p>
 
-      <div class="code-block"><div class="block-title">Blocco 3 · Prompt generico</div><pre><code>prompt_1 = f"""
-Analizza i principali rischi cyber della seguente azienda:
+      <div class="code-block"><div class="block-title">Blocco 3 · Criteri di valutazione (livello intermedio)</div><pre><code>criteri = """
+CRITERIO DI VALUTAZIONE (matrice 5x5 - rif. UNI ISO 31000:2018):
+Il livello di rischio R e' calcolato come prodotto R = P x I.
+
+Scala della PROBABILITA' (P):
+1 Improbabile   - evento mai verificatosi nel sito
+2 Poco probabile- evento raro nel comparto industriale
+3 Possibile     - evento occasionale, gia' verificatosi nel sito
+                  o ricorrente in siti analoghi
+4 Probabile     - evento ricorrente nel sito o nell'area
+5 Quasi certo   - evento frequente, atteso piu' volte all'anno
+
+Scala dell'IMPATTO (I):
+1 Trascurabile  - nessun danno a persone, danni minimi
+2 Lieve         - lesioni lievi, interruzione &lt; 1 giorno
+3 Moderato      - lesioni con prognosi, interruzione 1-3 giorni
+4 Grave         - lesioni gravi, interruzione &gt; 3 giorni,
+                  perdita di prodotto o della catena del freddo
+5 Catastrofico  - decessi, fermo prolungato del sito, impatto
+                  su salute pubblica e reputazione internazionale
+
+Livelli di rischio (R = P x I):
+1-4   BASSO   - rischio accettabile, monitorare
+5-9   MEDIO   - pianificare miglioramenti nel medio termine
+10-14 ALTO    - interventi di mitigazione a breve termine
+15-25 CRITICO - interventi immediati e presidio rafforzato
+
+Il rischio residuo e' rivalutato a valle delle misure di
+prevenzione e mitigazione.
+"""</code></pre></div>
+
+      <div class="code-block"><div class="block-title">Blocco 4 · Prompt 1: Chain of Thought</div><pre><code>prompt_cot = f"""
+Devi effettuare una prima analisi dei rischi di security
+(security risk assessment) per il seguente sito:
 {scenario}
-Produci una breve analisi.
+Ragiona passo per passo, esplicitando ogni passaggio:
+1. individua gli asset da proteggere;
+2. per ogni asset, identifica le minacce rilevanti, distinguendo
+   tra rischi antropici intenzionali (criminosi), rischi
+   tecnologici e incidentali, rischi naturali e ambientali;
+3. per ogni minaccia, spiega perche' e' plausibile in questo
+   specifico contesto (settore farmaceutico, zona industriale
+   di Catania, sismicita', Etna);
+4. stima qualitativamente probabilita' e impatto, motivando
+   la stima;
+5. concludi con l'elenco dei rischi piu' rilevanti in ordine
+   di priorita'.
+Mostra il ragionamento prima delle conclusioni.
 """</code></pre></div>
 
-      <div class="code-block"><div class="block-title">Blocco 4 · Prompt con ruolo</div><pre><code>prompt_2 = f"""
-Agisci come un analista GRC junior.
-Analizza lo scenario:
+      <div class="code-block"><div class="block-title">Blocco 5 · Prompt 2: Few-shot</div><pre><code>prompt_fewshot = f"""
+Devi compilare un registro dei rischi di security per il
+seguente sito:
 {scenario}
-Identifica rischi e possibili controlli.
-Rispondi in modo ordinato.
+{criteri}
+Di seguito due esempi di righe del registro gia' compilate,
+nel formato richiesto:
+
+ESEMPIO 1
+ID: Es1
+Categoria: Rischi antropici intenzionali (criminosi)
+Descrizione del rischio: Intrusione nel perimetro
+(scavalcamento, effrazione varchi)
+[...]
+P: 4 | I: 4 | R = 16 | Livello: CRITICO
+[...]
+P res.: 2 | I res.: 4 | R res. = 8 | Livello residuo: MEDIO
+
+ESEMPIO 2
+ID: Es2
+Categoria: Rischi naturali e ambientali
+Descrizione del rischio: Evento sismico (zona sismica 2 - area
+etnea)
+[...]
+P: 3 | I: 5 | R = 15 | Livello: CRITICO
+[...]
+P res.: 3 | I res.: 4 | R res. = 12 | Livello residuo: ALTO
+
+Seguendo esattamente lo stesso formato degli esempi, genera
+altri 6 rischi NUOVI e pertinenti al sito, coprendo tutte e
+tre le categorie: antropici intenzionali, tecnologici e
+incidentali, naturali e ambientali.
 """</code></pre></div>
 
-      <div class="code-block"><div class="block-title">Blocco 5 · Prompt strutturato</div><pre><code>prompt_3 = f"""
-Agisci come consulente GRC.
-OBIETTIVO:
-Creare una matrice preliminare dei rischi cyber.
-SCENARIO:
+      <div class="code-block"><div class="block-title">Blocco 6 · Prompt 3: framework RISEN (livello più specifico)</div><pre><code>prompt_risen = f"""
+ROLE (ruolo):
+Agisci come un security manager senior, specializzato in
+security risk assessment di siti farmaceutici, con competenze
+di physical security, ISO 31000 e gestione delle emergenze.
+
+INSTRUCTIONS (istruzioni):
+Produci un security risk assessment preliminare del sito
+descritto di seguito, sotto forma di registro dei rischi.
 {scenario}
-ISTRUZIONI:
-Per ogni rischio indica:
-- asset
-- minaccia
-- vulnerabilità
-- impatto (basso/medio/alto)
-- probabilità (bassa/media/alta)
-- controllo
-VINCOLI:
-- Non inventare dati
-- Se mancano informazioni, dichiaralo
-- Distingui tra asset, minaccia, vulnerabilità, rischio e controllo
-FORMATO:
-Tabella + breve conclusione critica
+{criteri}
+Per ogni rischio compila i seguenti campi, nello stesso ordine:
+ID | Categoria | Descrizione del rischio | Impatto potenziale
+(conseguenze) | P | I | R = PxI | Livello di rischio | Misure di
+prevenzione e mitigazione | P res. | I res. | R res. | Livello
+residuo.
+
+STEPS (passi):
+1. Identifica almeno 8 rischi, distribuiti nelle tre categorie.
+2. Assegna P e I usando esclusivamente le scale fornite.
+3. Calcola R = P x I e classifica il livello con le soglie date.
+4. Proponi misure di prevenzione e mitigazione concrete.
+5. Rivaluta P res. e I res. a valle delle misure e ricalcola
+   il rischio residuo con relativo livello.
+6. Chiudi con una breve conclusione critica: i 3 rischi
+   prioritari e i limiti dell'analisi.
+
+END GOAL (risultato atteso):
+Una tabella ordinata, immediatamente utilizzabile come bozza di
+registro dei rischi da sottoporre a revisione umana.
+
+NARROWING (vincoli):
+- Non inventare dati non presenti nello scenario.
+- Il rischio residuo non puo' mai essere superiore al rischio
+  iniziale.
+- Distingui chiaramente minaccia, conseguenza e misura.
+- L'analisi e' preliminare e non sostituisce il giudizio di un
+  professionista della security.
 """</code></pre></div>
 
-      <div class="code-block"><div class="block-title">Blocco 6 · Modelli e ciclo</div><pre><code>modelli = ["qwen3-vl:4b", "gemma4:e4b", "llama3.2:3b"]
+      <div class="code-block"><div class="block-title">Blocco 7 · Modelli e ciclo di esecuzione</div><pre><code>modelli = ["qwen3-vl:4b", "gemma4:e4b", "llama3.2:3b"]
+
 prompts = [
-    ("Generico", prompt_1),
-    ("Ruolo", prompt_2),
-    ("Strutturato", prompt_3)
+    ("Chain of Thought", prompt_cot),
+    ("Few-shot", prompt_fewshot),
+    ("RISEN", prompt_risen)
 ]
 
-with open("output.txt", "w", encoding="utf-8") as f:
-    for modello in modelli:
-        for nome, prompt in prompts:
-            intestazione = f"\n{'='*60}\nMODELLO: {modello}\nPROMPT: {nome}\n{'='*60}\n"
-            print(intestazione)
-            f.write(intestazione)
-            risposta = genera_risposta(modello, prompt)
-            print(risposta)
-            f.write(risposta)
-            f.write("\n\n")
+if __name__ == "__main__":
+    with open("output.txt", "w", encoding="utf-8") as f:
+        f.write("SECURITY RISK ASSESSMENT - PFIZER CATANIA\n")
+        f.write("Esperimento di prompt engineering su LLM locali\n")
 
-print("Esperimento completato.")
-print("Controlla il file output.txt")</code></pre></div>
-      <p>Il ciclo permette di testare in modo sistematico ogni combinazione modello-prompt. Con tre modelli e tre prompt si ottengono nove output complessivi.</p>
+        for modello in modelli:
+            for nome, prompt in prompts:
+                intestazione = (
+                    f"\n{'=' * 60}\n"
+                    f"MODELLO: {modello}\n"
+                    f"TECNICA DI PROMPTING: {nome}\n"
+                    f"{'=' * 60}\n"
+                )
+                print(intestazione)
+                f.write(intestazione)
+
+                try:
+                    risposta = genera_risposta(modello, prompt)
+                except Exception as errore:
+                    risposta = f"[ERRORE con {modello}: {errore}]"
+
+                print(risposta)
+                f.write(risposta)
+                f.write("\n\n")
+
+    print("Esperimento completato: 3 modelli x 3 tecniche = 9 output.")
+    print("Controlla il file output.txt")</code></pre></div>
+      <p>
+        Il ciclo testa sistematicamente ogni combinazione modello-tecnica e scrive i risultati sia sul terminale sia su file. Il blocco <code>try/except</code> garantisce che un errore su un singolo modello non interrompa l'intero esperimento. Il costrutto <code>if __name__ == "__main__"</code> separa la parte di definizione (funzione, scenario, prompt) dalla parte di esecuzione, permettendo di riutilizzare i prompt e la funzione in altri script senza avviare l'esperimento.
+      </p>
     </section>
 
     <section id="prompt">
       <div class="section-kicker">Prompt engineering</div>
-      <h2>Prompt utilizzati</h2>
+      <h2>Tre tecniche, tre livelli di specificità</h2>
+      <p>
+        Le informazioni sono distribuite in modo crescente: il Chain of Thought riceve solo lo scenario; il Few-shot aggiunge i criteri di valutazione e due esempi compilati; il RISEN aggiunge la struttura completa del registro e i vincoli metodologici.
+      </p>
       <div class="cards-3">
         <div class="prompt-card">
-          <div class="badge">Prompt 1 · Generico</div>
-          <div class="prompt-block"><pre><code>Analizza i principali rischi cyber della seguente azienda:
-Una piccola azienda di vigilanza privata sta digitalizzando i propri servizi.
-L'azienda usa:
-- email aziendale
-- gestionale clienti
-- telecamere IP
-- smartphone del personale operativo
-- cloud storage
-- sistema di controllo accessi
-- backup periodici
-- fornitore IT esterno con accesso remoto
-Non esiste un processo GRC formalizzato.
-Produci una breve analisi.</code></pre></div>
-          <p>Questo prompt è usato come baseline. Non assegna un ruolo al modello e non impone una struttura precisa.</p>
+          <div class="badge">Prompt 1 · Chain of Thought</div>
+          <p><strong>Cosa riceve:</strong> solo lo scenario.</p>
+          <p><strong>Cosa chiede:</strong> ragionamento esplicito in cinque passi: asset, minacce per categoria, plausibilità nel contesto, stima qualitativa di probabilità e impatto, priorità finali.</p>
+          <p><strong>Cosa misura:</strong> la capacità del modello di ragionare sul dominio senza vincoli di formato. È il prompt meno vincolato e produce gli output meno confrontabili.</p>
         </div>
         <div class="prompt-card">
-          <div class="badge">Prompt 2 · Con ruolo</div>
-          <div class="prompt-block"><pre><code>Agisci come un analista GRC junior.
-Analizza lo scenario seguente:
-Una piccola azienda di vigilanza privata sta digitalizzando i propri servizi.
-L'azienda usa:
-- email aziendale
-- gestionale clienti
-- telecamere IP
-- smartphone del personale operativo
-- cloud storage
-- sistema di controllo accessi
-- backup periodici
-- fornitore IT esterno con accesso remoto
-Non esiste un processo GRC formalizzato.
-Identifica i principali rischi cyber e proponi alcuni controlli di mitigazione.
-Rispondi in modo ordinato.</code></pre></div>
-          <p>Questo prompt introduce il role prompting. Il modello viene orientato verso una prospettiva professionale specifica.</p>
+          <div class="badge">Prompt 2 · Few-shot</div>
+          <p><strong>Cosa riceve:</strong> scenario, criteri di valutazione e due esempi compilati (un rischio criminoso e uno naturale) nel formato completo, con rischio iniziale e residuo.</p>
+          <p><strong>Cosa chiede:</strong> generare sei rischi nuovi imitando esattamente il formato degli esempi, coprendo tutte e tre le categorie.</p>
+          <p><strong>Cosa misura:</strong> la capacità di apprendere un formato e una metodologia dagli esempi, senza istruzioni esplicite.</p>
         </div>
         <div class="prompt-card">
-          <div class="badge">Prompt 3 · Strutturato</div>
-          <div class="prompt-block"><pre><code>Agisci come un consulente GRC specializzato in cybersecurity.
-OBIETTIVO:
-Produrre una prima matrice dei rischi cyber per una piccola azienda di vigilanza privata.
-SCENARIO:
-Una piccola azienda di vigilanza privata sta digitalizzando i propri servizi.
-L'azienda usa:
-- email aziendale
-- gestionale clienti
-- telecamere IP
-- smartphone del personale operativo
-- cloud storage
-- sistema di controllo accessi
-- backup periodici
-- fornitore IT esterno con accesso remoto
-L'azienda non ha ancora un processo GRC formalizzato.
-ISTRUZIONI:
-Per ogni rischio indica:
-1. asset coinvolto;
-2. minaccia;
-3. vulnerabilità;
-4. impatto;
-5. probabilità;
-6. controllo di mitigazione.
-VINCOLI:
-- Non inventare informazioni non presenti nello scenario.
-- Se mancano dati, indica che l'analisi è preliminare.
-- Distingui chiaramente tra minaccia, vulnerabilità e rischio.
-FORMATO:
-Rispondi con una tabella e aggiungi una breve conclusione critica.</code></pre></div>
-          <p>Questo è il prompt principale dell’esperimento. Contiene ruolo, obiettivo, scenario, istruzioni, vincoli e formato; per questo dovrebbe generare gli output più ordinati e valutabili.</p>
+          <div class="badge">Prompt 3 · RISEN</div>
+          <p><strong>Cosa riceve:</strong> scenario, criteri e struttura completa del registro a 13 campi.</p>
+          <p><strong>Cosa chiede:</strong> ruolo (security manager senior), istruzioni, sei passi operativi, risultato atteso e vincoli espliciti, tra cui: rischio residuo mai superiore all'iniziale e conclusione critica con i tre rischi prioritari.</p>
+          <p><strong>Cosa misura:</strong> l'aderenza a una specifica completa: formato, soglie, vincoli e struttura argomentativa.</p>
         </div>
       </div>
     </section>
 
     <section id="risultati">
       <div class="section-kicker">Risultati</div>
-      <h2>Output selezionati</h2>
-      <p>Non vengono riportati tutti gli output completi, ma alcuni spezzoni significativi per il confronto. Gli output sono interpretati come bozze preliminari, non come valutazioni definitive della sicurezza aziendale.</p>
+      <h2>Estratti significativi dei nove output</h2>
+      <p>
+        Non vengono riportati i nove output completi, ma gli estratti più significativi per il confronto. Gli output sono interpretati come bozze preliminari da sottoporre a revisione umana, non come valutazioni definitive della sicurezza del sito.
+      </p>
 
-      <h3>qwen3-vl:4b · prompt generico</h3>
-      <div class="output-block"><pre><code>L'azienda, pur essendo in transizione verso la digitalizzazione, presenta rischi significativi dovuti a una mancanza di governance strutturata e all'uso di infrastrutture e dispositivi non sempre sicuri.
-1. Rischio di vulnerabilità da parte di fornitori esterni
-L'accesso remoto del fornitore IT rappresenta un punto di ingresso critico. Un'eventuale vulnerabilità nel sistema del fornitore o nel controllo delle credenziali potrebbe permettere l'intercettazione dei dati dell'azienda.
-2. Rischio di compromissione dei dati sensibili
-L'uso di un gestionale clienti e di email non protette aumenta il rischio di falsificazione di comunicazioni o accesso non autorizzato.
-3. Rischio di vulnerabilità di dispositivi IoT
-Le telecamere IP senza aggiornamenti di sicurezza o password predefinite possono portare ad accesso non autorizzato.</code></pre></div>
-      <div class="analysis-box"><p>Questo output è pertinente ma prevalentemente descrittivo. Il modello individua rischi coerenti con lo scenario, ma non separa ancora in modo sistematico asset, minaccia, vulnerabilità e controllo. L’utilità GRC è quindi limitata dalla forma dell’output, non dalla totale assenza di contenuto rilevante.</p></div>
+      <h3>qwen3-vl:4b · Chain of Thought</h3>
+      <div class="output-block"><pre><code>- Minaccia antropica intenzionale: Sabotaggio da parte di
+  dipendenti disapprovati o attori esterni (es. interferenza
+  sulle macchine).
+  - Plausibilità: [...] Per esempio, nel 2017 è stato registrato
+    un attacco all'azienda "Universal Studios" a causa di
+    sabotaggio sulle macchine produttive.
+- Minaccia naturale: Incidenti legati alle oscillazioni del
+  terreno (es. sisma) che danneggiano le macchine [...]
+  - Plausibilità: La zona è ad alta sismicità (Zona 2), e quindi
+    si verifica la probabilità di un terremoto moderato ogni
+    decennio [...]</code></pre></div>
+      <div class="analysis-box"><p>Il ragionamento è organizzato per asset e per categoria, e il modello collega correttamente sismicità e contesto farmaceutico. Compare però una <strong>allucinazione fattuale</strong>: il presunto sabotaggio "Universal Studios 2017" non corrisponde ad alcun evento documentato. Inoltre l'output si interrompe prima dell'elenco finale delle priorità e la stima di probabilità e impatto resta solo abbozzata. È l'esempio più chiaro del perché la verifica umana sia indispensabile: l'errore è mimetizzato dentro un ragionamento plausibile.</p></div>
 
-      <h3>qwen3-vl:4b · prompt strutturato</h3>
-      <table><thead><tr><th>Asset</th><th>Minaccia</th><th>Vulnerabilità</th><th>Impatto</th><th>Probabilità</th><th>Controllo</th></tr></thead><tbody><tr><td>Email aziendale</td><td>Phishing o ransomware</td><td>Assenza di MFA, password deboli</td><td>Alto</td><td>Medio</td><td>MFA, formazione, policy password</td></tr><tr><td>Gestionale clienti</td><td>Accesso non autorizzato</td><td>Software non aggiornato, controlli deboli</td><td>Alto</td><td>Medio</td><td>Aggiornamenti, controllo basato su ruoli</td></tr><tr><td>Telecamere IP</td><td>Exploitation remota</td><td>Credenziali predefinite, traffico non crittografato</td><td>Medio-Alto</td><td>Medio</td><td>Cambiare credenziali, crittografia, segmentazione</td></tr><tr><td>Cloud storage</td><td>Accesso non autorizzato</td><td>Configurazioni errate, permessi troppo ampi</td><td>Alto</td><td>Medio</td><td>Minima autorizzazione, crittografia, audit</td></tr></tbody></table>
-      <div class="analysis-box"><p>Con il prompt strutturato, Qwen produce una matrice più ordinata e confrontabile. Il miglioramento deriva soprattutto dal formato richiesto e dai vincoli inseriti nel prompt. Rimane comunque necessaria la validazione umana: ad esempio, impatto e probabilità sono stime preliminari e non misurazioni basate su evidenze aziendali complete.</p></div>
+      <h3>qwen3-vl:4b · RISEN</h3>
+      <!-- NOTA PER L'AUTORE: verificare che questo estratto corrisponda all'output reale del modello (vedi nota di rigenerazione). -->
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Categoria</th><th>Rischio</th><th>P</th><th>I</th><th>R</th><th>Livello</th><th>R res.</th><th>Residuo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>R01</td><td>Antropici intenzionali</td><td>Intrusione nel perimetro</td><td>4</td><td>4</td><td>16</td><td><span class="chip critico">CRITICO</span></td><td>8</td><td><span class="chip medio">MEDIO</span></td></tr>
+          <tr><td>R02</td><td>Antropici intenzionali</td><td>Furto di prodotti farmaceutici</td><td>3</td><td>4</td><td>12</td><td><span class="chip alto">ALTO</span></td><td>6</td><td><span class="chip medio">MEDIO</span></td></tr>
+          <tr><td>R04</td><td>Antropici intenzionali</td><td>Manomissione del prodotto (tampering)</td><td>2</td><td>5</td><td>10</td><td><span class="chip alto">ALTO</span></td><td>5</td><td><span class="chip medio">MEDIO</span></td></tr>
+          <tr><td>R06</td><td>Tecnologici e incidentali</td><td>Blackout con perdita catena del freddo</td><td>3</td><td>4</td><td>12</td><td><span class="chip alto">ALTO</span></td><td>6</td><td><span class="chip medio">MEDIO</span></td></tr>
+          <tr><td>R07</td><td>Naturali e ambientali</td><td>Evento sismico (zona 2)</td><td>3</td><td>5</td><td>15</td><td><span class="chip critico">CRITICO</span></td><td>12</td><td><span class="chip alto">ALTO</span></td></tr>
+          <tr><td>R08</td><td>Naturali e ambientali</td><td>Cenere vulcanica (Etna)</td><td>3</td><td>3</td><td>9</td><td><span class="chip medio">MEDIO</span></td><td>6</td><td><span class="chip medio">MEDIO</span></td></tr>
+        </tbody>
+      </table>
+      <div class="analysis-box"><p>Estratto della tabella a 13 campi (qui ridotta per leggibilità). L'output rispetta integralmente la specifica: tutti i prodotti R = P × I sono corretti, tutte le classificazioni rispettano le soglie, il rischio residuo non supera mai quello iniziale, e l'output si chiude con la conclusione critica richiesta (tre rischi prioritari e limiti dell'analisi). Il modello osserva anche correttamente che per il sisma le misure riducono l'impatto ma non la probabilità dell'evento naturale.</p></div>
 
-      <h3>gemma4:e4b · prompt generico</h3>
-      <div class="output-block"><pre><code>Questo è un profilo di rischio elevato, tipico delle PMI in fase di rapida digitalizzazione.
-I rischi non sono solo tecnologici, ma sono profondamente radicati nella governance e nella gestione delle identità. Data l'industria, i dati rubati non sono solo informazioni finanziarie, ma riguardano la sicurezza fisica e i luoghi di vita o lavoro dei clienti.
-I principali rischi identificati sono:
-- assenza di processo GRC;
-- mancanza di incident response plan;
-- rischio di lateral movement;
-- compromissione del fornitore IT;
-- configurazione errata del cloud;
-- ransomware e backup inadeguati;
-- telecamere IP non isolate.</code></pre></div>
-      <div class="analysis-box"><p>Gemma produce già con il prompt generico un output maturo e sensibile al contesto. Il modello collega correttamente la cybersecurity alla sicurezza fisica e alla governance. Tuttavia, la risposta rimane discorsiva: utile per una prima riflessione, ma meno immediata da usare come matrice di lavoro.</p></div>
+      <h3>gemma4:e4b · Chain of Thought</h3>
+      <div class="output-block"><pre><code>| Evento Sismico Maggiore | Strutture, Macchinari, Stoccaggio |
+  Assoluta/Imminente. Catania è una zona sismica 2. Un terremoto
+  potente rappresenta il rischio strutturale più critico ed
+  inevitabile da considerare. |
 
-      <h3>gemma4:e4b · prompt strutturato</h3>
-      <table><thead><tr><th>Rischio</th><th>Asset</th><th>Minaccia</th><th>Vulnerabilità</th><th>Impatto</th><th>Probabilità</th><th>Controllo raccomandato</th></tr></thead><tbody><tr><td>Furto dati sensibili</td><td>Gestionale clienti, cloud storage</td><td>Spear phishing o ingegneria sociale</td><td>Formazione insufficiente, uso non controllato email</td><td>Alto</td><td>Alta</td><td>Formazione, simulazioni phishing, MFA</td></tr><tr><td>Compromissione e cifratura dati</td><td>Gestionale, cloud, backup</td><td>Ransomware</td><td>Sistemi non segregati, backup non immutabili</td><td>Alto</td><td>Media</td><td>Isolare backup, incident response plan</td></tr><tr><td>Accesso non autorizzato</td><td>Controllo accessi, IP camera, smartphone</td><td>Furto o manipolazione credenziali</td><td>Password deboli, telefoni non protetti</td><td>Alto</td><td>Media</td><td>MFA, policy mobile, MDM</td></tr><tr><td>Compromissione terze parti</td><td>Fornitore IT esterno</td><td>Credenziali compromesse o backdoor remote</td><td>Accesso troppo ampio, accesso remoto non monitorato</td><td>Alto</td><td>Media</td><td>SLA sicurezza, least privilege, monitoraggio</td></tr></tbody></table>
-      <div class="analysis-box"><p>Questo è l’output più solido nello specifico esperimento. Gemma collega bene asset, minacce, vulnerabilità e controlli, e riconosce il ruolo della governance. La valutazione “migliore” non va intesa come superiorità assoluta del modello, ma come maggiore utilità dell’output in questo scenario e con questo prompt.</p></div>
+| Cyber-attacco/Data Breach | CED, Dati Personali [...] |
+  Molto Alta. Le aziende farmaceutiche sono bersagli primari per
+  ransomware e furti di dati sanitari o operativi (DPIA/GDPR). |
 
-      <h3>llama3.2:3b · prompt strutturato</h3>
-      <table><thead><tr><th>Asset</th><th>Minaccia</th><th>Vulnerabilità</th><th>Impatto</th><th>Probabilità</th><th>Controllo</th></tr></thead><tbody><tr><td>Email aziendale</td><td>Phishing, Malware, V malware</td><td>Inadeguatezza sicurezza email, mancanza antivirus</td><td>Basso</td><td>Alta</td><td>Test di sicurezza email</td></tr><tr><td>Telecamere IP</td><td>Accesso non autorizzato, vittimizzazione</td><td>Mancanza sicurezza, inadeguatezza protezione</td><td>Alto</td><td>Alta</td><td>Firmware di sicurezza, monitoraggio costante</td></tr><tr><td>Backup periodici</td><td>Dati persi o danneggiati</td><td>Mancanza di backup, manutenzione infrequente</td><td>Basso</td><td>Alta</td><td>Backup semestrali, verifica periodica</td></tr></tbody></table>
-      <div class="analysis-box"><p>Llama rispetta parzialmente il formato richiesto, ma l’output è meno accurato. Alcuni termini sono impropri, come “V malware” o “vittimizzazione”, e alcuni controlli risultano deboli o discutibili, come i backup semestrali. Questo mostra che il formato tabellare non garantisce automaticamente qualità sostanziale.</p></div>
+[Priorità 1] Collasso Strutturale/Funzionale dovuto a Evento
+Naturale [...] gestione del shutdown controllato.</code></pre></div>
+      <div class="analysis-box"><p>È il Chain of Thought più maturo dei tre: organizza il lavoro in fasi, usa tabelle intermedie e collega security fisica, continuità operativa e governance. Mostra però due derive: introduce <strong>scale di valutazione proprie</strong> ("Molto Alta", "Assoluta/Imminente" — quest'ultima una sovrastima retorica per un evento sismico) e sposta una quota rilevante dell'analisi sul rischio <strong>cyber</strong>, non richiesto da uno scenario di physical security. Frequente anche il code-mixing italiano/inglese.</p></div>
+
+      <h3>gemma4:e4b · Few-shot</h3>
+      <div class="output-block"><pre><code>ID: R02
+Categoria: Tecnologici (Cybersecurity)
+Descrizione del rischio: Attacco Ransomware o compromissione dei
+sistemi di gestione della produzione (MES/SCADA).
+P: 4 | I: 5 | R = 20 | Livello: CRITICO
+[...]
+P res.: 2 | I res.: 4 | R res. = 8 | Livello residuo: MEDIO
+
+ID: R07
+Categoria: Naturali e ambientali
+Descrizione del rischio: Versamento o sversamento accidentale di
+sostanze chimiche pericolose [...]</code></pre></div>
+      <div class="analysis-box"><p>L'aritmetica è impeccabile su tutti i sei rischi, e le misure proposte sono specifiche e tecnicamente fondate (segmentazione OT/IT, backup air-gapped, filtri HVAC). Emergono però due deviazioni metodologiche: il modello <strong>riscrive la tassonomia</strong> ("Tecnologici (Cybersecurity)", "Tecnologici (Infrastruttura)") invece di usare le tre categorie fornite, e <strong>classifica lo sversamento chimico tra i rischi naturali</strong>, mentre il riferimento lo colloca correttamente tra i tecnologici e incidentali. Anche le stime tendono al rialzo: il ransomware vale R = 20 contro il 12 del rischio cyber-fisico nel riferimento.</p></div>
+
+      <h3>gemma4:e4b · RISEN</h3>
+      <div class="output-block"><pre><code>| R2 | Antropico (Intenzionale) | Intrusione o sabotaggio [...]
+  | 3 | 5 | 15 | CRITICO | [...] | 2 | 4 | 8 | MEDIO/ALTO |
+
+| R4 | Tecnologico/Accidentale | Incendio o esplosione [...]
+  | 2 | 5 | 10 | ALTO | [...] | 1 | 4 | 4 | BASSO/MEDIO |
+
+| R8 | Operativo/Terreno | Disorganizzazione o perdita del
+  controllo dei varchi [...] | 4 | 3 | 12 | ALTO | [...]</code></pre></div>
+      <div class="analysis-box"><p>La tabella è ricca e i calcoli sono tutti corretti, ma l'output viola la specifica in tre punti: inventa <strong>livelli ibridi fuori scala</strong> ("MEDIO/ALTO" per R = 8, che le soglie classificano MEDIO; "BASSO/MEDIO" per R = 4, che è BASSO), introduce <strong>categorie non previste</strong> ("Operativo/Terreno", "Ambientale/Operativo") e soprattutto <strong>omette la conclusione critica</strong> richiesta dal passo 6 del prompt: l'output si chiude con una legenda, senza i tre rischi prioritari né i limiti dell'analisi.</p></div>
+
+      <h3>llama3.2:3b · Chain of Thought</h3>
+      <div class="output-block"><pre><code>1. Reparti di produzione e confezionamento
+   * Criminosi: Furto o rubbia di prodotti farmaceutici;
+     Intrusione non autorizzata; Attentati terroristici
+   * Naturali: Sismi (zona sismica 2); Incidenti climatici
+     (fuoco, uragano ecc.)
+2. Magazzini di stoccaggio [...]
+   * Criminosi: Furto o rubbia di prodotti farmaceutici;
+     Intrusione non autorizzata; Attentati terroristici
+   [...identico per tutti e sei gli asset...]
+
+Passo 4: [...] senza informazioni specifiche e dettagliate,
+è difficile effettuare una stima precisa.</code></pre></div>
+      <div class="analysis-box"><p>Il modello segue formalmente i cinque passi, ma replica <strong>lo stesso elenco di minacce per tutti gli asset</strong>, senza alcuna differenziazione. Compaiono termini inesistenti ("rubbia", "Celli frigorifere") e classificazioni implausibili ("uragano" tra i rischi climatici di Catania, il fuoco tra gli eventi climatici). Al passo 4 il modello di fatto <strong>si rifiuta di stimare</strong> probabilità e impatto. La priorità finale risulta quindi non motivata.</p></div>
+
+      <h3>llama3.2:3b · Few-shot</h3>
+      <div class="output-block"><pre><code>ESEMPIO 4
+ID: R04
+Categoria: Rischi tecnologici (incidenti)
+Descrizione del rischio: Danni al catene del freddo (frane,
+rottura impianti refrigeranti)
+P: 3 | I: 4 | R = 12 | Livello: MEDIO
+[...]
+P res.: 2 | I res.: 3 | R res. = 6 | Livello residuo: BASSO
+
+ESEMPIO 8
+ID: R08
+Descrizione del rischio: Traffico di cattivi nel sito (smuggling)
+P: 4 | I: 5 | R = 20 | Livello: CRITICO</code></pre></div>
+      <div class="analysis-box"><p>Il formato è imitato solo in superficie: il modello replica perfino l'etichetta "ESEMPIO" degli esempi forniti e genera sette rischi invece dei sei richiesti. Soprattutto, <strong>sbaglia sistematicamente le soglie</strong>: R = 12 viene classificato MEDIO (è ALTO) e R = 6 viene classificato BASSO (è MEDIO), su tre rischi diversi. Compaiono formulazioni prive di senso ("Traffico di cattivi nel sito", "frane" come causa di danno alla catena del freddo) e le misure di mitigazione sono lo stesso blocco generico ripetuto.</p></div>
+
+      <h3>llama3.2:3b · RISEN</h3>
+      <div class="output-block"><pre><code>* ID: NR-003 - Sisma vulcanico
+  * P: 2 (Poco probabile) | I: 5 (Catastrofico)
+  * R = PxI: 10
+  * Livello di rischio: CRITICO
+
+Step 2: Rivalutazione dei Rischi Residui
+2. TC-002: Incidente alla catena del freddo
+   * P res.: 4 | I res.: 5 | R res.: 20
+   * Livello residuo: CRITICO   [identico al rischio iniziale]</code></pre></div>
+      <div class="analysis-box"><p>L'output ignora il formato tabellare a 13 campi richiesto, inventa un proprio schema di ID (CR-001, TC-002, NR-003) e suddivide le categorie in quattro invece delle tre previste. Gli errori di soglia sono sistematici (R = 10 classificato CRITICO, R = 12 classificato MEDIO). Il difetto più grave è metodologico: <strong>il rischio residuo coincide con quello iniziale per tutti e otto i rischi</strong> — le misure di mitigazione vengono elencate ma non incidono sulla rivalutazione, svuotando di senso l'intero passaggio. La conclusione è infine contraddittoria ("gli altri rischi, anche se potenzialmente più gravi, hanno un livello residuo più basso").</p></div>
+    </section>
+
+    <section id="confronto">
+      <div class="section-kicker">Confronto con il riferimento</div>
+      <h2>Quanto si avvicinano gli LLM alla valutazione corretta?</h2>
+      <p>
+        È la parte centrale del progetto. Gli output strutturati dei modelli sono stati confrontati riga per riga con il registro dei rischi di riferimento: per ogni rischio identificato da entrambi, si confrontano valore R, livello e logica del rischio residuo. La tabella riporta i rischi principali; per llama3.2:3b, dove il formato RISEN non è confrontabile, i valori provengono dall'output few-shot.
+      </p>
+      <table>
+        <thead>
+          <tr><th>Rischio</th><th>Riferimento</th><th>qwen3-vl:4b</th><th>gemma4:e4b</th><th>llama3.2:3b</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Intrusione perimetrale</td>
+            <td>16 <span class="chip critico">CRITICO</span></td>
+            <td><span class="mark ok">✓</span> 16 <span class="chip critico">CRITICO</span></td>
+            <td><span class="mark mid">≈</span> accorpata al sabotaggio (15)</td>
+            <td><span class="mark bad">✗</span> 12, etichettato "MEDIO"</td>
+          </tr>
+          <tr>
+            <td>Furto di prodotti farmaceutici</td>
+            <td>15 <span class="chip critico">CRITICO</span></td>
+            <td><span class="mark mid">≈</span> 12 <span class="chip alto">ALTO</span> (impatto sottostimato)</td>
+            <td><span class="mark mid">≈</span> 12 <span class="chip alto">ALTO</span></td>
+            <td><span class="mark mid">≈</span> 20 <span class="chip critico">CRITICO</span> (sovrastima)</td>
+          </tr>
+          <tr>
+            <td>Evento sismico (zona 2)</td>
+            <td>15 <span class="chip critico">CRITICO</span></td>
+            <td><span class="mark ok">✓</span> 15 <span class="chip critico">CRITICO</span>, residuo 12 ALTO</td>
+            <td><span class="mark mid">≈</span> 12 <span class="chip alto">ALTO</span> (impatto sottostimato)</td>
+            <td><span class="mark bad">✗</span> 10, etichettato "CRITICO"</td>
+          </tr>
+          <tr>
+            <td>Blackout / catena del freddo</td>
+            <td>12 <span class="chip alto">ALTO</span></td>
+            <td><span class="mark ok">✓</span> 12 <span class="chip alto">ALTO</span></td>
+            <td><span class="mark mid">≈</span> 15 <span class="chip critico">CRITICO</span> (sovrastima)</td>
+            <td><span class="mark bad">✗</span> 20 <span class="chip critico">CRITICO</span> (forte sovrastima)</td>
+          </tr>
+          <tr>
+            <td>Incendio</td>
+            <td>10 <span class="chip alto">ALTO</span></td>
+            <td><span class="mark ok">✓</span> 10 <span class="chip alto">ALTO</span></td>
+            <td><span class="mark ok">✓</span> 10 <span class="chip alto">ALTO</span></td>
+            <td><span class="mark bad">✗</span> 12, etichettato "MEDIO"</td>
+          </tr>
+          <tr>
+            <td>Cenere vulcanica (Etna)</td>
+            <td>9 <span class="chip medio">MEDIO</span></td>
+            <td><span class="mark ok">✓</span> 9 <span class="chip medio">MEDIO</span></td>
+            <td><span class="mark ok">✓</span> 9 <span class="chip medio">MEDIO</span></td>
+            <td><span class="mark mid">≈</span> 15 <span class="chip critico">CRITICO</span> (sovrastima)</td>
+          </tr>
+          <tr>
+            <td>Manomissione del prodotto (tampering)</td>
+            <td>10 <span class="chip alto">ALTO</span></td>
+            <td><span class="mark ok">✓</span> 10 <span class="chip alto">ALTO</span></td>
+            <td><span class="chip na">non identificato</span></td>
+            <td><span class="chip na">non identificato</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:0.88rem;">Legenda: <span class="mark ok">✓</span> concordanza esatta con il riferimento · <span class="mark mid">≈</span> rischio identificato con scostamento di valore o accorpato · <span class="mark bad">✗</span> errore di valutazione o di classificazione.</p>
+
+      <h3>Indicatori di correttezza metodologica</h3>
+      <div class="stat-grid">
+        <div class="stat">
+          <strong>Errori di soglia (R → livello)</strong>
+          <ul>
+            <li>qwen3-vl:4b — <span class="mark ok">nessuno</span></li>
+            <li>gemma4:e4b — <span class="mark mid">0 numerici, ma 3 livelli ibridi fuori scala</span></li>
+            <li>llama3.2:3b — <span class="mark bad">oltre 10 tra few-shot e RISEN</span></li>
+          </ul>
+        </div>
+        <div class="stat">
+          <strong>Vincolo: residuo ≤ iniziale</strong>
+          <ul>
+            <li>qwen3-vl:4b — <span class="mark ok">rispettato</span></li>
+            <li>gemma4:e4b — <span class="mark ok">rispettato</span></li>
+            <li>llama3.2:3b — <span class="mark bad">eluso: residuo = iniziale su tutti gli 8 rischi</span></li>
+          </ul>
+        </div>
+        <div class="stat">
+          <strong>Conclusione critica (passo 6 RISEN)</strong>
+          <ul>
+            <li>qwen3-vl:4b — <span class="mark ok">presente e coerente</span></li>
+            <li>gemma4:e4b — <span class="mark bad">assente</span></li>
+            <li>llama3.2:3b — <span class="mark mid">presente ma contraddittoria</span></li>
+          </ul>
+        </div>
+        <div class="stat">
+          <strong>Tassonomia delle 3 categorie</strong>
+          <ul>
+            <li>qwen3-vl:4b — <span class="mark ok">rispettata</span></li>
+            <li>gemma4:e4b — <span class="mark mid">riscritta (categorie proprie)</span></li>
+            <li>llama3.2:3b — <span class="mark bad">4 categorie e ID propri</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Cosa ha fatto bene e cosa ha sbagliato ciascun modello</h3>
+      <div class="cards-3">
+        <div class="card">
+          <strong>qwen3-vl:4b</strong>
+          <p><span class="mark ok">Bene:</span> piena aderenza a formato, soglie e vincoli nei prompt strutturati; concordanza con il riferimento su quasi tutti i rischi confrontabili; conclusione critica completa.</p>
+          <p><span class="mark bad">Male:</span> nel Chain of Thought introduce un'allucinazione fattuale (caso aziendale inventato) e lascia l'output incompleto; sottostima l'impatto del furto di farmaci (4 invece di 5).</p>
+        </div>
+        <div class="card">
+          <strong>gemma4:e4b</strong>
+          <p><span class="mark ok">Bene:</span> gli output più ricchi e contestualizzati; misure di mitigazione tecnicamente specifiche; aritmetica sempre corretta; il miglior ragionamento libero.</p>
+          <p><span class="mark bad">Male:</span> non si attiene alle specifiche: riscrive la tassonomia, inventa livelli ibridi fuori scala, omette la conclusione richiesta, classifica lo sversamento chimico tra i rischi naturali e tende a sovrastimare i rischi tecnologici.</p>
+        </div>
+        <div class="card">
+          <strong>llama3.2:3b</strong>
+          <p><span class="mark ok">Bene:</span> copre tutte le categorie e riconosce i temi centrali dello scenario (sisma, catena del freddo, intrusione).</p>
+          <p><span class="mark bad">Male:</span> errori sistematici di soglia, rischio residuo mai rivalutato, formato richiesto ignorato, termini inesistenti ("rubbia", "Traffico di cattivi") e ripetizione meccanica delle stesse minacce e misure.</p>
+        </div>
+      </div>
     </section>
 
     <section id="valutazione">
       <div class="section-kicker">Valutazione</div>
-      <h2>Confronto tra prompt e modelli</h2>
-      <table><thead><tr><th>Aspetto</th><th>Prompt generico</th><th>Prompt con ruolo</th><th>Prompt strutturato</th></tr></thead><tbody><tr><td>Struttura</td><td>bassa/media</td><td>media</td><td>alta</td></tr><tr><td>Specificità</td><td>variabile</td><td>buona</td><td>alta</td></tr><tr><td>Utilità GRC</td><td>limitata</td><td>discreta</td><td>elevata</td></tr><tr><td>Rischio di genericità</td><td>alto</td><td>medio</td><td>più basso</td></tr><tr><td>Facilità di valutazione</td><td>bassa</td><td>media</td><td>alta</td></tr></tbody></table>
+      <h2>Confronto tra tecniche di prompting</h2>
+      <table>
+        <thead>
+          <tr><th>Aspetto</th><th>Chain of Thought</th><th>Few-shot</th><th>RISEN</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Struttura dell'output</td><td>discorsiva, libera</td><td>replicata dagli esempi</td><td>tabellare completa</td></tr>
+          <tr><td>Quantificazione R = P × I</td><td>assente o abbozzata</td><td>presente</td><td>presente e vincolata</td></tr>
+          <tr><td>Confrontabilità col riferimento</td><td>bassa</td><td>media</td><td>alta</td></tr>
+          <tr><td>Capacità di far emergere il ragionamento</td><td>alta</td><td>bassa</td><td>media (conclusione critica)</td></tr>
+          <tr><td>Sensibilità agli errori del modello</td><td>nasconde gli errori nel testo</td><td>li rende visibili</td><td>li rende misurabili</td></tr>
+        </tbody>
+      </table>
 
       <h2>Valutazione qualitativa dei modelli</h2>
-      <table><thead><tr><th>Modello</th><th>Prompt generico</th><th>Prompt con ruolo</th><th>Prompt strutturato</th><th>Valutazione complessiva</th></tr></thead><tbody><tr><td>qwen3-vl:4b</td><td>3.5</td><td>4.0</td><td>4.5</td><td>Molto buono nello scenario testato</td></tr><tr><td>gemma4:e4b</td><td>4.0</td><td>4.5</td><td>5.0</td><td>Output complessivamente più utile</td></tr><tr><td>llama3.2:3b</td><td>2.5</td><td>3.0</td><td>3.0</td><td>Utile come baseline, ma più fragile</td></tr></tbody></table>
+      <table>
+        <thead>
+          <tr><th>Modello</th><th>Chain of Thought</th><th>Few-shot</th><th>RISEN</th><th>Valutazione complessiva</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>qwen3-vl:4b</td>
+            <td><span class="score s3">3.5</span></td>
+            <td><span class="score s4">4.5</span></td>
+            <td><span class="score s5">5.0</span></td>
+            <td>Il più aderente a metodologia, formato e soglie nello scenario testato</td>
+          </tr>
+          <tr>
+            <td>gemma4:e4b</td>
+            <td><span class="score s4">4.0</span></td>
+            <td><span class="score s3">3.5</span></td>
+            <td><span class="score s3">3.5</span></td>
+            <td>Output ricchi e contestualizzati, ma indisciplinati su tassonomia, soglie e vincoli</td>
+          </tr>
+          <tr>
+            <td>llama3.2:3b</td>
+            <td><span class="score s2">2.5</span></td>
+            <td><span class="score s2">2.0</span></td>
+            <td><span class="score s2">2.0</span></td>
+            <td>Baseline fragile: errori sistematici di soglia, formato e rischio residuo</td>
+          </tr>
+        </tbody>
+      </table>
 
       <h2>Criteri qualitativi</h2>
-      <table><thead><tr><th>Criterio</th><th>Domanda guida</th></tr></thead><tbody><tr><td>Completezza</td><td>Il modello identifica un numero sufficiente di rischi rilevanti?</td></tr><tr><td>Specificità</td><td>La risposta è collegata allo scenario della vigilanza privata?</td></tr><tr><td>Chiarezza</td><td>La risposta è ordinata e leggibile?</td></tr><tr><td>Coerenza GRC</td><td>Distingue asset, minaccia, vulnerabilità, rischio e controllo?</td></tr><tr><td>Utilità</td><td>I controlli proposti sono applicabili come prima bozza?</td></tr><tr><td>Cautela</td><td>Il modello riconosce i limiti dell’analisi preliminare?</td></tr></tbody></table>
+      <table>
+        <thead>
+          <tr><th>Criterio</th><th>Domanda guida</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Completezza</td><td>Il modello identifica un numero sufficiente di rischi nelle tre categorie?</td></tr>
+          <tr><td>Specificità</td><td>La risposta è ancorata al contesto: farmaceutico, Catania, sismicità, Etna?</td></tr>
+          <tr><td>Correttezza metodologica</td><td>R = P × I è calcolato bene e classificato nelle soglie corrette?</td></tr>
+          <tr><td>Aderenza al formato</td><td>L'output rispetta la struttura e i vincoli richiesti dal prompt?</td></tr>
+          <tr><td>Coerenza del residuo</td><td>Le misure proposte incidono davvero sulla rivalutazione del rischio?</td></tr>
+          <tr><td>Cautela</td><td>Il modello riconosce i limiti dell'analisi preliminare?</td></tr>
+        </tbody>
+      </table>
     </section>
 
     <section id="analisi">
       <div class="section-kicker">Analisi critica</div>
       <h2>Interpretazione dei risultati</h2>
       <div class="critical-box">
-        <p>Dai risultati emerge che il prompt engineering incide in modo evidente sulla qualità dell’output. Il prompt generico permette al modello di produrre una risposta spesso corretta, ma tendenzialmente discorsiva e meno direttamente utilizzabile. Il prompt con ruolo migliora il linguaggio e orienta il modello verso una prospettiva professionale. Il prompt strutturato produce l’output più utile perché obbliga il modello a organizzare la risposta secondo categorie rilevanti per una prima analisi GRC.</p>
-        <p>Il confronto tra Qwen con prompt generico e Qwen con prompt strutturato mostra chiaramente il passaggio da una risposta descrittiva a una matrice più ordinata. Tuttavia, questo miglioramento riguarda soprattutto la forma e la controllabilità dell’output: le stime di impatto e probabilità restano preliminari perché lo scenario non contiene dati quantitativi o evidenze tecniche sufficienti.</p>
-        <p>Gemma risulta il modello più efficace nello specifico esperimento, perché produce risposte più complete e mature anche quando il prompt è meno dettagliato. Llama mostra limiti più evidenti: rispetta in parte il formato, ma introduce termini impropri o controlli troppo generici. Questo conferma che la struttura del prompt migliora gli output, ma non elimina la necessità di valutazione critica.</p>
-        <p>La conclusione corretta non è che l’LLM possa svolgere autonomamente una valutazione GRC, ma che possa supportare la fase preliminare: generazione di bozze, checklist iniziali, prime matrici e materiale da sottoporre alla revisione di un analista umano.</p>
+        <p>Il primo risultato riguarda le tecniche di prompting, e conferma rafforzandola l'ipotesi del progetto precedente: <strong>la tecnica determina la confrontabilità dell'output</strong>. Il Chain of Thought produce i ragionamenti più leggibili ma i risultati meno verificabili: nessuno dei tre modelli arriva a una quantificazione utilizzabile, e gli errori (allucinazioni, ripetizioni, stime rifiutate) restano mimetizzati nel testo. Il Few-shot trasferisce efficacemente il formato, ma non garantisce che il modello ne abbia capito la logica: llama replica perfino l'etichetta "ESEMPIO" e sbaglia le soglie pur imitando la struttura. Il RISEN è la tecnica che rende gli errori <strong>misurabili</strong>: vincoli espliciti come "il residuo non può superare l'iniziale" funzionano da test di comprensione, e infatti è proprio su quel vincolo che llama fallisce e qwen e gemma si distinguono.</p>
+        <p>Il secondo risultato riguarda i modelli, ed è il più interessante: <strong>ricchezza e disciplina non coincidono</strong>. Gemma produce gli output più maturi e contestualizzati — il suo Chain of Thought è il migliore dei tre — ma nei prompt strutturati tende a "fare di testa propria": riscrive la tassonomia, inventa livelli ibridi, omette la conclusione richiesta. Qwen è meno brillante nel ragionamento libero (dove introduce perfino un'allucinazione fattuale), ma nei prompt strutturati è il più fedele a formato, soglie e vincoli, e il più vicino al registro di riferimento. Llama conferma il ruolo di baseline: la struttura del prompt migliora la forma apparente dell'output, ma non la sostanza.</p>
+        <p>Il terzo risultato emerge dal confronto con il riferimento: gli scostamenti non sono casuali ma <strong>direzionali</strong>. Gemma tende a sovrastimare i rischi tecnologici (ransomware a R = 20, blackout a CRITICO) e a sottostimare il sisma; llama oscilla tra sovrastime estreme e sottostime con soglie errate; qwen si mantiene aderente ma sottostima l'impatto del furto di farmaci, non cogliendo pienamente la dimensione di salute pubblica. Per un analista, conoscere il "bias" del modello che sta usando è un'informazione operativa preziosa.</p>
+        <p>La conclusione corretta resta quella del progetto precedente, ma ora è dimostrabile con un termine di paragone: l'LLM non può svolgere autonomamente un risk assessment, può però accelerarne la fase preliminare — a condizione che il prompt sia costruito per rendere l'output verificabile, e che la verifica avvenga davvero.</p>
       </div>
     </section>
 
     <section id="limiti">
       <div class="section-kicker">Limiti metodologici</div>
-      <h2>Limiti dell’esperimento</h2>
+      <h2>Limiti dell'esperimento</h2>
       <div class="cards-3">
-        <div class="card"><strong>Valutazione qualitativa</strong><p>La valutazione è basata su giudizio umano e contiene una componente soggettiva. Per ridurre l’arbitrarietà, sono stati esplicitati criteri di confronto.</p></div>
-        <div class="card"><strong>Scenario sintetico</strong><p>Lo scenario è realistico ma incompleto. Mancano dimensione aziendale, architettura di rete, budget, policy esistenti, configurazioni reali e storico degli incidenti.</p></div>
-        <div class="card"><strong>Assenza di ground truth</strong><p>Non esiste una risposta unica corretta. L’obiettivo non è certificare la sicurezza dell’azienda, ma osservare il comportamento dei modelli.</p></div>
+        <div class="card"><strong>Esecuzione singola</strong><p>Ogni combinazione modello-prompt è stata eseguita una sola volta. Gli LLM sono non deterministici: esecuzioni ripetute produrrebbero output diversi, e la variabilità non è stata misurata.</p></div>
+        <div class="card"><strong>Riferimento non assoluto</strong><p>Il registro di riferimento è esso stesso una valutazione redatta a fini didattici: il confronto misura la coerenza con un termine di paragone esplicito, non una verità oggettiva.</p></div>
+        <div class="card"><strong>Valutazione in parte qualitativa</strong><p>I punteggi sintetici contengono una componente di giudizio. Per ridurre l'arbitrarietà, gli indicatori di correttezza (soglie, vincolo del residuo, conclusione) sono stati resi espliciti e verificabili.</p></div>
       </div>
       <div class="warning-box">
         <strong>Precisazione importante.</strong>
-        Una matrice prodotta da un LLM non deve essere confusa con un risk assessment completo. Può essere una base di partenza, ma richiede verifica, contestualizzazione, raccolta di evidenze e validazione professionale.
+        Un registro dei rischi prodotto da un LLM non è un risk assessment: è una bozza che richiede sopralluogo, raccolta di evidenze, contestualizzazione e validazione da parte di un professionista della security. Il confronto con il riferimento mostra proprio questo: anche l'output migliore contiene scostamenti che solo un esperto del dominio può riconoscere e correggere.
       </div>
     </section>
 
@@ -981,12 +1025,12 @@ I principali rischi identificati sono:
       <div class="section-kicker">Sintesi finale</div>
       <h2>Conclusioni del progetto</h2>
       <div class="conclusion-box">
-        <p>L’esperimento mostra che gli LLM locali possono essere utili per generare una prima bozza di analisi dei rischi cyber. Il valore principale non consiste nella sostituzione dell’esperto umano, ma nella capacità di accelerare la produzione di bozze, checklist e matrici iniziali.</p>
-        <p>Il prompt engineering emerge come la leva principale per migliorare la qualità dell’output. Specificare ruolo, obiettivo, scenario, vincoli e formato consente di ottenere risposte più ordinate, pertinenti e valutabili.</p>
-        <p>Il risultato più rilevante è metodologico: un prompt ben costruito non rende il modello infallibile, ma rende il suo output più controllabile. In un contesto GRC questo è essenziale, perché la qualità non dipende solo dalla quantità di testo prodotto, ma dalla possibilità di verificare e correggere le affermazioni generate.</p>
-        <p>L’approccio più adeguato è quindi human-in-the-loop: il modello produce una bozza, l’analista umano verifica, corregge, integra e valida.</p>
+        <p>L'esperimento mostra che gli LLM locali, anche di piccole dimensioni, possono supportare la fase preliminare di un security risk assessment: due modelli su tre hanno prodotto, con il prompt adeguato, bozze di registro confrontabili con una valutazione di riferimento professionale, identificando correttamente i rischi prioritari del sito — intrusione perimetrale, evento sismico, furto di prodotti farmaceutici.</p>
+        <p>Il prompt engineering si conferma la leva principale, ma con una precisazione che il confronto con il riferimento rende evidente: la struttura del prompt non serve solo a ottenere output più ordinati, serve a ottenere output <strong>verificabili</strong>. Un vincolo esplicito nel prompt è insieme un'istruzione per il modello e un criterio di controllo per l'analista.</p>
+        <p>La seconda evidenza riguarda la scelta del modello: il modello con il ragionamento più ricco non è risultato il più affidabile sul metodo, e viceversa. In un contesto professionale questo suggerisce che la selezione del modello debba dipendere dal compito: esplorazione e brainstorming da una parte, compilazione disciplinata di strumenti metodologici dall'altra.</p>
+        <p>L'approccio corretto resta human-in-the-loop: il modello produce la bozza, l'analista la confronta, la corregge e la valida. Questo progetto ha semplicemente reso quel confronto esplicito e misurabile.</p>
       </div>
-      <div class="final-sentence">Un output plausibile non è necessariamente corretto: il valore dell’LLM è generare una bozza strutturata, non sostituire il giudizio umano.</div>
+      <div class="final-sentence">Un prompt ben costruito non rende il modello corretto: lo rende controllabile. È il confronto con un riferimento, non la plausibilità del testo, a dire quanto vale un output.</div>
     </section>
   </main>
 </body>
