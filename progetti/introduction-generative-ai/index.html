@@ -184,7 +184,7 @@
     tr:last-child td { border-bottom: 0; }
     td { color: var(--muted); }
 
-    /* ----- novità grafiche di questa edizione ----- */
+    /* ----- elementi grafici dedicati ----- */
 
     .chip {
       display: inline-block; padding: 3px 10px; border-radius: 999px;
@@ -233,6 +233,13 @@
       background: var(--ink); color: #ffffff;
       font-size: 1.18rem; font-weight: 900; line-height: 1.45; margin-top: 18px;
     }
+
+    .footer {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto; padding: 26px 0 40px;
+      text-align: center; color: var(--subtle); font-size: 0.88rem;
+    }
+    .footer .rule { width: 76px; height: 1px; margin: 0 auto 16px; background: linear-gradient(90deg, transparent, var(--blue), transparent); }
 
     @media (max-width: 980px) {
       .hero, .highlight-grid, .cards-3, .cards-2, .timeline, .meta-grid, .rubric-grid, .stat-grid { grid-template-columns: 1fr; }
@@ -301,6 +308,7 @@
           <a href="#risultati">Risultati</a>
           <a href="#confronto">Confronto</a>
           <a href="#valutazione">Valutazione</a>
+          <a href="#analisi">Analisi critica</a>
           <a href="#sintesi">Sintesi finale</a>
         </div>
       </div>
@@ -315,7 +323,7 @@
         <div class="side-list">
           <div class="compact-item"><strong>Variabile osservata</strong><span>qualità e correttezza metodologica dell'output al variare di prompt e modello</span></div>
           <div class="compact-item"><strong>Oggetto del confronto</strong><span>Chain of Thought, Few-shot, framework RISEN × tre LLM locali</span></div>
-          <div class="compact-item"><strong>Novità rispetto al progetto precedente</strong><span>gli output sono confrontati con un registro dei rischi di riferimento (25 rischi, matrice 5×5)</span></div>
+          <div class="compact-item"><strong>Elemento distintivo</strong><span>gli output sono confrontati con un registro dei rischi di riferimento (25 rischi, matrice 5×5)</span></div>
         </div>
       </aside>
     </div>
@@ -324,7 +332,7 @@
       <div class="section-kicker">Introduzione</div>
       <h2>Dagli output plausibili agli output verificabili</h2>
       <p>
-        Questo lavoro nasce come evoluzione di un precedente esperimento sul prompt engineering applicato all'analisi dei rischi cyber in ambito GRC. In quel progetto la valutazione degli output era esclusivamente qualitativa: mancava un termine di paragone esterno. Qui il disegno sperimentale viene rafforzato in due direzioni. La prima: il caso applicativo diventa un <strong>security risk assessment fisico</strong> di uno stabilimento farmaceutico, un dominio in cui contesto territoriale e asset materiali rendono più facile distinguere risposte specifiche da risposte generiche. La seconda, più importante: gli output dei modelli vengono confrontati con un <strong>registro dei rischi di riferimento</strong> redatto in modo indipendente secondo la metodologia della matrice 5×5 (rif. UNI ISO 31000:2018), composto da 25 rischi con valutazione iniziale e residua.
+        I Large Language Models sono sempre più impiegati come strumenti di supporto in attività professionali basate su analisi, classificazione e produzione di documenti. Questo progetto ne valuta l'impiego in un caso concreto: la produzione di una prima bozza di <strong>security risk assessment fisico</strong> per uno stabilimento farmaceutico, un dominio in cui contesto territoriale e asset materiali rendono facile distinguere risposte specifiche da risposte generiche. Il disegno sperimentale poggia su un elemento centrale: gli output dei modelli non vengono giudicati solo per la loro plausibilità, ma vengono confrontati con un <strong>registro dei rischi di riferimento</strong> redatto in modo indipendente secondo la metodologia della matrice 5×5 (rif. UNI ISO 31000:2018), composto da 25 rischi con valutazione iniziale e residua.
       </p>
       <p>
         Le tecniche di prompting messe a confronto sono tre, scelte tra quelle più consolidate in letteratura: il <strong>Chain of Thought prompting</strong>, che chiede al modello di esplicitare il ragionamento passo per passo; il <strong>Few-shot prompting</strong>, che fornisce esempi già compilati del formato atteso; e il <strong>framework RISEN</strong> (Role, Instructions, Steps, End goal, Narrowing), che struttura completamente la richiesta. Le informazioni vengono distribuite in modo progressivo, dal meno specifico al più specifico: lo scenario contiene solo il contesto del sito, i criteri di valutazione vengono iniettati solo nei prompt che richiedono la quantificazione del rischio, e gli esempi compilati compaiono solo nel few-shot.
@@ -362,7 +370,7 @@
       <div class="section-kicker">Chiarezza concettuale</div>
       <h2>Probabilità, impatto, rischio e rischio residuo</h2>
       <p>
-        A differenza del progetto precedente, centrato sulla distinzione asset/minaccia/vulnerabilità, qui il fulcro metodologico è la <strong>quantificazione del rischio</strong>. Una risposta linguisticamente plausibile può essere metodologicamente sbagliata: ad esempio se calcola correttamente R = P × I ma poi classifica il valore nella fascia errata, oppure se dichiara misure di mitigazione senza che queste incidano sul rischio residuo.
+        Il fulcro metodologico del lavoro è la <strong>quantificazione del rischio</strong>. Una risposta linguisticamente plausibile può essere metodologicamente sbagliata: ad esempio se calcola correttamente R = P × I ma poi classifica il valore nella fascia errata, oppure se dichiara misure di mitigazione senza che queste incidano sul rischio residuo. Per questo, prima di valutare gli output, è necessario fissare con precisione i quattro concetti su cui si regge la metodologia.
       </p>
       <div class="rubric-grid">
         <div class="card"><strong>Probabilità (P)</strong><p>Frequenza attesa dell'evento, su scala 1–5: da "improbabile" a "quasi certo".</p></div>
@@ -440,7 +448,7 @@ formalizzato.</code></pre>
       <div class="section-kicker">Metodologia</div>
       <h2>Confronto controllato con registro di riferimento</h2>
       <p>
-        L'esperimento incrocia tre tecniche di prompting e tre modelli LLM locali: nove output complessivi. Lo scenario rimane costante. La novità metodologica è la presenza di un <strong>termine di paragone esterno</strong>: un registro dei rischi di riferimento, redatto in modo indipendente, con 25 rischi distribuiti nelle tre categorie (antropici intenzionali, tecnologici e incidentali, naturali e ambientali), ciascuno con valutazione iniziale e residua sulla matrice 5×5. Il confronto consente di valutare non solo la forma degli output, ma la loro correttezza metodologica.
+        L'esperimento incrocia tre tecniche di prompting e tre modelli LLM locali: nove output complessivi. Lo scenario rimane costante. L'elemento centrale del disegno sperimentale è la presenza di un <strong>termine di paragone esterno</strong>: un registro dei rischi di riferimento, redatto in modo indipendente, con 25 rischi distribuiti nelle tre categorie (antropici intenzionali, tecnologici e incidentali, naturali e ambientali), ciascuno con valutazione iniziale e residua sulla matrice 5×5. Il confronto consente di valutare non solo la forma degli output, ma la loro correttezza metodologica.
       </p>
       <table>
         <thead>
@@ -478,7 +486,7 @@ def genera_risposta(modello, prompt):
     return risposta["response"]</code></pre>
       </div>
       <p>
-        La funzione è il cuore dell'esperimento: riceve il nome del modello e il prompt, invia la richiesta a Ollama e restituisce la risposta generata. 
+        La funzione è il cuore dell'esperimento: riceve il nome del modello e il prompt, invia la richiesta a Ollama e restituisce la risposta generata. La sua semplicità rende il test riproducibile: ogni combinazione modello-prompt passa per la stessa identica chiamata.
       </p>
 
       <div class="code-block"><div class="block-title">Blocco 2 · Scenario (livello meno specifico)</div><pre><code>scenario = """
@@ -631,35 +639,34 @@ prompts = [
     ("RISEN", prompt_risen)
 ]
 
+with open("output.txt", "w", encoding="utf-8") as f:
+    f.write("SECURITY RISK ASSESSMENT - PFIZER CATANIA\n")
+    f.write("Esperimento di prompt engineering su LLM locali\n")
 
-  with open("output.txt", "w", encoding="utf-8") as f:
-      f.write("SECURITY RISK ASSESSMENT - PFIZER CATANIA\n")
-      f.write("Esperimento di prompt engineering su LLM locali\n")
+    for modello in modelli:
+        for nome, prompt in prompts:
+            intestazione = (
+                f"\n{'=' * 60}\n"
+                f"MODELLO: {modello}\n"
+                f"TECNICA DI PROMPTING: {nome}\n"
+                f"{'=' * 60}\n"
+            )
+            print(intestazione)
+            f.write(intestazione)
 
-      for modello in modelli:
-          for nome, prompt in prompts:
-              intestazione = (
-                  f"\n{'=' * 60}\n"
-                  f"MODELLO: {modello}\n"
-                  f"TECNICA DI PROMPTING: {nome}\n"
-                  f"{'=' * 60}\n"
-              )
-              print(intestazione)
-              f.write(intestazione)
+            try:
+                risposta = genera_risposta(modello, prompt)
+            except Exception as errore:
+                risposta = f"[ERRORE con {modello}: {errore}]"
 
-              try:
-                  risposta = genera_risposta(modello, prompt)
-              except Exception as errore:
-                  risposta = f"[ERRORE con {modello}: {errore}]"
+            print(risposta)
+            f.write(risposta)
+            f.write("\n\n")
 
-              print(risposta)
-              f.write(risposta)
-              f.write("\n\n")
-
-  print("Esperimento completato: 3 modelli x 3 tecniche = 9 output.")
-  print("Controlla il file output.txt")</code></pre></div>
+print("Esperimento completato: 3 modelli x 3 tecniche = 9 output.")
+print("Controlla il file output.txt")</code></pre></div>
       <p>
-        Il ciclo testa sistematicamente ogni combinazione modello-tecnica e scrive i risultati sia sul terminale sia su file. Il blocco <code>try/except</code> garantisce che un errore su un singolo modello non interrompa l'intero esperimento. 
+        Il ciclo testa sistematicamente ogni combinazione modello-tecnica e scrive i risultati sia sul terminale sia su file. Il blocco <code>try/except</code> garantisce che un errore su un singolo modello non interrompa l'intero esperimento.
       </p>
     </section>
 
@@ -713,7 +720,6 @@ prompts = [
       <div class="analysis-box"><p>Il ragionamento è organizzato per asset e per categoria, e il modello collega correttamente sismicità e contesto farmaceutico. Compare però una <strong>allucinazione fattuale</strong>: il presunto sabotaggio "Universal Studios 2017" non corrisponde ad alcun evento documentato. Inoltre l'output si interrompe prima dell'elenco finale delle priorità e la stima di probabilità e impatto resta solo abbozzata. È l'esempio più chiaro del perché la verifica umana sia indispensabile: l'errore è mimetizzato dentro un ragionamento plausibile.</p></div>
 
       <h3>qwen3-vl:4b · RISEN</h3>
-      <!-- NOTA PER L'AUTORE: verificare che questo estratto corrisponda all'output reale del modello (vedi nota di rigenerazione). -->
       <table>
         <thead>
           <tr><th>ID</th><th>Categoria</th><th>Rischio</th><th>P</th><th>I</th><th>R</th><th>Livello</th><th>R res.</th><th>Residuo</th></tr>
@@ -999,10 +1005,10 @@ Step 2: Rivalutazione dei Rischi Residui
       <div class="section-kicker">Analisi critica</div>
       <h2>Interpretazione dei risultati</h2>
       <div class="critical-box">
-        <p>Il primo risultato riguarda le tecniche di prompting, e conferma rafforzandola l'ipotesi del progetto precedente: <strong>la tecnica determina la confrontabilità dell'output</strong>. Il Chain of Thought produce i ragionamenti più leggibili ma i risultati meno verificabili: nessuno dei tre modelli arriva a una quantificazione utilizzabile, e gli errori (allucinazioni, ripetizioni, stime rifiutate) restano mimetizzati nel testo. Il Few-shot trasferisce efficacemente il formato, ma non garantisce che il modello ne abbia capito la logica: llama replica perfino l'etichetta "ESEMPIO" e sbaglia le soglie pur imitando la struttura. Il RISEN è la tecnica che rende gli errori <strong>misurabili</strong>: vincoli espliciti come "il residuo non può superare l'iniziale" funzionano da test di comprensione, e infatti è proprio su quel vincolo che llama fallisce e qwen e gemma si distinguono.</p>
+        <p>Il primo risultato riguarda le tecniche di prompting: <strong>la tecnica determina la confrontabilità dell'output</strong>. Il Chain of Thought produce i ragionamenti più leggibili ma i risultati meno verificabili: nessuno dei tre modelli arriva a una quantificazione utilizzabile, e gli errori (allucinazioni, ripetizioni, stime rifiutate) restano mimetizzati nel testo. Il Few-shot trasferisce efficacemente il formato, ma non garantisce che il modello ne abbia capito la logica: llama replica perfino l'etichetta "ESEMPIO" e sbaglia le soglie pur imitando la struttura. Il RISEN è la tecnica che rende gli errori <strong>misurabili</strong>: vincoli espliciti come "il residuo non può superare l'iniziale" funzionano da test di comprensione, e infatti è proprio su quel vincolo che llama fallisce e qwen e gemma si distinguono.</p>
         <p>Il secondo risultato riguarda i modelli, ed è il più interessante: <strong>ricchezza e disciplina non coincidono</strong>. Gemma produce gli output più maturi e contestualizzati — il suo Chain of Thought è il migliore dei tre — ma nei prompt strutturati tende a "fare di testa propria": riscrive la tassonomia, inventa livelli ibridi, omette la conclusione richiesta. Qwen è meno brillante nel ragionamento libero (dove introduce perfino un'allucinazione fattuale), ma nei prompt strutturati è il più fedele a formato, soglie e vincoli, e il più vicino al registro di riferimento. Llama conferma il ruolo di baseline: la struttura del prompt migliora la forma apparente dell'output, ma non la sostanza.</p>
         <p>Il terzo risultato emerge dal confronto con il riferimento: gli scostamenti non sono casuali ma <strong>direzionali</strong>. Gemma tende a sovrastimare i rischi tecnologici (ransomware a R = 20, blackout a CRITICO) e a sottostimare il sisma; llama oscilla tra sovrastime estreme e sottostime con soglie errate; qwen si mantiene aderente ma sottostima l'impatto del furto di farmaci, non cogliendo pienamente la dimensione di salute pubblica. Per un analista, conoscere il "bias" del modello che sta usando è un'informazione operativa preziosa.</p>
-        <p>La conclusione corretta resta quella del progetto precedente, ma ora è dimostrabile con un termine di paragone: l'LLM non può svolgere autonomamente un risk assessment, può però accelerarne la fase preliminare — a condizione che il prompt sia costruito per rendere l'output verificabile, e che la verifica avvenga davvero.</p>
+        <p>La conclusione che il confronto rende dimostrabile è questa: l'LLM non può svolgere autonomamente un risk assessment, può però accelerarne la fase preliminare — a condizione che il prompt sia costruito per rendere l'output verificabile, e che la verifica avvenga davvero.</p>
       </div>
     </section>
 
@@ -1027,10 +1033,15 @@ Step 2: Rivalutazione dei Rischi Residui
         <p>L'esperimento mostra che gli LLM locali, anche di piccole dimensioni, possono supportare la fase preliminare di un security risk assessment: due modelli su tre hanno prodotto, con il prompt adeguato, bozze di registro confrontabili con una valutazione di riferimento professionale, identificando correttamente i rischi prioritari del sito — intrusione perimetrale, evento sismico, furto di prodotti farmaceutici.</p>
         <p>Il prompt engineering si conferma la leva principale, ma con una precisazione che il confronto con il riferimento rende evidente: la struttura del prompt non serve solo a ottenere output più ordinati, serve a ottenere output <strong>verificabili</strong>. Un vincolo esplicito nel prompt è insieme un'istruzione per il modello e un criterio di controllo per l'analista.</p>
         <p>La seconda evidenza riguarda la scelta del modello: il modello con il ragionamento più ricco non è risultato il più affidabile sul metodo, e viceversa. In un contesto professionale questo suggerisce che la selezione del modello debba dipendere dal compito: esplorazione e brainstorming da una parte, compilazione disciplinata di strumenti metodologici dall'altra.</p>
-        <p>L'approccio corretto resta human-in-the-loop: il modello produce la bozza, l'analista la confronta, la corregge e la valida. Questo progetto ha semplicemente reso quel confronto esplicito e misurabile.</p>
+        <p>L'approccio corretto resta human-in-the-loop: il modello produce la bozza, l'analista la confronta, la corregge e la valida. Questo progetto ha reso quel confronto esplicito e misurabile.</p>
       </div>
       <div class="final-sentence">Un prompt ben costruito non rende il modello corretto: lo rende controllabile. È il confronto con un riferimento, non la plausibilità del testo, a dire quanto vale un output.</div>
     </section>
   </main>
+
+  <footer class="footer">
+    <div class="rule" aria-hidden="true"></div>
+    Security Risk Assistant · Progetto conclusivo del corso "Introduzione e applicazione dell'Intelligenza Artificiale" · Giovanni Palma
+  </footer>
 </body>
 </html>
